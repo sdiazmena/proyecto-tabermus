@@ -1,0 +1,16 @@
+/node_modules
+/public/storage
+/storage/*.key
+/vendor
+/.idea
+Homestead.json
+Homestead.yaml
+.env
+# Ignores
+\.DS_Store
+\.classpath
+\.project
+\.settings
+\.metadata/
+Servers/
+target/
