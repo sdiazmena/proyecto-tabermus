@@ -15,9 +15,10 @@ class UserController extends Controller
 
     	if(Banda::where('id_usuario',$iduser)->pluck('nombre')->all())
     	{
+            $banda1 = DB::table('banda')->where('id_usuario', $iduser)->first();
     		$banda = Banda::where('id_usuario',$iduser)->pluck('nombre')->all();
-    		
-    		return view('profile', array('user' => Auth::user(),'banda'=>$banda));
+
+    		return view('profile', array('user' => Auth::user(),'banda'=>$banda,'banda1'=>$banda1));
     	}else{
     		$banda[0] = 0;
     		return view('profile', array('user' => Auth::user(),'banda'=>$banda));
@@ -48,5 +49,11 @@ class UserController extends Controller
                  ->update(['avatar' => 'uploads/avatars/'.$name]);
             return redirect('/profile')->with('status', 'Su imagen de perfil ha sido cambiada con éxito');
         }        
+    }
+    public function updateProfile(Request $request){
+        $user = new User;
+        $user->where('email','=', Auth::user()->email)
+             ->update(['name' => $request->nombre]);
+        return redirect('/profile')->with('status', 'Su perfil ha sido modificado con éxito');       
     }
 }

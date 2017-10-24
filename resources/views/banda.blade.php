@@ -1,6 +1,7 @@
 @extends('layouts.prueba')
 
-@section('content')    
+@section('content') 
+ 
     <div class="col-sm-8 bloqueContenido">
             <h1 class="well text-center">Informacion de la Banda</h1>
             <div class="well">
@@ -12,13 +13,16 @@
                     <li><a href="#">Galeria</a></li>-->
                 </ul>
                 {!! Form::open(['action' => 'BandaController@store',  'enctype' => 'multipart/form-data', 'files' => 'true']) !!}
+                {{csrf_field()}}
                 <div class="col-sm-5">
-                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-          <!--  <div class="form-group">
-                <p class="help-block">Subir imagen</p>
-                <input type="file" name="file" >
+                    <img src="https://gruposmedia.com/wp-content/plugins/ajax-search-pro/img/default.jpg" class="img-responsive" style="width:100%" alt="Image">
 
-            </div>-->
+            <div class='form-group'>
+                <label for='image'>Imagen: </label>
+                <input type="file" name="image" />
+                <div class='text-danger'>{{$errors->first('image')}}</div>
+            </div>
+
                 </div>
 
 
@@ -194,7 +198,7 @@
                 <br>
                 
             </div>
-            {!! Form::submit('Guardar', ['class' => 'btn btn-action btn-lg']) !!}
+            {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
     </div>
 @endsection

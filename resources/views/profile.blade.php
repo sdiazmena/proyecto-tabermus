@@ -21,7 +21,7 @@
         <h3>Opciones:</h3>
         <ul>
         @if($banda[0] != '0')
-            <li><a class="btn btn-action btn-lg" role="button" href="{{ url('/profile/banda/{banda}/edit') }}">Perfil Banda: {{$banda[0]}}</a></li>
+            <li><a class="btn btn-action btn-lg" role="button" href="{{ url('/profile/banda/'.$banda1->id.'/edit') }}">Adminisitrar Perfil de {{$banda[0]}}</a></li>
 
         @else
             <li><a class="btn btn-action btn-lg" role="button" href="{{ url('/profile/banda') }}">Agregar Banda</a></li>

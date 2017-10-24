@@ -90,7 +90,7 @@
                                 @if(Auth::user()->password == '')
                                     <img src="{{Auth::user()->avatar}}" style="width:75px; height:75px; float:center; border-radius:50%; ">
                                 @else
-                                    <img src="uploads/avatars/{{ Auth::user()->avatar }}" style="width:75px; height:75px; float:center; border-radius:50%; margin-right:25px;">
+                                    <img src="{{ Auth::user()->avatar }}" style="width:75px; height:75px; float:center; border-radius:50%; margin-right:25px;">
 
                                 @endif
                                     <li><a href="{{url('/profile')}}"><span class="glyphicon glyphicon-user">Perfil</a></li>

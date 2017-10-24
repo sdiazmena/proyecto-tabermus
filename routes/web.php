@@ -26,6 +26,7 @@ Route::get('/profile','UserController@profile');
 Route::get('/profile/user','UserController@profileUser');
 Route::post('/profile/user/edit','UserController@editProfile');
 Route::post('/profile/user/updateAvatar', 'UserController@updateAvatar');
+Route::post('/profile/user/updateProfile', 'UserController@updateProfile');
 
 Route::resource('/profile/banda', 'BandaController');
 Route::get('profile/ciudades/{id}', 'RegionController@getCiudades');
