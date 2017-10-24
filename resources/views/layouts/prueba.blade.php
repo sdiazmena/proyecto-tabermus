@@ -155,14 +155,14 @@
                 <h4>Filtrado de Bandas</h4>
                 <div class="well text-center">
                     <h4>En tu Region</h4>
-                    <p><a href="#">Ciudad</a></p>
-                    <p><a href="#">Genero</a></p>
-                    <p><a href="#">Alfabeticamente</a></p>
+                    <p><a href="filtrado">Ciudad</a></p>
+                    <p><a href="filtrado">Genero</a></p>
+                    <p><a href="filtrado">Alfabeticamente</a></p>
                     <br>
                     <h4>Nacional</h4>
-                    <p><a href="#">Region</a></p>
-                    <p><a href="#">Genero</a></p>
-                    <p><a href="#">Alfabeticamente</a></p>
+                    <p><a href="filtrado">Region</a></p>
+                    <p><a href="filtrado">Genero</a></p>
+                    <p><a href="filtrado">Alfabeticamente</a></p>
                 </div>
             </ul>
             <br>

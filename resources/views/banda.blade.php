@@ -9,8 +9,7 @@
                     <li class="active"><a href="#">Perfil</a></li><!--
                     <li><a href="#">Historia</a></li>
                     <li><a href="#">Musica</a></li>
-                    <li><a href="#">Fechas</a></li>
-                    <li><a href="#">Galeria</a></li>-->
+                    <li><a href="#">Fechas</a></li>-->
                 </ul>
                 {!! Form::open(['action' => 'BandaController@store',  'enctype' => 'multipart/form-data', 'files' => 'true']) !!}
                 {{csrf_field()}}

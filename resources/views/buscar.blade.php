@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="col-sm-8 bloqueContenido">
-        <h1 class="well text-center">Busqueda</h1>
+        <h1 class="well text-center">Busqueda:</h1>
         <div>
             <div class="well" id="contenidoMostrar">
                 <div class="form-group">

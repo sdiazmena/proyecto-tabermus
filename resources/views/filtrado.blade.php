@@ -1,7 +1,6 @@
 @extends('layouts.prueba')
 
-@section('content')  
-<div class="container-fluid">
+@section('content')
     <div class="col-sm-8 bloqueContenido">
         <h1 class="well text-center">Filtrado</h1>
         <ul class="nav nav-tabs">
@@ -15,5 +14,4 @@
 
     </div>
 
-</div>
 @endsection
