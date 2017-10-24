@@ -1,0 +1,45 @@
+@extends('layouts.prueba')
+
+@section('content')    
+    <div class="col-sm-8 bloqueContenido">
+            <h1 class="well text-center">¿Quienes Somos?:</h1>
+        <!-- Left-aligned media object -->
+
+        <div class="well">
+            <p>Somos personas amante de la musica nacional, quienes prentender poder general un espacio para las bandas que
+                van surgiendo dias a dia. Es asi que en esta pagina entregamos herramientas donde los usuarios podran darse
+            a conocer sus trabajos. Ademas de permitir a todos aquellos que buscan informacion del acontecer nacional, puedan
+            obtener una busqueda mucho mas satisfactoria</p>
+        </div>
+
+        <div class="well">
+        <div class="media">
+            <div class="media-left">
+                <img src="img_avatar1.png" class="media-object" style="width:60px">
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">Sebastian Esteban Diaz Mena</h4>
+                <p>Ocupacion:</p>
+                <p>Hobbie:</p>
+                <p></p>
+            </div>
+        </div>
+        <hr>
+        </div>
+        <div class="well">
+        <!-- Right-aligned media object -->
+        <div class="media">
+            <div class="media-body">
+                <h4 class="media-heading">Luis Javier Gonzalez Donoso</h4>
+                <p>Ocupacion:</p>
+                <p>Hobbie:</p>
+                <p></p>
+            </div>
+            <div class="media-right">
+                <img src="img_avatar1.png" class="media-object" style="width:60px">
+            </div>
+        </div>
+        </div>
+
+    </div>
+@endsection
