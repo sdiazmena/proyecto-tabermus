@@ -1,7 +1,8 @@
 $(document).ready(function(){
     $(tuRegion).click(function(){
+        alert("hola");
         $("#contenidoMostrar").empty();
-        $("#contenidoMostrar").load("elementosBusqueda.html #regionGenerico");
+        $("#contenidoMostrar").load("elementosFiltrado.php #regionGenerico");
         $("#resultadoBusqueda").load("elementosBusqueda.html #busquedaRegionalGenero");
     });
     $(nacional).click(function(){

@@ -1,4 +1,4 @@
-@extends('layouts.prueba')
+@extends('Users.Nicolas.Documents.resources.views.layouts.prueba')
 
 @section('content')
     <div class="col-sm-8 bloqueContenido">
