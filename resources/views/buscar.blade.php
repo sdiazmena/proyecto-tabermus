@@ -19,7 +19,7 @@
                 <button type="submit" class="btn btn-default">Buscar</button>
             </div>
             <div class="well" id="resultadoBusqueda">
-                <h3>Resultado</h3>
+                <h3 id="tituloBusqueda"></h3>
             </div>
         </div>
 
