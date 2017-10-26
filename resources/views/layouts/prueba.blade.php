@@ -54,12 +54,13 @@
       .row.content {height:auto;} 
     }
   </style>
+      @yield('css')
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
-
+    @yield('scripts')
     {{ Html::style('css/barraLateral.css') }}
     {{ Html::style('css/plantilla.css') }}
     {{ Html::style('css/app.css') }}
@@ -69,6 +70,7 @@
     {{ Html::script('js/integrantes.js') }}
     {{ Html::script('js/scriptsBandaAgregarEliminarElementos.js') }}
     {{ Html::script('js/scriptBusqueda.js') }}
+
 </head>
 <body>
 
@@ -210,4 +212,5 @@
 </footer>
 
 </body>
+
 </html>
