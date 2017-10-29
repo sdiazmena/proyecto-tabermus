@@ -28,16 +28,18 @@ Route::post('/profile/user/edit','UserController@editProfile');
 Route::post('/profile/user/updateAvatar', 'UserController@updateAvatar');
 Route::post('/profile/user/updateProfile', 'UserController@updateProfile');
 
-Route::resource('calendario','ShowController');
+Route::resource('/calendario','ShowController');
 
 Route::resource('/profile/banda', 'BandaController');
-Route::get('profile/ciudades/{id}', 'RegionController@getCiudades');
+Route::get('/profile/ciudades/{id}', 'RegionController@getCiudades');
 Route::get('/redirect/{provider}','SocialController@redirect');
 Route::get('/callback/{provider}','SocialController@callback');
 
-Route::get('somos', 'SomosController@index');
-Route::get('contacto', 'ContactoController@index');
-Route::get('sugerencia', 'SugerenciaController@index');
+Route::get('/somos', 'SomosController@index');
+Route::get('/contacto', 'ContactoController@index');
+Route::get('/sugerencia', 'SugerenciaController@index');
+
+Route::get('/index', 'IndexController@index');
 
 
 
