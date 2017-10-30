@@ -1,5 +1,4 @@
 function actualizarSeleccionImagen() {
-    alert($("#region").val());
     if($("#region").val()=== "1"){
         $("#imgRegion").empty();
         $("#imgRegion").load("js/imagenes.html #1");
