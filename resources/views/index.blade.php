@@ -110,8 +110,11 @@
             <h4>Para comenzar, por favor escoga su ubicacion</h4>
             <p>Esto nos permitira entregarte informacion relevante a tu cercania y estes al tanto de lo que acontecede.</p>
             <label class="col-sm-2 control-label">Region:</label>
-            {!! Form::select('region', $regiones, null,['id'=>'region','class' => 'form-control', 'onchange'=> 'actualizarSeleccionImagen()', 'placeholder' => 'Seleccione una región..','required']) !!}
-            <button id="botonNacional" onclick="">Entrar</button>
+            <form action="cambiarVista" method="POST">
+                {!! csrf_field() !!}
+                {!! Form::select('region', $regiones, null,['id'=>'region','class' => 'form-control', 'onchange'=> 'actualizarSeleccionImagen()', 'placeholder' => 'Seleccione una región..','required']) !!}
+                {!! Form::submit('Entrar', ['class' => 'btn btn-primary']) !!}
+            </form>
 
         </div>
 

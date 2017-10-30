@@ -70,6 +70,7 @@
     {{ Html::script('js/integrantes.js') }}
     {{ Html::script('js/scriptsBandaAgregarEliminarElementos.js') }}
     {{ Html::script('js/scriptBusqueda.js') }}
+    {{ Html::script('js/scriptRegionesBarraMenu.js') }}
 
 </head>
 <body>
@@ -82,7 +83,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>                        
                       </button>
-                      <a class="navbar-brand" href="{{url('/')}}">TaberMus: La Taberna Musical</a>
+                      <a class="navbar-brand" href="{{url('/home')}}">TaberMus: La Taberna Musical</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
@@ -91,21 +92,21 @@
                         <li><a href="buscar">Buscar</a></li>
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Valparaiso<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Tarapacá</a></li>
-                                <li><a href="#">Antofagasta</a></li>
-                                <li><a href="#">Atacama</a></li>
-                                <li><a href="#">Coquimbo</a></li>
-                                <li><a href="#">Valparaiso</a></li>
-                                <li><a href="#">O'Higgins</a></li>
-                                <li><a href="#">Maule</a></li>
-                                <li><a href="#">Biobío</a></li>
-                                <li><a href="#">Araucania</a></li>
-                                <li><a href="#">Los lagos</a></li>
-                                <li><a href="#">Aisén</a></li>
-                                <li><a href="#">Magallanes</a></li>
-                                <li><a href="#">Santiago</a></li>
-                                <li><a href="#">Los rios</a></li>
-                                <li><a href="#">Arica</a></li>
+                                <li><a href="home" onclick="actualizarRegion('1')">Tarapacá</a></li>
+                                <li><a href="home" onclick="actualizarRegion('2')">Antofagasta</a></li>
+                                <li><a href="home" onclick="actualizarRegion('3')">Atacama</a></li>
+                                <li><a href="home" onclick="actualizarRegion('4')">Coquimbo</a></li>
+                                <li><a href="home" onclick="actualizarRegion('5')">Valparaiso</a></li>
+                                <li><a href="home" onclick="actualizarRegion('6')">O'Higgins</a></li>
+                                <li><a href="home" onclick="actualizarRegion('7')">Maule</a></li>
+                                <li><a href="home" onclick="actualizarRegion('8')">Biobío</a></li>
+                                <li><a href="home" onclick="actualizarRegion('9')">Araucania</a></li>
+                                <li><a href="home" onclick="actualizarRegion('10')">Los lagos</a></li>
+                                <li><a href="home" onclick="actualizarRegion('11')">Aisén</a></li>
+                                <li><a href="home" onclick="actualizarRegion('12')">Magallanes</a></li>
+                                <li><a href="home" onclick="actualizarRegion('13')">Santiago</a></li>
+                                <li><a href="home" onclick="actualizarRegion('14')">Los rios</a></li>
+                                <li><a href="home" onclick="actualizarRegion('15')">Arica</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Informacion<span class="caret"></span></a>

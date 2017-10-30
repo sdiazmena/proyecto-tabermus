@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'IndexController@index');
 
 Route::get('/busqueda', function () {
     return view('busqueda');
@@ -40,5 +38,8 @@ Route::get('/contacto', 'ContactoController@index');
 Route::get('/sugerencia', 'SugerenciaController@index');
 
 Route::get('/index', 'IndexController@index');
+Route::post('cambiarVista', function (){
+    return redirect('/home');
+});
 Route::get('filtrado', 'FiltradoController@index');
 Route::get('/buscar', 'BusquedaController@index');
