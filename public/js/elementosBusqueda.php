@@ -43,24 +43,8 @@
         <div class="row">
             <label class="col-sm-1 control-label">Region:</label>
             <div class="col-xs-2">
-                <select>
-                    <option>Region</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>Valparaiso</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                </select>
+                {!! Form::select('region', $regiones, null,['id'=>'region','class' => 'form-control', 'placeholder' => 'Seleccione una región..','required']) !!}
+
             </div>
             <label class="col-sm-2 control-label">Filtrado por:</label>
             <div class="col-xs-3">

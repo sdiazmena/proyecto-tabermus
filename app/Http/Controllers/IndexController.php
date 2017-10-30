@@ -11,17 +11,8 @@ use Validator;
 use Auth;
 use App\User;
 
-class FiltradoController extends Controller
+class IndexController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the application dashboard.
@@ -31,6 +22,6 @@ class FiltradoController extends Controller
     public function index()
     {
         $regiones = Region::orderBy('id', 'ASC')->pluck('nombre','id')->all();
-        return view('filtrado')->with('regiones',$regiones);
+        return view('index')->with('regiones',$regiones);
     }
 }

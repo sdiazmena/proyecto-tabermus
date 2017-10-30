@@ -1,13 +1,13 @@
 function cargaContenidoNacional() {
     $("#contenidoMostrar").empty();
-    $("#contenidoMostrar").load("js/elementosBusqueda.html #nacionalGenerico");
-    $("#resultadoBusqueda").load("js/elementosBusqueda.html #busquedaNacionalGenero");
+    $("#contenidoMostrar").load("js/elementosBusqueda.php #nacionalGenerico");
+    $("#resultadoBusqueda").load("js/elementosBusqueda.php #busquedaNacionalGenero");
 }
 
 function cargaContenidoRegion() {
     $("#contenidoMostrar").empty();
-    $('#contenidoMostrar').load('js/elementosBusqueda.html #regionGenerico');
-    $("#resultadoBusqueda").load("js/elementosBusqueda.html #busquedaRegionalGenero");
+    $('#contenidoMostrar').load('js/elementosBusqueda.php #regionGenerico');
+    $("#resultadoBusqueda").load("js/elementosBusqueda.php #busquedaRegionalGenero");
 }
 
 function desbloquearRegionalOpcional() {
@@ -26,12 +26,12 @@ function actualizarRegion(){
         if($('#selectOpcionalRegional').val() === 'Todo'){
             alert('filtrado genero con todo');
             $("#resultadoBusqueda").empty();
-            $("#resultadoBusqueda").load("js/elementosBusqueda.html #busquedaRegionalGenero");
+            $("#resultadoBusqueda").load("js/elementosBusqueda.php #busquedaRegionalGenero");
         }
         else {
             alert('filtrado genero con '+ $('#selectOpcionalRegional').val());
             $("#resultadoBusqueda").empty();
-            $("#resultadoBusqueda").load("js/elementosBusqueda.html #busquedaRegionalGenero");
+            $("#resultadoBusqueda").load("js/elementosBusqueda.php #busquedaRegionalGenero");
         }
 
     }
@@ -40,12 +40,12 @@ function actualizarRegion(){
         if ($('#selectOpcionalRegional').val() === 'Todo'){
             alert('filtrado aaa con todo');
             $("#resultadoBusqueda").empty();
-            $("#resultadoBusqueda").load("js/elementosBusqueda.html #busquedaRegionalAlfabeticamente");
+            $("#resultadoBusqueda").load("js/elementosBusqueda.php #busquedaRegionalAlfabeticamente");
         }
         else {
             alert('filtrado aaa con '+ $('#selectOpcionalRegional').val());
             $("#resultadoBusqueda").empty();
-            $("#resultadoBusqueda").load("js/elementosBusqueda.html #busquedaRegionalAlfabeticamente");
+            $("#resultadoBusqueda").load("js/elementosBusqueda.php #busquedaRegionalAlfabeticamente");
         }
 
     }
@@ -61,12 +61,12 @@ function actualizarNacional(){
         if($('#selectOpcionalNacional').val() === 'Todo'){
             alert('Filtrado de genero, con todo incluido');
             $("#resultadoBusqueda").empty();
-            $("#resultadoBusqueda").load("js/elementosBusqueda.html #busquedaNacionalGenero");
+            $("#resultadoBusqueda").load("js/elementosBusqueda.php #busquedaNacionalGenero");
         }
         else{
             alert('filtrado de genero con'+ $('#selectOpcionalNacional').val());
             $("#resultadoBusqueda").empty();
-            $("#resultadoBusqueda").load("js/elementosBusqueda.html #busquedaNacionalGenero");
+            $("#resultadoBusqueda").load("js/elementosBusqueda.php #busquedaNacionalGenero");
         }
 
     }
@@ -75,12 +75,12 @@ function actualizarNacional(){
         if($('#selectOpcionalNacional').val() === 'Todo'){
             alert('filtrado region con todo');
             $("#resultadoBusqueda").empty();
-            $("#resultadoBusqueda").load("js/elementosBusqueda.html #busquedaNacionalCiudad");
+            $("#resultadoBusqueda").load("js/elementosBusqueda.php #busquedaNacionalCiudad");
         }
         else {
             alert('filtrado region con '+ $('#selectOpcionalNacional').val());
             $("#resultadoBusqueda").empty();
-            $("#resultadoBusqueda").load("js/elementosBusqueda.html #busquedaNacionalCiudad");
+            $("#resultadoBusqueda").load("js/elementosBusqueda.php #busquedaNacionalCiudad");
         }
     }
 
@@ -88,12 +88,12 @@ function actualizarNacional(){
         if($('#selectOpcionalNacional').val() === 'Todo'){
             alert('filtrado aaa con todo');
             $("#resultadoBusqueda").empty();
-            $("#resultadoBusqueda").load("js/elementosBusqueda.html #busquedaNacionalCiudad");
+            $("#resultadoBusqueda").load("js/elementosBusqueda.php #busquedaNacionalCiudad");
         }
         else {
             alert('filtrado aaa con '+ $('#selectOpcionalNacional').val());
             $("#resultadoBusqueda").empty();
-            $("#resultadoBusqueda").load("js/elementosBusqueda.html #busquedaNacionalCiudad");
+            $("#resultadoBusqueda").load("js/elementosBusqueda.php #busquedaNacionalCiudad");
         }
     }
     else {

@@ -38,8 +38,6 @@
         top: 50px;
         left: 0;
         padding: 0;
-        background-color: #5e5e5e;
-        border: 2px solid;
         z-index: 1;
         width: 25px;
     }
@@ -70,6 +68,7 @@
     {{ Html::script('js/integrantes.js') }}
     {{ Html::script('js/scriptsBandaAgregarEliminarElementos.js') }}
     {{ Html::script('js/scriptBusqueda.js') }}
+    {{ Html::script('js/scriptRegionesBarraMenu.js') }}
 
 </head>
 <body>
@@ -82,7 +81,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>                        
                       </button>
-                      <a class="navbar-brand" href="{{url('/')}}">TaberMus: La Taberna Musical</a>
+                      <a class="navbar-brand" href="{{url('/home')}}">TaberMus: La Taberna Musical</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
@@ -91,9 +90,21 @@
                         <li><a href="buscar">Buscar</a></li>
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Valparaiso<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Region1</a></li>
-                                <li><a href="#">Region2</a></li>
-                                <li><a href="#">Region3</a></li>
+                                <li><a href="home" onclick="actualizarRegion('1')">Tarapacá</a></li>
+                                <li><a href="home" onclick="actualizarRegion('2')">Antofagasta</a></li>
+                                <li><a href="home" onclick="actualizarRegion('3')">Atacama</a></li>
+                                <li><a href="home" onclick="actualizarRegion('4')">Coquimbo</a></li>
+                                <li><a href="home" onclick="actualizarRegion('5')">Valparaiso</a></li>
+                                <li><a href="home" onclick="actualizarRegion('6')">O'Higgins</a></li>
+                                <li><a href="home" onclick="actualizarRegion('7')">Maule</a></li>
+                                <li><a href="home" onclick="actualizarRegion('8')">Biobío</a></li>
+                                <li><a href="home" onclick="actualizarRegion('9')">Araucania</a></li>
+                                <li><a href="home" onclick="actualizarRegion('10')">Los lagos</a></li>
+                                <li><a href="home" onclick="actualizarRegion('11')">Aisén</a></li>
+                                <li><a href="home" onclick="actualizarRegion('12')">Magallanes</a></li>
+                                <li><a href="home" onclick="actualizarRegion('13')">Santiago</a></li>
+                                <li><a href="home" onclick="actualizarRegion('14')">Los rios</a></li>
+                                <li><a href="home" onclick="actualizarRegion('15')">Arica</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Informacion<span class="caret"></span></a>
@@ -173,17 +184,9 @@
         </div>
    </div>
     <div class="flotar">
-        <a href="#">
-            <p>F</p>
-            <p>i</p>
-            <p>l</p>
-            <p>t</p>
-            <p>r</p>
-            <p>a</p>
-            <p>d</p>
-            <p>o</p>
+        <a href="#menu-toggle" id="menu-toggle-button">
+            <img  src="{{ asset('img/filtrar.png') }}" style="width:40px">
         </a>
-        <button href="#menu-toggle" id="menu-toggle-button" class="glyphicon glyphicon-search"></button>
     </div>
     @yield('content')
     <div class="col-sm-3 text-center">

@@ -19,7 +19,7 @@
         <div class="well">
         <div class="media">
             <div class="media-left">
-                <img src="img_avatar1.png" class="media-object" style="width:60px">
+                <img src="{{ asset('img/somos/seba.jpg') }}" class="media-object" style="width:100px">
             </div>
             <div class="media-body">
                 <h4 class="media-heading">Sebastian Esteban Diaz Mena</h4>
@@ -39,7 +39,7 @@
                 <p>Hobbie: Escuchar musica, ir a conciertos, musico.</p>
             </div>
             <div class="media-right">
-                <img src="img_avatar1.png" class="media-object" style="width:60px">
+                <img src="{{ asset('img/somos/luis.jpg') }}" class="media-object" style="width:100px">
             </div>
         </div>
         </div>
