@@ -40,8 +40,5 @@ Route::get('/contacto', 'ContactoController@index');
 Route::get('/sugerencia', 'SugerenciaController@index');
 
 Route::get('/index', 'IndexController@index');
-
-
-
 Route::get('filtrado', 'FiltradoController@index');
-Route::get('buscar', 'BusquedaController@index');
+Route::get('/buscar', 'BusquedaController@index');

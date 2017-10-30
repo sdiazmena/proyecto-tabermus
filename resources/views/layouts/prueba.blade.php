@@ -91,9 +91,21 @@
                         <li><a href="buscar">Buscar</a></li>
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Valparaiso<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Region1</a></li>
-                                <li><a href="#">Region2</a></li>
-                                <li><a href="#">Region3</a></li>
+                                <li><a href="#">Tarapacá</a></li>
+                                <li><a href="#">Antofagasta</a></li>
+                                <li><a href="#">Atacama</a></li>
+                                <li><a href="#">Coquimbo</a></li>
+                                <li><a href="#">Valparaiso</a></li>
+                                <li><a href="#">O'Higgins</a></li>
+                                <li><a href="#">Maule</a></li>
+                                <li><a href="#">Biobío</a></li>
+                                <li><a href="#">Araucania</a></li>
+                                <li><a href="#">Los lagos</a></li>
+                                <li><a href="#">Aisén</a></li>
+                                <li><a href="#">Magallanes</a></li>
+                                <li><a href="#">Santiago</a></li>
+                                <li><a href="#">Los rios</a></li>
+                                <li><a href="#">Arica</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Informacion<span class="caret"></span></a>
