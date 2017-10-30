@@ -4,7 +4,7 @@
 
 
 
-    <div class="col-sm-8 text-left"> 
+    <div class="col-sm-8 text-left bloqueContenido">
       <h1>Welcome</h1>
       <p>Aqui damos la bienvenida y una pequeña pincelada de lo que buscamos hacer o que se trata de la pagina</p>
       

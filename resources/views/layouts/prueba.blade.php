@@ -38,8 +38,6 @@
         top: 50px;
         left: 0;
         padding: 0;
-        background-color: #5e5e5e;
-        border: 2px solid;
         z-index: 1;
         width: 25px;
     }
@@ -186,17 +184,9 @@
         </div>
    </div>
     <div class="flotar">
-        <a href="#">
-            <p>F</p>
-            <p>i</p>
-            <p>l</p>
-            <p>t</p>
-            <p>r</p>
-            <p>a</p>
-            <p>d</p>
-            <p>o</p>
+        <a href="#menu-toggle" id="menu-toggle-button">
+            <img  src="{{ asset('img/filtrar.png') }}" style="width:40px">
         </a>
-        <button href="#menu-toggle" id="menu-toggle-button" class="glyphicon glyphicon-search"></button>
     </div>
     @yield('content')
     <div class="col-sm-3 text-center">
