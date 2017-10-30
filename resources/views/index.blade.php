@@ -95,9 +95,6 @@
     </div>
     <div class="col-xs-7">
 
-
-
-
         <div class="well">
             <img class="img-responsive well" src="{{ asset('img/logo.png') }}" class="img-thumbnail">
             <h2>Bienvenido</h2>
@@ -106,34 +103,16 @@
         </div>
 
         <div id="imgRegion" class="col-sm-6">
-            <img class="img-responsive well" src="{{ asset('img/region/i.png') }}" class="img-thumbnail">
+            <img class="img-responsive well" src="{{ asset('img/region/seleccione.jpg') }}" class="img-thumbnail">
         </div>
 
         <div class="col-sm-6 well">
             <h4>Para comenzar, por favor escoga su ubicacion</h4>
             <p>Esto nos permitira entregarte informacion relevante a tu cercania y estes al tanto de lo que acontecede.</p>
             <label class="col-sm-2 control-label">Region:</label>
-            <div class="col-xs-4">
-                <select id="selectRegionalIndex" onchange="actualizarSeleccionImagen()">
-                    <option>Region</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>Valparaiso</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                </select>
-            </div>
+            {!! Form::select('region', $regiones, null,['id'=>'region','class' => 'form-control', 'onchange'=> 'actualizarSeleccionImagen()', 'placeholder' => 'Seleccione una región..','required']) !!}
             <button id="botonNacional" onclick="">Entrar</button>
+
         </div>
 
     </div>
