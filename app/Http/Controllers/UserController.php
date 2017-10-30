@@ -46,7 +46,7 @@ class UserController extends Controller
             $request->file('image')->move('uploads/avatars', $name);
             $user = new User;
             $user->where('email', '=', Auth::user()->email)
-                 ->update(['avatar' => 'uploads/avatars/'.$name]);
+                 ->update(['avatar' => $name]);
             return redirect('/profile')->with('status', 'Su imagen de perfil ha sido cambiada con éxito');
         }        
     }
