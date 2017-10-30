@@ -8,7 +8,7 @@
         @if(Auth::user()->password == '')
             <img src="{{Auth::user()->avatar}}" style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">
         @else
-            <img src="{{ Auth::user()->avatar }}" style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">
+            <img src="{{Auth::user()->avatar}}" style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">
         @endif
         <h3>Cambiar imagen de perfil</h3>
 		<form method='post' action='{{url("/profile/user/updateAvatar")}}' enctype='multipart/form-data'>

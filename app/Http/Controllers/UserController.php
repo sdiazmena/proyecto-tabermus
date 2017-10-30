@@ -26,7 +26,7 @@ class UserController extends Controller
 
     }
     public function profileUser(){
-        return view('editarperfil');
+        return view('editarperfil', array('user' => Auth::user()));
     }
     public function updateAvatar(Request $request){
         $rules = ['image' => 'required|image|max:1024*1024*1',];

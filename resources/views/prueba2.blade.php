@@ -1,47 +1,18 @@
-@extends('layouts.prueba')
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
 
-@section('css')
         {{ Html::style('fullcalendar/fullcalendar.min.css') }}
-        
-        <style>
-
-	body {
-		margin: 40px 10px;
-		padding: 0;
-		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-		font-size: 14px;
-	}
-
-	#calendar {
-		max-width: 900px;
-		margin: 0 auto;
-	}
-
-</style>
-
-
-@endsection
-
-@section('content')    
-    <div class="col-sm-8 bloqueContenido">
-            <h1 class="well text-center">Calendario</h1>
-
-
-			<div id="calendar"></div>
-
-                
-
-    </div>
-@endsection
-
-@section('scripts')
-    {{ Html::script('fullcalendar/lib/jquery-ui.min.js') }}
+        {{ Html::style('fullcalendar/fullcalendar.print.min.css') }}
+        {{ Html::style('fullcalendar/lib/cupertino/jquery-ui.min.css') }}
+    {{ Html::script('fullcalendar/lib/jquery-ui.custom.min.js') }}
     {{ Html::script('fullcalendar/lib/moment.min.js') }}
     {{ Html::script('fullcalendar/fullcalendar.min.js') }}
-    {{ Html::script('fullcalendar/locale-all.js') }}
-    <script>
-        //inicializamos el calendario al cargar la pagina
-$(document).ready(function() {
+    {{ Html::script('fullcalendar/lang-all.js') }}
+<script>
+
+	$(document).ready(function() {
 		
 		$('#calendar').fullCalendar({
 			header: {
@@ -112,5 +83,27 @@ $(document).ready(function() {
 		});
 		
 	});
-    </script>
-@endsection
+
+</script>
+<style>
+
+	body {
+		margin: 40px 10px;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+
+	#calendar {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+</style>
+</head>
+<body>
+
+	<div id='calendar'></div>
+
+</body>
+</html>
