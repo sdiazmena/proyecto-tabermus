@@ -29,6 +29,9 @@ Route::post('/profile/user/updateProfile', 'UserController@updateProfile');
 Route::resource('/calendario','ShowController');
 
 Route::resource('/profile/banda', 'BandaController');
+Route::get('/profile/banda/{id}/historia','BandaController@editHistory');
+Route::get('/profile/banda/{id}/discos','BandaController@editDiscos');
+Route::get('/profile/banda/{id}/fechas','BandaController@editFechas');
 Route::get('/profile/ciudades/{id}', 'RegionController@getCiudades');
 Route::get('/redirect/{provider}','SocialController@redirect');
 Route::get('/callback/{provider}','SocialController@callback');

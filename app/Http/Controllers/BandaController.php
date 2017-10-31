@@ -119,7 +119,31 @@ class BandaController extends Controller
 
         return view("editarbanda")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda);
     }
+    public function editHistory($id)
+    {
+        $banda = DB::table('banda')->where('id', $id)->first();
+        return view("editarhistoria")->with('banda',$banda);
+    }
+    public function editDiscos($id)
+    {
+        $banda = DB::table('banda')->where('id', $id)->first();
+        $liricas = Lirica::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+        $generos = Genero::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+        $regiones = Region::orderBy('id', 'ASC')->pluck('nombre','id')->all();
+  
 
+        return view("editardiscos")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda);
+    }
+    public function editFechas($id)
+    {
+        $banda = DB::table('banda')->where('id', $id)->first();
+        $liricas = Lirica::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+        $generos = Genero::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+        $regiones = Region::orderBy('id', 'ASC')->pluck('nombre','id')->all();
+  
+
+        return view("editarfechas")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda);
+    }
     /**
      * Update the specified resource in storage.
      *

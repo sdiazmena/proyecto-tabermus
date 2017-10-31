@@ -86,7 +86,7 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="active"><a href="home">Inicio</a></li>
-                        <li><a href="calendario">Calendario</a></li>
+                        <li><a href="/tabermus/public/calendario">Calendario</a></li>
                         <li><a href="buscar">Buscar</a></li>
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Valparaiso<span class="caret"></span></a>
                             <ul class="dropdown-menu">
