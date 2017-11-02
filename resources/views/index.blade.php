@@ -70,8 +70,11 @@
     {{ Html::script('js/dropdown.js') }}
     {{ Html::script('js/integrantes.js') }}
     {{ Html::script('js/scriptIndex.js') }}
+    {{ Html::script('js/scriptRegionesBarraMenu.js') }}
 
-
+    <?php setcookie("idRegion", "id");
+    setcookie("nameRegion", "name");
+    ?>
 
 </head>
 

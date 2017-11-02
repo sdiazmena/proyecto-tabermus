@@ -58,6 +58,14 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+
+    <script>
+        function guardarDatos(valorId, valorName){
+
+            setRegion(valorId);
+        }
+    </script>
+
     @yield('scripts')
     {{ Html::style('css/barraLateral.css') }}
     {{ Html::style('css/plantilla.css') }}
@@ -69,6 +77,11 @@
     {{ Html::script('js/scriptsBandaAgregarEliminarElementos.js') }}
     {{ Html::script('js/scriptBusqueda.js') }}
     {{ Html::script('js/scriptRegionesBarraMenu.js') }}
+    {{ Html::script('js/scriptIndex.js') }}
+
+    <?php $regionActualId = '1'; ?>
+    <?php $regionActualNombre = 'Tarapacá'; ?>
+
 
 </head>
 <body>
@@ -88,25 +101,28 @@
                         <li class="active"><a href="home">Inicio</a></li>
                         <li><a href="calendario">Calendario</a></li>
                         <li><a href="buscar">Buscar</a></li>
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Valparaiso<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="home" onclick="actualizarRegion('1')">Tarapacá</a></li>
-                                <li><a href="home" onclick="actualizarRegion('2')">Antofagasta</a></li>
-                                <li><a href="home" onclick="actualizarRegion('3')">Atacama</a></li>
-                                <li><a href="home" onclick="actualizarRegion('4')">Coquimbo</a></li>
-                                <li><a href="home" onclick="actualizarRegion('5')">Valparaiso</a></li>
-                                <li><a href="home" onclick="actualizarRegion('6')">O'Higgins</a></li>
-                                <li><a href="home" onclick="actualizarRegion('7')">Maule</a></li>
-                                <li><a href="home" onclick="actualizarRegion('8')">Biobío</a></li>
-                                <li><a href="home" onclick="actualizarRegion('9')">Araucania</a></li>
-                                <li><a href="home" onclick="actualizarRegion('10')">Los lagos</a></li>
-                                <li><a href="home" onclick="actualizarRegion('11')">Aisén</a></li>
-                                <li><a href="home" onclick="actualizarRegion('12')">Magallanes</a></li>
-                                <li><a href="home" onclick="actualizarRegion('13')">Santiago</a></li>
-                                <li><a href="home" onclick="actualizarRegion('14')">Los rios</a></li>
-                                <li><a href="home" onclick="actualizarRegion('15')">Arica</a></li>
+                        <li id="topRegion" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $_COOKIE["nameRegion"];?><span class="caret"></span></a>
+                            <ul id="barraRegionesTop" class="dropdown-menu">
+                                <li><a href="#" onclick="setRegion('1','Tarapacá')">Tarapacá</a></li>
+                                <li><a href="#" onclick="setRegion('2','Antofagasta')">Antofagasta</a></li>
+                                <li><a href="#" onclick="setRegion('3','Atacama')">Atacama</a></li>
+                                <li><a href="#" onclick="setRegion('4','Coquimbo')">Coquimbo</a></li>
+                                <li><a href="#" onclick="setRegion('5','Valparaiso')">Valparaiso</a></li>
+                                <li><a href="#" onclick="setRegion('6','O\'Higgins')">O'Higgins</a></li>
+                                <li><a href="#" onclick="setRegion('7','Maule')">Maule</a></li>
+                                <li><a href="#" onclick="setRegion('8','Biobío')">Biobío</a></li>
+                                <li><a href="#" onclick="setRegion('9','Araucania')">Araucania</a></li>
+                                <li><a href="#" onclick="setRegion('10','Los Lagos')">Los Lagos</a></li>
+                                <li><a href="#" onclick="setRegion('11','Aisén')">Aisén</a></li>
+                                <li><a href="#" onclick="setRegion('12','Magallanes')">Magallanes</a></li>
+                                <li><a href="#" onclick="setRegion('13','Santiago')">Santiago</a></li>
+                                <li><a href="#" onclick="setRegion('14','Los Rios')">Los Rios</a></li>
+                                <li><a href="#" onclick="setRegion('15','Arica')">Arica</a></li>
                             </ul>
                         </li>
+                        <script type="text/javascript">
+                            actualizarBarraRegion(getRegion());
+                        </script>
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Informacion<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="somos">¿Quienes somos?</a></li>

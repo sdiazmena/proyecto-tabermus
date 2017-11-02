@@ -13,21 +13,6 @@ use App\User;
 
 class FiltradoController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $regiones = Region::orderBy('id', 'ASC')->pluck('nombre','id')->all();
