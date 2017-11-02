@@ -16,7 +16,7 @@ class CreateShowsTable extends Migration
         Schema::create('shows', function (Blueprint $table) {
             $table->increments('id');
             $table->string('informacion');
-            $table->string('nombre');
+            $table->string('title');
             $table->datetime('start');
             $table->datetime('end');
             $table->string('color', 7);

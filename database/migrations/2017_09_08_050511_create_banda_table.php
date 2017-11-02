@@ -30,7 +30,7 @@ class CreateBandaTable extends Migration
             $table->string('soundcloud')->nullable();
             $table->string('spotify')->nullable();
             $table->string('youtube')->nullable();
-            $table->longText('historia');
+            $table->longText('historia')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

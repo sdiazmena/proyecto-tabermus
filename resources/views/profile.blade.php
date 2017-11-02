@@ -5,17 +5,23 @@
 <br>
     @if (Session::has('status'))
     <hr />
-        <div class='text-success'>
+        <div class='text-success' style = "text-align:center">
             {{Session::get('status')}}
         </div>
     <hr />
     @endif
     <div class="col-sm-8 bloqueContenido">
         <h1>{{ Auth::user()->name }} Perfil</h1>
-        @if(Auth::user()->password == '')
+        <?php  
+            $poe = 'https://graph.facebook.com/v2.8/';
+            $google = 'https://lh6.googleusercontent.com';
+            $pos = strpos(Auth::user()->avatar, $poe);
+            $pos2 = strpos(Auth::user()->avatar, $google);
+        ?>
+        @if($pos === false && $pos2 === false)
             <img src="uploads/avatars/{{Auth::user()->avatar}}" style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">
         @else
-            <img src="uploads/avatars/{{Auth::user()->avatar}}" style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">
+            <img src="{{Auth::user()->avatar}}" style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">
 
         @endif    
         <h3>Opciones:</h3>

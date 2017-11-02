@@ -125,12 +125,17 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-
-                                @if(Auth::user()->password == '')
+                                <?php  
+                                    $poe = 'https://graph.facebook.com/v2.8/';
+                                    $google = 'https://lh6.googleusercontent.com';
+                                    $pos = strpos(Auth::user()->avatar, $poe);
+                                    $pos2 = strpos(Auth::user()->avatar, $google);
+                                ?>
+                                @if($pos === false && $pos2 === false)
                                     <img src="/tabermus/public/uploads/avatars/{{Auth::user()->avatar}}" style="width:75px; height:75px; float:center; border-radius:50%; margin-right:25px;">
                                 @else
-                                    <img src="/tabermus/public/uploads/avatars/{{Auth::user()->avatar}}" style="width:75px; height:75px; float:center; border-radius:50%; margin-right:25px;">
 
+                                    <img src="{{Auth::user()->avatar}}" style="width:75px; height:75px; float:center; border-radius:50%; margin-right:25px;">
                                 @endif
                                     <li><a href="{{url('/profile')}}"><span class="glyphicon glyphicon-user">Perfil</span></a></li>
                                     <li>

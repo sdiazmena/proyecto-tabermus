@@ -124,6 +124,13 @@ class BandaController extends Controller
         $banda = DB::table('banda')->where('id', $id)->first();
         return view("editarhistoria")->with('banda',$banda);
     }
+    public function updateHistory(Request $request, $id)
+    {
+        $banda = new Banda; 
+        $banda->where('id','=', $id)
+            ->update(['historia' => $request->historia]);
+        return redirect('/profile')->with('status', 'Historia de Banda editada correctamente');
+    }
     public function editDiscos($id)
     {
         $banda = DB::table('banda')->where('id', $id)->first();
@@ -153,23 +160,21 @@ class BandaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if($request->file('image')->getClientOriginalName()){
-        $name = str_random(30) . '-' . $request->file('image')->getClientOriginalName();   
-        $request->file('image')->move('uploads/bandas', $name);
-        $rules = ['image' => 'image|max:1024*1024*1',];
-        $messages = [
-            'image.image' => 'Formato no permitido',
-            'image.max' => 'El máximo permitido es 2 MB',
-        ];
-        $validator = Validator::make($request->all(), $rules, $messages);
-        if ($validator->fails()){
-            return redirect('/profile/banda')->withErrors($validator);
+        if($request->file('image')){
+            $name = str_random(30) . '-' . $request->file('image')->getClientOriginalName();   
+            $request->file('image')->move('uploads/bandas', $name);
+
+                $banda = new Banda;
+                $banda->where('id','=', $id)
+                     ->update(['nombre' => $request->nombre, 'descripcion' => $request->descripcion, 'facebook' => $request->facebook, 'instagram' => $request->instagram, 'twitter' => $request->twitter, 'soundcloud' => $request->soundcloud, 'spotify' => $request->spotify, 'youtube' => $request->youtube, 'imagen' => 'uploads/bandas/'.$name]);
+                return redirect('/profile')->with('status', 'Perfil de Banda editada correctamente');
+            
         }else{
             $banda = new Banda;
             $banda->where('id','=', $id)
-                 ->update(['name' => $request->nombre, 'descripcion' => $request->descripcion, 'facebook' => $request->facebook, 'instagram' => $requesst->instagram, 'twitter' => $request->twitter, 'soundcloud' => $request->soundcloud, 'spotify' => $request->spotify, 'youtube' => $request->youtube, 'imagen' => 'uploads/bandas/'.$name]);
+                     ->update(['nombre' => $request->nombre, 'descripcion' => $request->descripcion, 'facebook' => $request->facebook, 'instagram' => $request->instagram, 'twitter' => $request->twitter, 'soundcloud' => $request->soundcloud, 'spotify' => $request->spotify, 'youtube' => $request->youtube]);
+            return redirect('/profile')->with('status', 'Perfil de Banda editada correctamente');
         }
-    }
     }
 
     /**

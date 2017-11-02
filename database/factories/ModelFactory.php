@@ -17,7 +17,7 @@ $factory->define(App\Show::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'nombre' => $faker->sentence(4),
+        'title' => $faker->sentence(4),
         'informacion' => $faker->sentence(4),
         'start' => $faker->dateTimeThisMonth(),
         'end' => $faker->dateTimeThisMonth(),
