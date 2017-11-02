@@ -6,10 +6,8 @@
             <h1 class="well text-center">Informacion de la Banda</h1>
             <div class="well">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#">Perfil</a></li><!--
-                    <li><a href="#">Historia</a></li>
-                    <li><a href="#">Musica</a></li>
-                    <li><a href="#">Fechas</a></li>-->
+                    <li class="active"><a href="#">Perfil</a></li>
+
                 </ul>
                 {!! Form::open(['action' => 'BandaController@store',  'enctype' => 'multipart/form-data', 'files' => 'true']) !!}
                 {{csrf_field()}}

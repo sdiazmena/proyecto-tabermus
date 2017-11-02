@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateShowsTable extends Migration
+class CreateCancionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateShowsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shows', function (Blueprint $table) {
+        Schema::create('cancion', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('informacion');
-            $table->string('title');
-            $table->datetime('start');
-            $table->datetime('end');
-            $table->string('color', 7);
-            $table->string('id_ciudad');
+            $table->string('titulo');
+            $table->string('id_lista');
+            $table->string('id_banda');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateShowsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shows');
+        Schema::dropIfExists('cancion');
     }
 }

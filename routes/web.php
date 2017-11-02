@@ -27,8 +27,15 @@ Route::post('/profile/user/updateAvatar', 'UserController@updateAvatar');
 Route::post('/profile/user/updateProfile', 'UserController@updateProfile');
 
 Route::resource('/calendario','ShowController');
+Route::get('/calendar', 'ShowController@getData');
 
 Route::resource('/profile/banda', 'BandaController');
+Route::get('/profile/banda/{id}/historia','BandaController@editHistory');
+Route::post('/profile/banda/{id}/historia/update','BandaController@updateHistory');
+Route::get('/profile/banda/{id}/discos','BandaController@editDiscos');
+Route::post('/profile/banda/{id}/discos/update','BandaController@updateDiscos');
+Route::get('/profile/banda/{id}/fechas','BandaController@editFechas');
+Route::post('/profile/banda/{id}/fechas/update','BandaController@updateFechas');
 Route::get('/profile/ciudades/{id}', 'RegionController@getCiudades');
 Route::get('/redirect/{provider}','SocialController@redirect');
 Route::get('/callback/{provider}','SocialController@callback');

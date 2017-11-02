@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateShowsTable extends Migration
+class CreateActualizacionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateShowsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shows', function (Blueprint $table) {
+        Schema::create('actualizacion', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('informacion');
-            $table->string('title');
-            $table->datetime('start');
-            $table->datetime('end');
-            $table->string('color', 7);
+            $table->string('id_banda');
             $table->string('id_ciudad');
+            $table->integer('id_show');
+            $table->string('detalles');
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ class CreateShowsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shows');
+        Schema::dropIfExists('actualizacion');
     }
 }

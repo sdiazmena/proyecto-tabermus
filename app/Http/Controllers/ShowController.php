@@ -14,9 +14,14 @@ class ShowController extends Controller
     public function index()
     {
         //
-        $data = Show::all();
-
         return view('calendario');
+
+    }
+    public function getData()
+    {
+        $data = Show::get(['title','start','color']);
+
+        return Response()->json($data);
     }
 
     /**

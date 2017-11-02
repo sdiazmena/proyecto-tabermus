@@ -5,8 +5,14 @@
 <br>
     <div class="col-sm-8 bloqueContenido">
     	<h1>{{ Auth::user()->name }} Editar Perfil</h1>
-        @if(Auth::user()->password == '')
-            <img src="{{Auth::user()->avatar}}" style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">
+        <?php  
+            $poe = 'https://graph.facebook.com/v2.8/';
+            $google = 'https://lh6.googleusercontent.com';
+            $pos = strpos(Auth::user()->avatar, $poe);
+            $pos2 = strpos(Auth::user()->avatar, $google);
+        ?>
+        @if($pos === false && $pos2 === false)
+            <img src="/tabermus/public/uploads/avatars/{{Auth::user()->avatar}}" style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">
         @else
             <img src="{{Auth::user()->avatar}}" style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">
         @endif
@@ -29,10 +35,10 @@
 		<div class="col-xs-9">
 		    {!! Form::text('nombre', Auth::user()->name, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required', 'value' => '{{Auth::user()->name}}']) !!}
 		</div>
-	<div class="col-xs-9">
-    {!! Form::submit('Actualizar Datos', ['class' => 'btn btn-primary']) !!}
-    </div>
-    {!! Form::close() !!}
+		<div class="col-xs-9">
+	    {!! Form::submit('Actualizar Datos', ['class' => 'btn btn-primary']) !!}
+	    </div>
+	    {!! Form::close() !!}
     </div>
 
 

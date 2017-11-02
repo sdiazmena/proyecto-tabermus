@@ -5,11 +5,10 @@
             <h1 class="well text-center">{{ $banda->nombre }} Perfil</h1>
             <div class="well">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#">Perfil</a></li>
-                    <li><a href="#">Historia</a></li>
-                    <li><a href="#">Musica</a></li>
+                    <li class="active"><a href="/tabermus/public/profile/banda/{{$banda->id}}/edit">Perfil</a></li>
+                    <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/historia">Historia</a></li>
+                    <li><a href="#">Musica y Discos</a></li>
                     <li><a href="#">Fechas</a></li>
-                    <li><a href="#">Galeria</a></li>
                 </ul>
                 {!! Form::open(['url' => 'profile/banda/'.$banda->id,  'enctype' => 'multipart/form-data', 'files' => 'true','method' => 'PUT']) !!}
                 {{csrf_field()}}
