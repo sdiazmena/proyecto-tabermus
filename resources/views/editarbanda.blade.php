@@ -7,8 +7,8 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="/tabermus/public/profile/banda/{{$banda->id}}/edit">Perfil</a></li>
                     <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/historia">Historia</a></li>
-                    <li><a href="#">Musica y Discos</a></li>
-                    <li><a href="#">Fechas</a></li>
+                    <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/discos">Musica y Discos</a></li>
+                    <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/fechas">Fechas</a></li>
                 </ul>
                 {!! Form::open(['url' => 'profile/banda/'.$banda->id,  'enctype' => 'multipart/form-data', 'files' => 'true','method' => 'PUT']) !!}
                 {{csrf_field()}}
@@ -40,7 +40,8 @@
                                 <br>
                                 <div class="row">
                                     {!! Form::label('region', 'Region',['class' => 'col-sm-3 control-label']) !!}
-                                    <div class="col-xs-9">                                        
+                                    <div class="col-xs-9">
+                                        <h4 class="well text-center">{{ $region->nombre }} </h4>                                        
                                         {!! Form::select('region', $regiones, null,['id'=>'region','class' => 'form-control', 'placeholder' => 'Seleccione una región..']) !!}
                                     </div>
                                     <br>
@@ -51,8 +52,8 @@
                                         {!! Form::label('ciudad_id', 'Ciudad') !!}  
                                     </div>
                                     <div class="col-xs-9 "> 
-                                                                           
-                                        {!! Form::select('ciudad', ['placeholder' => 'Seleccione una ciudad..'], null,['id'=>'ciudad','class' => 'form-control','required']) !!}
+                                        <h4 class="well text-center">{{ $ciudad->nombre }} </h4>                                   
+                                        {!! Form::select('ciudad', ['placeholder' => 'Seleccione una ciudad..'], null,['id'=>'ciudad','class' => 'form-control','value' => '{{$banda->id_ciudad}}']) !!}
                                                
                                          
                                     </div>
@@ -61,7 +62,8 @@
                                 <div class="row">
                                     <label class="col-sm-3 control-label" for="generoSeleccionado">Genero:</label>
                                     <div class="col-xs-6">
-                                        {!! Form::select('generoSeleccionado', $generos, null,['class' => 'form-control', 'placeholder' => 'Seleccione un Genero..']) !!}
+                                        <h4 class="well text-center">{{ $genero->nombre }} </h4>
+                                        {!! Form::select('generoSeleccionado', $generos, null,['class' => 'form-control', 'placeholder' => 'Seleccione un Genero..','value' => '{{$banda->id_genero}}']) !!}
                                     </div>
                                     <!--
                                     <div>
@@ -82,7 +84,8 @@
                                 <div class="row">
                                     <label class="col-sm-3 control-label">Lirica:</label>
                                     <div class="col-xs-6">
-                                        {!! Form::select('liricaSeleccionado', $liricas, null,['class' => 'form-control', 'placeholder' => 'Seleccione una lirica..']) !!}
+                                        <h4 class="well text-center">{{ $lirica->nombre }} </h4>
+                                        {!! Form::select('liricaSeleccionado', $liricas, null,['class' => 'form-control', 'placeholder' => 'Seleccione una lirica..','value' => '{{$banda->id_lirica}}']) !!}
                                     </div><!--
                                     <div>
                                         <a id="agregarlirica" href="#">agregar</a>

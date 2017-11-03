@@ -12,6 +12,7 @@ class RegionController extends Controller
 	{
 		if($request->ajax())
 		{
+            $ciudades = array();
 			$ciudades = Ciudad::ciudades($id);
 			return response()->json($ciudades);
 		}

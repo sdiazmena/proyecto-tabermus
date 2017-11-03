@@ -115,9 +115,12 @@ class BandaController extends Controller
         $liricas = Lirica::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
         $generos = Genero::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
         $regiones = Region::orderBy('id', 'ASC')->pluck('nombre','id')->all();
-  
+        $ciudad = DB::table('ciudad')->where('id',$banda->id_ciudad)->first();
+        $region = DB::table('region')->where('id',$ciudad->id_region)->first();
+        $lirica = DB::table('lirica')->where('id',$banda->id_lirica)->first();
+        $genero = DB::table('genero')->where('id',$banda->id_genero)->first();
 
-        return view("editarbanda")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda);
+        return view("editarbanda")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('ciudad',$ciudad)->with('region',$region)->with('lirica',$lirica)->with('genero',$genero);
     }
     public function editHistory($id)
     {
@@ -167,12 +170,36 @@ class BandaController extends Controller
                 $banda = new Banda;
                 $banda->where('id','=', $id)
                      ->update(['nombre' => $request->nombre, 'descripcion' => $request->descripcion, 'facebook' => $request->facebook, 'instagram' => $request->instagram, 'twitter' => $request->twitter, 'soundcloud' => $request->soundcloud, 'spotify' => $request->spotify, 'youtube' => $request->youtube, 'imagen' => 'uploads/bandas/'.$name]);
+            if($request->generoSeleccionado){
+                $banda->where('id','=', $id)
+                     ->update(['id_genero' => $request->generoSeleccionado]);
+            }
+            if($request->liricaSeleccionado){
+                $banda->where('id','=', $id)
+                     ->update(['id_lirica' => $request->liricaSeleccionado]);
+            }
+            if($request->ciudad != "placeholder"){
+                $banda->where('id','=', $id)
+                     ->update(['id_ciudad' => $request->ciudad]);
+            }
                 return redirect('/profile')->with('status', 'Perfil de Banda editada correctamente');
             
         }else{
             $banda = new Banda;
             $banda->where('id','=', $id)
                      ->update(['nombre' => $request->nombre, 'descripcion' => $request->descripcion, 'facebook' => $request->facebook, 'instagram' => $request->instagram, 'twitter' => $request->twitter, 'soundcloud' => $request->soundcloud, 'spotify' => $request->spotify, 'youtube' => $request->youtube]);
+            if($request->generoSeleccionado){
+                $banda->where('id','=', $id)
+                     ->update(['id_genero' => $request->generoSeleccionado]);
+            }
+            if($request->liricaSeleccionado){
+                $banda->where('id','=', $id)
+                     ->update(['id_lirica' => $request->liricaSeleccionado]);
+            }
+            if($request->ciudad != "placeholder"){
+                $banda->where('id','=', $id)
+                     ->update(['id_ciudad' => $request->ciudad]);
+            }
             return redirect('/profile')->with('status', 'Perfil de Banda editada correctamente');
         }
     }

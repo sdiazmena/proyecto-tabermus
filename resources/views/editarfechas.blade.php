@@ -1,8 +1,31 @@
 @extends('layouts.prueba')
+@section('css')
+        {{ Html::style('calendar/bootstrap/dist/css/bootstrap.min.css') }}
+        {{ Html::style('calendar/fullcalendar/fullcalendar.min.css') }}
+        {{ Html::style('calendar/bootstrap-datetimepicker/css/bootstrap-material-datetimepicker.css') }}
+        {{ Html::style('calendar/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}
+        <style>
+
+    body {
+        margin: 40px 10px;
+        padding: 0;
+        font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+        font-size: 14px;
+    }
+
+    #calendar {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+</style>
+
+
+@endsection
 
 @section('content')    
     <div class="col-sm-8 bloqueContenido">
-        <h1 class="well text-center">{{ $banda->nombre }} Perfil</h1>
+        <h1 class="well text-center">{{ $banda->nombre }} Shows</h1>
         <div class="well">
             <ul class="nav nav-tabs">
                 <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/edit">Perfil</a></li>
@@ -12,5 +35,97 @@
             </ul>
 
         </div>
+        {{ Form::open(['route' => 'calendario.create', 'method' => 'post', 'role' => 'form'])}}
+        <div id="responsive-modal" class="modal fade" tabindex="-1" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>REGISTRO DE NUEVO EVENTO</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            {{ Form::label('date_start', 'FECHA INICIO')}}
+                            {{ Form::text('date_start', old('date_start'),['class' => 'form-control', 'readonly' => 'true']) }}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label('time_start', 'HORA INICIO')}}
+                            {{ Form::text('time_start', old('time_start'),['class' => 'form-control']) }}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label('date_end', 'FECHA HORA FIN')}}
+                            {{ Form::text('date_end', old('date_end'),['class' => 'form-control']) }}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label('color', 'COLOR')}}
+                            <div class="input-group colorpicker">
+                                {{ Form::text('color', old('color'), ['class' => 'form-control']) }}
+                                <span class="input-group-addon">
+                                    <i></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dafault" data-dismiss="modal">CANCELAR</button>
+                        {!! Form::submit('GUARDAR', ['class' => 'btn btn-success']) !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ Form::close() }}
+        <div id="calendar"></div>
     </div>
+@endsection
+
+
+
+
+
+@section('scripts')
+
+    {{ Html::script('calendar/bootstrap/dist/js/bootstrap.min.js') }}
+    {{ Html::script('calendar/fullcalendar/lib/moment.min.js') }}
+
+    {{ Html::script('calendar/fullcalendar/fullcalendar.min.js') }}
+    {{ Html::script('calendar/fullcalendar/locale-all.js') }}
+    {{ Html::script('calendar/bootstrap-datetimepicker/js/bootstrap-material-datetimepicker.js') }}
+    {{ Html::script('calendar/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js') }}
+    <script>
+        //inicializamos el calendario al cargar la pagina
+        var BASEURL = '{{ url('/') }}';
+$(document).ready(function() {
+        
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,basicWeek,basicDay'
+            },
+            
+            navLinks: true, // can click day/week names to navigate views
+            editable: true,
+            selectable: true,
+            selectHelper: true,
+
+            select: function(start){
+                start = moment(start.format());
+                $('#date_start').val(start.format('YYYY-MM-DD'));
+                $('#resposive-modal').modal('show');
+            },
+            events: BASEURL+'/calendar'
+        });
+        
+    });
+    $('.colorpicker').colorpicker();
+    $('#time_start').bootstrapMaterialDatePicker({
+        date: false,
+        shortTime: false,
+        format: 'HH:mm:ss'
+    });
+    $('#date_end').bootstrapMaterialDatePicker({
+        date: true,
+        shortTime: false,
+        format: 'YYYY-MM-DD HH:mm:ss'
+    });
+    </script>
 @endsection

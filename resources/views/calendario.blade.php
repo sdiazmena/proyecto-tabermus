@@ -1,7 +1,7 @@
 @extends('layouts.prueba')
 
 @section('css')
-        {{ Html::style('fullcalendar/fullcalendar.min.css') }}
+        {{ Html::style('calendar/fullcalendar/fullcalendar.min.css') }}
         
         <style>
 
@@ -35,10 +35,10 @@
 @endsection
 
 @section('scripts')
-    {{ Html::script('fullcalendar/lib/jquery-ui.min.js') }}
-    {{ Html::script('fullcalendar/lib/moment.min.js') }}
-    {{ Html::script('fullcalendar/fullcalendar.min.js') }}
-    {{ Html::script('fullcalendar/locale-all.js') }}
+    {{ Html::script('calendar/fullcalendar/lib/jquery-ui.min.js') }}
+    {{ Html::script('calendar/fullcalendar/lib/moment.min.js') }}
+    {{ Html::script('calendar/fullcalendar/fullcalendar.min.js') }}
+    {{ Html::script('calendar/fullcalendar/locale-all.js') }}
     <script>
         //inicializamos el calendario al cargar la pagina
         var BASEURL = '{{ url('/') }}';

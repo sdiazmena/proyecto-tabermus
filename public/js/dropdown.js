@@ -1,6 +1,7 @@
 $(document).ready(function () {
 $("#region").change(function(event){
-	$.get("ciudades/"+event.target.value+"",function(response,region){
+	$.get("http://localhost/tabermus/public/profile/ciudades/"+event.target.value+"",function(response,region){
+
 		console.log(response[1].nombre);
 		for(i=0;i<response.length;i++){
 
