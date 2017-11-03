@@ -48,5 +48,9 @@ Route::get('/index', 'IndexController@index');
 Route::post('cambiarVista', function (){
     return redirect('/home');
 });
+
+
 Route::get('filtrado', 'FiltradoController@index');
+Route::get('filtradoNacional', 'FiltradoNacionalController@index');
+Route::get('filtradoRegional', 'FiltradoRegionalController@index');
 Route::get('/buscar', 'BusquedaController@index');
