@@ -42,7 +42,16 @@ class ShowController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $show = new Show();
+        $show->title = $request->title;
+        $show->informacion = $request->informacion;
+        $show->id_ciudad = $request->ciudad_id;
+        $show->id_banda = $request->id_banda;
+        $show->start = $request->date_start;
+        $show->end = $request->date_end;
+        $show->color = $request->color;
+        $show->save();
+        return redirect('/profile')->with('status', 'Evento creado correctamente');
     }
 
     /**

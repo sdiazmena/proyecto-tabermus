@@ -21,6 +21,7 @@ class CreateShowsTable extends Migration
             $table->datetime('end');
             $table->string('color', 7);
             $table->string('id_ciudad');
+            $table->string('id_banda');
             $table->timestamps();
         });
     }

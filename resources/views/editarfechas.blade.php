@@ -1,6 +1,6 @@
 @extends('layouts.prueba')
 @section('css')
-        {{ Html::style('calendar/bootstrap/dist/css/bootstrap.min.css') }}
+        
         {{ Html::style('calendar/fullcalendar/fullcalendar.min.css') }}
         {{ Html::style('calendar/bootstrap-datetimepicker/css/bootstrap-material-datetimepicker.css') }}
         {{ Html::style('calendar/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}
@@ -35,7 +35,7 @@
             </ul>
 
         </div>
-        {{ Form::open(['route' => 'calendario.create', 'method' => 'post', 'role' => 'form'])}}
+        {{ Form::open(['route' => 'calendario.store', 'method' => 'post', 'role' => 'form'])}}
         <div id="responsive-modal" class="modal fade" tabindex="-1" data-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -44,16 +44,29 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
+                            {{ Form::label('title', 'NOMBRE EVENTO')}}
+                            {{ Form::text('title', old('title'),['class' => 'form-control']) }}
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="id_banda" value= "{{$banda->id}}">
                             {{ Form::label('date_start', 'FECHA INICIO')}}
                             {{ Form::text('date_start', old('date_start'),['class' => 'form-control', 'readonly' => 'true']) }}
                         </div>
                         <div class="form-group">
                             {{ Form::label('time_start', 'HORA INICIO')}}
-                            {{ Form::text('time_start', old('time_start'),['class' => 'form-control']) }}
+                            {{ Form::text('time_start', old('time_start'),['id'=>'time_start','class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
                             {{ Form::label('date_end', 'FECHA HORA FIN')}}
-                            {{ Form::text('date_end', old('date_end'),['class' => 'form-control']) }}
+                            {{ Form::text('date_end', old('date_end'),['id'=>'date_end','class' => 'form-control']) }}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('region', 'REGION') !!}
+                             {!! Form::select('region', $regiones, null,['id'=>'region','class' => 'form-control', 'placeholder' => 'Seleccione una región..']) !!}
+                        </div>
+                        <div>
+                            {!! Form::label('ciudad_id', 'CIUDAD') !!} 
+                            {!! Form::select('ciudad_id', ['placeholder' => 'Seleccione una ciudad..'], null,['id'=>'ciudad','class' => 'form-control','value' => '{{$banda->id_ciudad}}']) !!}
                         </div>
                         <div class="form-group">
                             {{ Form::label('color', 'COLOR')}}
@@ -63,6 +76,10 @@
                                     <i></i>
                                 </span>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label('informacion', 'INFORMACIÓN')}}
+                            {{ Form::text('informacion', old('informacion'),['class' => 'form-control']) }}
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -83,11 +100,11 @@
 
 @section('scripts')
 
-    {{ Html::script('calendar/bootstrap/dist/js/bootstrap.min.js') }}
     {{ Html::script('calendar/fullcalendar/lib/moment.min.js') }}
 
+{{ Html::script('calendar/bootstrap/dist/js/bootstrap.min.js') }}
     {{ Html::script('calendar/fullcalendar/fullcalendar.min.js') }}
-    {{ Html::script('calendar/fullcalendar/locale-all.js') }}
+
     {{ Html::script('calendar/bootstrap-datetimepicker/js/bootstrap-material-datetimepicker.js') }}
     {{ Html::script('calendar/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js') }}
     <script>
@@ -110,13 +127,13 @@ $(document).ready(function() {
             select: function(start){
                 start = moment(start.format());
                 $('#date_start').val(start.format('YYYY-MM-DD'));
-                $('#resposive-modal').modal('show');
+                $('#responsive-modal').modal('show');
             },
             events: BASEURL+'/calendar'
         });
         
-    });
-    $('.colorpicker').colorpicker();
+    
+    $('#color').colorpicker();
     $('#time_start').bootstrapMaterialDatePicker({
         date: false,
         shortTime: false,
@@ -127,5 +144,6 @@ $(document).ready(function() {
         shortTime: false,
         format: 'YYYY-MM-DD HH:mm:ss'
     });
+});
     </script>
 @endsection

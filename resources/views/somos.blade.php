@@ -23,8 +23,8 @@
             </div>
             <div class="media-body">
                 <h4 class="media-heading">Sebastian Esteban Diaz Mena</h4>
-                <p>Ocupacion:</p>
-                <p>Hobbie:</p>
+                <p>Ocupacion: Estudiante de Ingenieria de Ejecucion en Informatica</p>
+                <p>Hobbie: Deportes</p>
                 <p></p>
             </div>
         </div>

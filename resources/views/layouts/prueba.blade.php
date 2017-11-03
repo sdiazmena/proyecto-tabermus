@@ -5,10 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-        {{ Html::script('calendar/jquery.min.js') }}
+    {{ Html::script('calendar/jquery.min.js') }}
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+    
+    
+    {{ Html::style('calendar/bootstrap/dist/css/bootstrap.min.css') }}
   <style>
 
     /* Remove the navbar's default margin-bottom and rounded borders */ 
@@ -66,7 +70,7 @@
             setRegion(valorId);
         }
     </script>
-
+        
     @yield('scripts')
     {{ Html::style('css/barraLateral.css') }}
     {{ Html::style('css/plantilla.css') }}
@@ -190,14 +194,14 @@
                 <h4>Filtrado de Bandas</h4>
                 <div class="well text-center">
                     <h4>En tu Region</h4>
-                    <p><a href="filtradoRegional">Ciudad</a></p>
-                    <p><a href="filtradoRegional">Genero</a></p>
-                    <p><a href="filtradoRegional">Alfabeticamente</a></p>
+                    <p><a href="/tabermus/public/filtradoRegional">Ciudad</a></p>
+                    <p><a href="/tabermus/public/filtradoRegional">Genero</a></p>
+                    <p><a href="/tabermus/public/filtradoRegional">Alfabeticamente</a></p>
                     <br>
                     <h4>Nacional</h4>
-                    <p><a href="filtradoNacional">Region</a></p>
-                    <p><a href="filtradoNacional">Genero</a></p>
-                    <p><a href="filtradoNacional">Alfabeticamente</a></p>
+                    <p><a href="/tabermus/public/filtradoNacional">Region</a></p>
+                    <p><a href="/tabermus/public/filtradoNacional">Genero</a></p>
+                    <p><a href="/tabermus/public/filtradoNacional">Alfabeticamente</a></p>
                 </div>
             </ul>
             <br>
