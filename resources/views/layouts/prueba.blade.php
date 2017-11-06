@@ -127,6 +127,7 @@
                         </li>
                         <script type="text/javascript">
                             actualizarBarraRegion(getRegion());
+                            cargarPortada();
                         </script>
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Informacion<span class="caret"></span></a>
                             <ul class="dropdown-menu">

@@ -1,6 +1,8 @@
 function actualizarBarraRegion(valor) {
     //alert(valor);
     $("#barraRegionesTop").empty();
+    $("#img2").empty();
+    //$('#img2').load("js/imagenes.html #portada"+id);
     if(!(valor === "1")){
         $("#barraRegionesTop").append("<li><a href=\"home\" onclick=\"setRegion('1','Tarapacá')\">Tarapacá</a></li>");
     }
@@ -46,4 +48,10 @@ function actualizarBarraRegion(valor) {
     if(!(valor === "15")){
         $("#barraRegionesTop").append("<li><a href=\"home\" onclick=\"setRegion('15','Arica')\">Arica</a></li>");
     }
+}
+
+function cargarPortada() {
+    valor = leerCookie("id");
+    valorImprimir = "img/region/portada"+valor+".jpg";
+    $("#hola").append("<img id='portada1' class='img-responsive well' src="+valorImprimir +" class='img-thumbnail' style='width:820px; height: 350px'>");
 }
