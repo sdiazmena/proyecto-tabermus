@@ -1,11 +1,20 @@
 body {
-    background-color: #555554;
+    /*background-color: #555554;*/
+    background-image: url("../img/fondoPagina.jpg");
 }
 
 .bloqueContenido {
     background-color: rgb(251, 251, 251);
     margin-left: 20px;
     margin-right: 10px;
+}
+
+.titulo {
+    background-image: url('../img/fondoTitulo.jpg');
+}
+
+.fondoContenido {
+    background-image: url('../img/fondoContenido.jpg');
 }
 
 /* Remove the navbar's default margin-bottom and rounded borders */

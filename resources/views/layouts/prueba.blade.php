@@ -9,9 +9,7 @@
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
     {{ Html::script('calendar/jquery.min.js') }}
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
-    
-    
+
     {{ Html::style('calendar/bootstrap/dist/css/bootstrap.min.css') }}
   <style>
 
@@ -29,13 +27,6 @@
       padding-top: 20px;
       background-color: #f1f1f1;
       height: 100%;
-    }
-    
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
     }
 
     .flotar {
@@ -103,7 +94,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="home">Inicio</a></li>
+                        <li><a href="home">Inicio</a></li>
                         <li><a href="/tabermus/public/calendario">Calendario</a></li>
                         <li><a href="buscar">Buscar</a></li>
                         <li id="topRegion" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $_COOKIE["nameRegion"];?><span class="caret"></span></a>
@@ -217,17 +208,17 @@
     </div>
     @yield('content')
     <div class="col-sm-3 text-center">
-        <div class="well">
-            <p class="well">Twitter</p>
+        <div class="well fondoContenido">
+            <p class="well titulo">Twitter</p>
             <a class="twitter-timeline" href="https://twitter.com/TabermusChile">Tweets by TabermusChile</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
-        <div class="well">
-            <p class="well">Instagram</p>
+        <div class="well fondoContenido">
+            <p class="well titulo">  Instagram</p>
             <blockquote class="instagram-media" data-instgrm-version="7" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"> <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:37.5% 0; text-align:center; width:100%;"> <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzPf399fX1+bm5mzY9AMAAADiSURBVDjLvZXbEsMgCES5/P8/t9FuRVCRmU73JWlzosgSIIZURCjo/ad+EQJJB4Hv8BFt+IDpQoCx1wjOSBFhh2XssxEIYn3ulI/6MNReE07UIWJEv8UEOWDS88LY97kqyTliJKKtuYBbruAyVh5wOHiXmpi5we58Ek028czwyuQdLKPG1Bkb4NnM+VeAnfHqn1k4+GPT6uGQcvu2h2OVuIf/gWUFyy8OWEpdyZSa3aVCqpVoVvzZZ2VTnn2wU8qzVjDDetO90GSy9mVLqtgYSy231MxrY6I2gGqjrTY0L8fxCxfCBbhWrsYYAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/p/BYZIHxVB2uI/" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">Una publicación compartida de TaberMusChile (@tabermuschile)</a> el <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2017-08-29T21:21:41+00:00">29 de Ago de 2017 a la(s) 2:21 PDT</time></p></div></blockquote>
             <script async defer src="//platform.instagram.com/en_US/embeds.js"></script>
         </div>
-        <div class="well">
-            <p class="well">Facebook</p>
+        <div class="well fondoContenido">
+            <p class="well titulo">Facebook</p>
             <div class="fb-page" data-href="https://www.facebook.com/TaberMusChile" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/TaberMusChile" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/TaberMusChile">TaberMus Chile</a></blockquote></div>
         </div>
     </div>
