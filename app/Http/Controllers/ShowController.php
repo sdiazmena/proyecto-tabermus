@@ -20,7 +20,7 @@ class ShowController extends Controller
     }
     public function getData()
     {
-        $data = Show::get(['title','start','color','end']);
+        $data = Show::get(['title','start','color','end','id']);
      
         return Response()->json($data);
     }
@@ -98,5 +98,18 @@ class ShowController extends Controller
     public function destroy($id)
     {
         //
+        /*
+        $show = Show::find($id);
+
+        if($show == null){
+            return Response()->json([
+                'message' => 'error delete.'
+            ]);
+        }
+        $show->delete();
+
+        return Response()->json([
+            'message' => 'success delete.'
+        ]);*/
     }
 }

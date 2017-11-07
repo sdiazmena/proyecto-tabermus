@@ -91,6 +91,60 @@
         </div>
         {{ Form::close() }}
         <div id="calendar"></div>
+        <div id="upload-modal" class="modal fade" tabindex="-1" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>ACTUALIZAR EVENTO</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            {{ Form::label('title', 'NOMBRE EVENTO')}}
+                            {{ Form::text('title', old('title'),['class' => 'form-control']) }}
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="id_banda" value= "{{$banda->id}}">
+                            {{ Form::label('date_start', 'FECHA INICIO')}}
+                            {{ Form::text('date_start', old('date_start'),['class' => 'form-control', 'readonly' => 'true']) }}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label('time_start', 'HORA INICIO')}}
+                            {{ Form::text('time_start', old('time_start'),['id'=>'time_start','class' => 'form-control']) }}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label('date_end', 'FECHA HORA FIN')}}
+                            {{ Form::text('date_end', old('date_end'),['id'=>'date_end','class' => 'form-control']) }}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('region', 'REGION') !!}
+                             {!! Form::select('region', $regiones, null,['id'=>'region','class' => 'form-control', 'placeholder' => 'Seleccione una región..']) !!}
+                        </div>
+                        <div>
+                            {!! Form::label('ciudad_id', 'CIUDAD') !!} 
+                            {!! Form::select('ciudad_id', ['placeholder' => 'Seleccione una ciudad..'], null,['id'=>'ciudad','class' => 'form-control','value' => '{{$banda->id_ciudad}}']) !!}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label('color', 'COLOR')}}
+                            <div class="input-group colorpicker">
+                                {{ Form::text('color', old('color'), ['class' => 'form-control']) }}
+                                <span class="input-group-addon">
+                                    <i></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label('informacion', 'INFORMACIÓN')}}
+                            {{ Form::text('informacion', old('informacion'),['class' => 'form-control']) }}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a id="delete" data-href="{{ url('calendario') }}" data-id="" class="btn btn-danger">ELIMINAR</a>
+                        <button type="button" class="btn btn-dafault" data-dismiss="modal">CANCELAR</button>
+                        {!! Form::submit('ACTUALIZAR', ['class' => 'btn btn-success']) !!}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
@@ -129,7 +183,20 @@ $(document).ready(function() {
                 $('#date_start').val(start.format('YYYY-MM-DD'));
                 $('#responsive-modal').modal('show');
             },
-            events: BASEURL+'/calendar'
+            events: BASEURL+'/calendarios',
+
+            eventClick: function(event, jsEvent, view){
+                var date_start = $.fullCalendar.moment(event.start).format('YYYY-MM-DD');
+                var time_start = $.fullCalendar.moment(event.start).format('hh:mm:ss');
+                var date_end = $.fullCalendar.moment(event.end).format('YYYY-MM-DD hh:mm:ss');
+                $('#upload-modal #delete').attr('data-id', event.id);
+                $('#upload-modal #title').val(event.title);
+                $('#upload-modal #date_start').val(date_start);
+                $('#upload-modal #time_start').val(time_start);
+                $('#upload-modal #date_end').val(date_end);
+                $('#upload-modal #color').val(event.color);
+                $('#upload-modal').modal('show');
+            }
         });
         
     
@@ -143,6 +210,24 @@ $(document).ready(function() {
         date: true,
         shortTime: false,
         format: 'YYYY-MM-DD HH:mm:ss'
+    });
+
+    $('#delete').on('click', function(){
+        var x= $(this);
+        var delete_url = x.attr('data-href')+'/'+x.attr('data-id');
+
+        $.ajax({
+          
+            url: delete_url,
+            type: 'DELETE',
+
+            succes: function(result){
+                alert('success');
+            },
+            error: function(result){
+                alert('error');
+            }
+        });
     });
 });
     </script>
