@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="col-sm-8 bloqueContenido">
-        <h1 class="well text-center">Filtrado</h1>
+        <br>
+        <p class="titulo text-center"><img  src="{{ asset('img/titulos/filtrado.png') }}" style="width:350px; height: 90px"></p>
         <ul class="nav nav-tabs">
             <li class="nav-item"><a href="filtradoRegional">Tu Region</a></li>
             <li class="nav-item"><a href="#">Nacional</a></li>

@@ -2,9 +2,10 @@
 
 @section('content')
     <div class="col-sm-8 bloqueContenido">
-        <h1 class="well text-center">Busqueda:</h1>
+        <br>
+        <p class="titulo text-center"><img  src="{{ asset('img/titulos/busqueda.png') }}" style="width:350px; height: 90px"></p>
         <div>
-            <div class="well" id="contenidoMostrar">
+            <div class="fondoContenido" id="contenidoMostrar">
                 <div class="form-group">
                     <label for="palabraClave">Nombre:</label>
                     <input type="text" class="form-control" id="palabraClave" placeholder="Buscar..">
@@ -18,7 +19,7 @@
 
                 <button type="submit" class="btn btn-default">Buscar</button>
             </div>
-            <div class="well" id="resultadoBusqueda">
+            <div class="fondoContenido" id="resultadoBusqueda">
                 <h3 id="tituloBusqueda"></h3>
             </div>
         </div>

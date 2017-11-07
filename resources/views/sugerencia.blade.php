@@ -2,9 +2,10 @@
 
 @section('content')    
     <div class="col-sm-8 bloqueContenido">
-            <h1 class="well text-center">¿Tienes alguna inquietud?:</h1>
+        <br>
+        <p class="titulo text-center"><img  src="{{ asset('img/titulos/sugerencias.png') }}" style="width:350px; height: 90px"></p>
 
-        <div class="well">
+        <div class="fondoContenido">
 
             <p>Escribemos, estaremos atento a tus sugerencias, dudas o consultas. En Tabermus trabajamos en conjunto contigo para
             poder brindar un mejor servicio</p>

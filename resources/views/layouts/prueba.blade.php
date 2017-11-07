@@ -207,6 +207,7 @@
         </a>
     </div>
     @yield('content')
+    <br>
     <div class="col-sm-3 text-center">
         <div class="fondoContenido">
             <p class="titulo"><img  src="{{ asset('img/twitter.png') }}" style="width:100px; height: 40px"></p>

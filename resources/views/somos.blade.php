@@ -2,10 +2,11 @@
 
 @section('content')    
     <div class="col-sm-8 bloqueContenido">
-            <h1 class="well text-center">¿Quienes Somos?:</h1>
+        <br>
+        <p class="titulo text-center"><img  src="{{ asset('img/titulos/somos.png') }}" style="width:400px; height: 90px"></p>
         <!-- Left-aligned media object -->
 
-        <div class="well">
+        <div class="fondoContenido">
             <p>Somos personas amante de la musica nacional, quienes prentender poder general un espacio para las bandas que
                 van surgiendo dias a dia. Es asi que en esta pagina entregamos herramientas donde los usuarios podran darse
             a conocer sus trabajos. Ademas de permitir a todos aquellos que buscan informacion del acontecer nacional, puedan
@@ -16,7 +17,7 @@
             permtiendo enlazar en un solo punto, su informacion, ayudando a evitar la dispersion de la informacion dentro de la red</p>
         </div>
 
-        <div class="well">
+        <div class="fondoContenido">
         <div class="media">
             <div class="media-left">
                 <img src="{{ asset('img/somos/seba.jpg') }}" class="media-object" style="width:100px">
@@ -25,12 +26,11 @@
                 <h4 class="media-heading">Sebastian Esteban Diaz Mena</h4>
                 <p>Ocupacion: Estudiante de Ingenieria de Ejecucion en Informatica</p>
                 <p>Hobbie: Deportes</p>
-                <p></p>
             </div>
         </div>
-        <hr>
+
         </div>
-        <div class="well">
+        <div class="fondoContenido">
         <!-- Right-aligned media object -->
         <div class="media">
             <div class="media-body">

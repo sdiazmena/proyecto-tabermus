@@ -2,13 +2,15 @@
 
 @section('content')
     <div class="col-sm-8 bloqueContenido">
-        <h1 class="well text-center">Filtrado</h1>
+        <br>
+        <p class="titulo text-center"><img  src="{{ asset('img/titulos/filtrado.png') }}" style="width:350px; height: 90px"></p>
+
         <ul class="nav nav-tabs">
             <li class="nav-item"><a href="#">Tu Region</a></li>
             <li class="nav-item"><a href="filtradoNacional" id="nacional" >Nacional</a></li>
         </ul>
         <div>
-            <div class="well" id="contenidoMostrar">
+            <div class="fondoContenido" id="contenidoMostrar">
                 <div class="row">
                     <div class="row">
                         <div>
@@ -46,7 +48,7 @@
 
                 </div>
             </div>
-            <div class="well" id="resultadoBusqueda"></div>
+            <div class="fondoContenido" id="resultadoBusqueda"></div>
         </div>
 
     </div>

@@ -26,25 +26,6 @@
             height: 100%;
         }
 
-        /* Set black background color, white text and some padding */
-        footer {
-            background-color: #555;
-            color: white;
-            padding: 15px;
-        }
-
-        .flotar {
-            position: fixed;
-            top: 50px;
-            left: 0;
-            padding: 0;
-            background-color: #5e5e5e;
-            border: 2px solid;
-            z-index: 1;
-            width: 25px;
-        }
-
-
         /* On small screens, set height to 'auto' for sidenav and grid */
         @media screen and (max-width: 767px) {
             .sidenav {
@@ -100,13 +81,15 @@
 
         <div class="fondoContenido">
             <img class="img-responsive" src="{{ asset('img/logo2.png') }}" class="img-thumbnail">
-            <h2>Bienvenido</h2>
+        </div>
+        <div class="fondoContenido">
+            <h2 class="text-center">Bienvenido</h2>
             <p>Tabermus es una comunidad orientada a la musica nacional. Todo aquellos que desen compartir su musica y/o acceder
                 a musica nacional, es bienvenido a acceder al contenido de esta pagina.</p>
         </div>
 
-        <div id="imgRegion" class="col-sm-6">
-            <img class="img-responsive fondoContenido" src="{{ asset('img/region/seleccione.jpg') }}" class="img-thumbnail">
+        <div id="imgRegion" class="col-sm-6 fondoContenido">
+            <img class="img-responsive" src="{{ asset('img/region/seleccione.jpg') }}" class="img-thumbnail">
         </div>
 
         <div class="col-sm-6 fondoContenido">
