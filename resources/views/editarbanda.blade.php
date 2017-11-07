@@ -2,8 +2,8 @@
 
 @section('content')    
     <div class="col-sm-8 bloqueContenido">
-            <h1 class="well text-center">{{ $banda->nombre }} Perfil</h1>
-            <div class="well">
+            <h1 class="titulo text-center letraTitulo">{{ $banda->nombre }} Perfil</h1>
+            <div class="fondoContenido letraTitulo">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="/tabermus/public/profile/banda/{{$banda->id}}/edit">Perfil</a></li>
                     <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/historia">Historia</a></li>
@@ -41,7 +41,7 @@
                                 <div class="row">
                                     {!! Form::label('region', 'Region',['class' => 'col-sm-3 control-label']) !!}
                                     <div class="col-xs-9">
-                                        <h4 class="well text-center">{{ $region->nombre }} </h4>                                        
+                                        <h4 class="titulo text-center">{{ $region->nombre }} </h4>
                                         {!! Form::select('region', $regiones, null,['id'=>'region','class' => 'form-control', 'placeholder' => 'Seleccione una región..']) !!}
                                     </div>
                                     <br>
@@ -52,7 +52,7 @@
                                         {!! Form::label('ciudad_id', 'Ciudad') !!}  
                                     </div>
                                     <div class="col-xs-9 "> 
-                                        <h4 class="well text-center">{{ $ciudad->nombre }} </h4>                                   
+                                        <h4 class="titulo text-center">{{ $ciudad->nombre }} </h4>
                                         {!! Form::select('ciudad', ['placeholder' => 'Seleccione una ciudad..'], null,['id'=>'ciudad','class' => 'form-control','value' => '{{$banda->id_ciudad}}']) !!}
                                                
                                          
@@ -62,7 +62,7 @@
                                 <div class="row">
                                     <label class="col-sm-3 control-label" for="generoSeleccionado">Genero:</label>
                                     <div class="col-xs-6">
-                                        <h4 class="well text-center">{{ $genero->nombre }} </h4>
+                                        <h4 class="titulo text-center">{{ $genero->nombre }} </h4>
                                         {!! Form::select('generoSeleccionado', $generos, null,['class' => 'form-control', 'placeholder' => 'Seleccione un Genero..','value' => '{{$banda->id_genero}}']) !!}
                                     </div>
                                     <!--
@@ -84,7 +84,7 @@
                                 <div class="row">
                                     <label class="col-sm-3 control-label">Lirica:</label>
                                     <div class="col-xs-6">
-                                        <h4 class="well text-center">{{ $lirica->nombre }} </h4>
+                                        <h4 class="titulo text-center">{{ $lirica->nombre }} </h4>
                                         {!! Form::select('liricaSeleccionado', $liricas, null,['class' => 'form-control', 'placeholder' => 'Seleccione una lirica..','value' => '{{$banda->id_lirica}}']) !!}
                                     </div><!--
                                     <div>
@@ -109,7 +109,7 @@
                                         <div id="contenedor">
                                         <div class="added">
                                             
-                                            <div class="col-xs-9">
+                                            <div class="col-xs-9 letraPortada">
                                                      <input type="text" name="Integrantes[]" id="Integrantes" placeholder="Integrantes"/>
                                             </div>
                                         </div>

@@ -3,8 +3,8 @@
 @section('content') 
  
     <div class="col-sm-8 bloqueContenido">
-            <h1 class="well text-center">Informacion de la Banda</h1>
-            <div class="well">
+            <h1 class="titulo letraTitulo text-center">Informacion de la Banda</h1>
+            <div class="fondoContenido letraTitulo">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#">Perfil</a></li>
 
@@ -107,7 +107,7 @@
                                         <div id="contenedor">
                                         <div class="added">
                                             
-                                            <div class="col-xs-9">
+                                            <div class="col-xs-9 letraPortada   ">
                                                      <input type="text" name="Integrantes[]" id="Integrantes" placeholder="Integrantes"/>
                                             </div>
                                         </div>

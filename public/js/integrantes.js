@@ -13,7 +13,7 @@ $(document).ready(function() {
         {
             FieldCount++;
             //agregar campo
-            $(contenedor).append('<label class="col-sm-3 control-label" for="Integrantes">:</label><div class="col-xs-9"><input type="text" name="Integrantes[]" id="campo_'+ FieldCount +'" placeholder="Integrantes"/><a href="#" class="eliminar">&times;</a></div>');
+            $(contenedor).append('<label class="col-sm-3 control-label" for="Integrantes">:</label><div class="col-xs-9 letraPortada"><input type="text" name="Integrantes[]" id="campo_'+ FieldCount +'" placeholder="Integrantes"/><a href="#" class="eliminar">&times;</a></div>');
             x++; //text box increment
         }
         return false;
