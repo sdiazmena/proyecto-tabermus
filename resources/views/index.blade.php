@@ -94,12 +94,12 @@
 </nav>
 <div class="container-fluid">
     <div class="col-xs-2">
-        <img class="img-responsive" src="{{ asset('img/mapa-Chile-web.png') }}" title="Regiones">
+        <img class="img-responsive" style="margin-left: 40px" src="{{ asset('img/mapa-Chile-web.png') }}" title="Regiones">
     </div>
     <div class="col-xs-7">
 
         <div class="fondoContenido">
-            <img class="img-responsive well" src="{{ asset('img/logo.png') }}" class="img-thumbnail">
+            <img class="img-responsive" src="{{ asset('img/logo2.png') }}" class="img-thumbnail">
             <h2>Bienvenido</h2>
             <p>Tabermus es una comunidad orientada a la musica nacional. Todo aquellos que desen compartir su musica y/o acceder
                 a musica nacional, es bienvenido a acceder al contenido de esta pagina.</p>
