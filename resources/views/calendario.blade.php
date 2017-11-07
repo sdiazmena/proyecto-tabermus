@@ -23,8 +23,8 @@
 @endsection
 
 @section('content')
-	<br>
     <div class="col-sm-8 bloqueContenido">
+		<br>
 		<p class="titulo text-center"><img  src="{{ asset('img/titulos/calendario.png') }}" style="width:350px; height: 90px"></p>
 
 			<div id="calendar" class="fondoContenido"></div>
