@@ -12,33 +12,19 @@
 
     {{ Html::style('calendar/bootstrap/dist/css/bootstrap.min.css') }}
   <style>
-
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
     }
-    
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
     .row.content {height: 450px}
-    
     /* Set gray background color and 100% height */
     .sidenav {
       padding-top: 20px;
       background-color: #f1f1f1;
       height: 100%;
     }
-
-    .flotar {
-        position: fixed;
-        top: 50px;
-        left: 0;
-        padding: 0;
-        z-index: 1;
-        width: 25px;
-    }
-
-
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
       .sidenav {
@@ -47,6 +33,7 @@
       }
       .row.content {height:auto;} 
     }
+
   </style>
       @yield('css')
     <script>
@@ -71,7 +58,6 @@
     {{ Html::script('js/dropdown.js') }}
     {{ Html::script('js/integrantes.js') }}
     {{ Html::script('js/scriptsBandaAgregarEliminarElementos.js') }}
-    {{ Html::script('js/scriptBusqueda.js') }}
     {{ Html::script('js/scriptRegionesBarraMenu.js') }}
     {{ Html::script('js/scriptIndex.js') }}
 
@@ -183,17 +169,16 @@
                         <span class="glyphicon glyphicon-menu-left"></span>
                     </i>
                 </a>
-                <h4>Filtrado de Bandas</h4>
-                <div class="well text-center">
-                    <h4>En tu Region</h4>
-                    <p><a href="/tabermus/public/filtradoRegional">Ciudad</a></p>
-                    <p><a href="/tabermus/public/filtradoRegional">Genero</a></p>
-                    <p><a href="/tabermus/public/filtradoRegional">Alfabeticamente</a></p>
-                    <br>
-                    <h4>Nacional</h4>
-                    <p><a href="/tabermus/public/filtradoNacional">Region</a></p>
-                    <p><a href="/tabermus/public/filtradoNacional">Genero</a></p>
-                    <p><a href="/tabermus/public/filtradoNacional">Alfabeticamente</a></p>
+                <h4 class="letraTitulo">Filtrado de Bandas</h4>
+                <div class="fondoContenido text-center">
+                    <h4 class="letraTitulo">En tu Region</h4>
+                    <h5><a href="filtrado">Ciudad</a></h5>
+                    <h5><a href="filtrado">Genero</a></h5>
+                    <h5><a href="filtrado">Alfabeticamente</a></h5>
+                    <h4 class="letraTitulo">Nacional</h4>
+                    <h5><a href="filtrado">Region</a></h5>
+                    <h5><a href="filtrado">Genero</a></h5>
+                    <h5><a href="filtrado">Alfabeticamente</a></h5>
                 </div>
             </ul>
             <br>

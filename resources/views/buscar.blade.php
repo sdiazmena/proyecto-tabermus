@@ -7,7 +7,7 @@
         <div>
             <div class="fondoContenido" id="contenidoMostrar">
                 <div class="form-group">
-                    <label for="palabraClave">Nombre:</label>
+                    <label for="palabraClave" class="letraTitulo">Nombre:</label>
                     <input type="text" class="form-control" id="palabraClave" placeholder="Buscar..">
                 </div>
 
@@ -20,7 +20,8 @@
                 <button type="submit" class="btn btn-default">Buscar</button>
             </div>
             <div class="fondoContenido" id="resultadoBusqueda">
-                <h3 id="tituloBusqueda"></h3>
+                <h3 class="letraTitulo">Resultado para:</h3>
+                <h3 id="tituloBusqueda" class="letraTitulo"></h3>
             </div>
         </div>
 

@@ -23,7 +23,7 @@
                 <img src="{{ asset('img/somos/seba.jpg') }}" class="media-object" style="width:100px">
             </div>
             <div class="media-body">
-                <h4 class="media-heading">Sebastian Esteban Diaz Mena</h4>
+                <h4 class="media-heading letraTitulo">Sebastian Esteban Diaz Mena</h4>
                 <p>Ocupacion: Estudiante de Ingenieria de Ejecucion en Informatica</p>
                 <p>Hobbie: Deportes</p>
             </div>
@@ -34,7 +34,7 @@
         <!-- Right-aligned media object -->
         <div class="media">
             <div class="media-body">
-                <h4 class="media-heading">Luis Javier Gonzalez Donoso</h4>
+                <h4 class="media-heading letraTitulo">Luis Javier Gonzalez Donoso</h4>
                 <p>Ocupacion: Estudiante de Ingenieria de Ejecucion en Informatica</p>
                 <p>Hobbie: Escuchar musica, ir a conciertos, musico.</p>
             </div>

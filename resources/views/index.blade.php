@@ -83,7 +83,7 @@
             <img class="img-responsive" src="{{ asset('img/logo2.png') }}" class="img-thumbnail">
         </div>
         <div class="fondoContenido">
-            <h2 class="text-center">Bienvenido</h2>
+            <h2 class="text-center letraTitulo">Bienvenido</h2>
             <p>Tabermus es una comunidad orientada a la musica nacional. Todo aquellos que desen compartir su musica y/o acceder
                 a musica nacional, es bienvenido a acceder al contenido de esta pagina.</p>
         </div>
@@ -93,9 +93,9 @@
         </div>
 
         <div class="col-sm-6 fondoContenido">
-            <h4>Para comenzar, por favor escoga su ubicacion</h4>
+            <h4 class="letraTitulo">Para comenzar, por favor escoga su ubicacion</h4>
             <p>Esto nos permitira entregarte informacion relevante a tu cercania y estes al tanto de lo que acontecede.</p>
-            <label class="col-sm-2 control-label">Region:</label>
+
             <form action="cambiarVista" method="POST">
                 {!! csrf_field() !!}
                 {!! Form::select('region', $regiones, null,['id'=>'region','class' => 'form-control', 'onchange'=> 'actualizarSeleccionImagen()', 'placeholder' => 'Seleccione una región..','required']) !!}

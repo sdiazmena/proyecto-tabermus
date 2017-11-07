@@ -50,7 +50,5 @@ Route::post('cambiarVista', function (){
 });
 
 
-Route::get('filtrado', 'FiltradoController@index');
-Route::get('filtradoNacional', 'FiltradoNacionalController@index');
-Route::get('filtradoRegional', 'FiltradoRegionalController@index');
+Route::get('/filtrado', 'FiltradoController@index');
 Route::get('/buscar', 'BusquedaController@index');

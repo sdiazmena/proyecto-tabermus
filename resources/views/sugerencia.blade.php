@@ -11,17 +11,17 @@
             poder brindar un mejor servicio</p>
 
             <div class="form-group">
-                <label for="usuario">Nombre:</label>
+                <label for="usuario" class="letraTitulo">Nombre:</label>
                 <input type="text" class="form-control" id="usuarior" placeholder="Introduce tu nombre">
             </div>
 
             <div class="form-group">
-                <label for="mail">Correo:</label>
+                <label for="mail" class="letraTitulo">Correo:</label>
                 <input type="text" class="form-control" id="mail" placeholder="Introduce tu email">
             </div>
 
             <div class="form-group">
-                <label for="tipo">Tipo:</label>
+                <label for="tipo" class="letraTitulo">Tipo:</label>
                 <select>
                     <option>Reclamo</option>
                     <option>Sugerencia</option>
@@ -30,7 +30,7 @@
             </div>
 
             <div class="form-group">
-                <label for="comment">Comment:</label>
+                <label for="comment" class="letraTitulo">Comentario:</label>
                 <textarea class="form-control" rows="5" id="comment" placeholder="Escribenos..."></textarea>
             </div>
 

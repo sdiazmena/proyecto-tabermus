@@ -46,5 +46,23 @@ footer {
 
 p {
     color: white;
+    text-indent: 20px;
 }
 
+.letraTitulo {
+    color: white;
+    font-weight:bold;
+}
+
+.letraTexto{
+    color: whitesmoke;
+}
+
+.flotar {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    padding: 0;
+    z-index: 1;
+    width: 25px;
+}

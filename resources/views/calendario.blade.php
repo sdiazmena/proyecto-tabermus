@@ -27,7 +27,7 @@
     <div class="col-sm-8 bloqueContenido">
 		<p class="titulo text-center"><img  src="{{ asset('img/titulos/calendario.png') }}" style="width:350px; height: 90px"></p>
 
-			<div id="calendar"></div>
+			<div id="calendar" class="fondoContenido"></div>
 
     </div>
 @endsection
