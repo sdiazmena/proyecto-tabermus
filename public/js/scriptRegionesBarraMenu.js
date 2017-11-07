@@ -53,5 +53,5 @@ function actualizarBarraRegion(valor) {
 function cargarPortada() {
     valor = leerCookie("id");
     valorImprimir = "img/region/portada"+valor+".jpg";
-    $("#hola").append("<img id='portada1' class='img-responsive well' src="+valorImprimir +" class='img-thumbnail' style='width:820px; height: 350px'>");
+    $("#hola").append("<img id='portada1' class='img-responsive' src="+valorImprimir +" class='img-thumbnail' style='width:820px; height: 350px'>");
 }

@@ -58,6 +58,10 @@ p {
     color: whitesmoke;
 }
 
+.letraPortada{
+    color: black;
+}
+
 .flotar {
     position: fixed;
     top: 50px;
