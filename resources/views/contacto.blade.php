@@ -1,8 +1,8 @@
 @extends('layouts.prueba')
 
 @section('content')    
-    <div class="col-sm-8 bloqueContenido">
-            <h1 class="well text-center">Contacto:</h1>
+    <div class="col-sm-8 bloqueContenido fondoContenido ">
+            <h1 class="well text-center titulo">Contacto:</h1>
             <div class="well text-center">
                 <p>Tabermus</p>
                 <p>Correo: tabermuschile@gmail.com</p>
