@@ -27,7 +27,7 @@ Route::post('/profile/user/updateAvatar', 'UserController@updateAvatar');
 Route::post('/profile/user/updateProfile', 'UserController@updateProfile');
 
 Route::resource('/calendario','ShowController');
-Route::get('/calendar', 'ShowController@getData');
+Route::get('/calendarios', 'ShowController@getData');
 
 Route::resource('/profile/banda', 'BandaController');
 Route::get('/profile/banda/{id}/historia','BandaController@editHistory');

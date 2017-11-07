@@ -23,5 +23,6 @@ $factory->define(App\Show::class, function (Faker\Generator $faker) {
         'end' => $faker->dateTimeThisMonth(),
         'color' => $faker->hexColor,
         'id_ciudad' => $faker->sentence(4),
+        'id_banda' => $faker->sentence(4),
     ];
 });
