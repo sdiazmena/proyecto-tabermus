@@ -1,4 +1,5 @@
 function actualizarBarraRegion(valor) {
+    $("#barraRegionesTop").empty();
     if(!(valor === "1")){
         $("#barraRegionesTop").append("<li><a href=\"login\" onclick=\"setRegion('1','Tarapacá')\">Tarapacá</a></li>");
     }

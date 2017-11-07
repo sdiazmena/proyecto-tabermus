@@ -80,9 +80,9 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="home">Inicio</a></li>
+                        <li><a href="/tabermus/public/home">Inicio</a></li>
                         <li><a href="/tabermus/public/calendario">Calendario</a></li>
-                        <li><a href="buscar">Buscar</a></li>
+                        <li><a href="/tabermus/public/buscar">Buscar</a></li>
                         <li id="topRegion" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $_COOKIE["nameRegion"];?><span class="caret"></span></a>
                             <ul id="barraRegionesTop" class="dropdown-menu">
                                 <li><a href="#" onclick="setRegion('1','Tarapacá')">Tarapacá</a></li>
@@ -108,9 +108,9 @@
                         </script>
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Informacion<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="somos">¿Quienes somos?</a></li>
-                                <li><a href="contacto">Contacto</a></li>
-                                <li><a href="sugerencia">Sugerencias</a></li>
+                                <li><a href="/tabermus/public/somos">¿Quienes somos?</a></li>
+                                <li><a href="/tabermus/public/contacto">Contacto</a></li>
+                                <li><a href="/tabermus/public/sugerencia">Sugerencias</a></li>
                             </ul>
                         </li>
 
