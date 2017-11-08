@@ -13,6 +13,10 @@ use App\Banda;
 use Validator;
 use Auth;
 use App\User;
+use App\Cancion;
+use App\Disco;
+use App\ListaCanciones;
+
 
 class BandaController extends Controller
 {
@@ -136,6 +140,7 @@ class BandaController extends Controller
     }
     public function editDiscos($id)
     {
+        
         $banda = DB::table('banda')->where('id', $id)->first();
         $liricas = Lirica::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
         $generos = Genero::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
@@ -143,6 +148,39 @@ class BandaController extends Controller
   
 
         return view("editardiscos")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda);
+    }
+    public function updateDiscos(Request $request, $id)
+    {
+        $rules = ['image' => 'required|max:1024*1024*1',];
+        $messages = [
+            'image.required' => 'La imagen es requerida',
+
+            'image.max' => 'El máximo permitido es 2 MB',
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()){
+            return redirect('/profile/banda/'.$id.'/discos')->withErrors($validator);
+        }else{
+            $name = str_random(30) . '-' . $request->file('image')->getClientOriginalName();
+            
+            $request->file('image')->move('uploads/discos', $name);
+            $id_disco = DB::table('disco')->insertGetId(['id_banda' => $id  , 'nombre' => $request->nombre  ,'año' => $request->año ,'sello' =>  $request->sello ,'tipo' => $request->tipo  ,'caratula' => 'uploads/discos/'.$name]);
+            $id_lista = DB::table('lista_canciones')->insertGetId(['id_disco' =>  $id_disco,'id_cancion' => 'prueba']);
+            $lar = count($request->all());
+            $array = $request->all();
+            for($i=1;$i<$lar;$i++){
+                if(array_key_exists('canciones'.$i, $array)){
+                    $cancion = new Cancion();
+                    $cancion->titulo = $array['canciones'.$i];
+                    $cancion->id_lista = $id_lista;
+                    $cancion->id_banda = $id;
+                    $cancion->save();
+                }else{
+                    return redirect('/profile')->with('status', 'Disco de Banda editada correctamente');
+                }
+            }
+            
+        }
     }
     public function editFechas($id)
     {

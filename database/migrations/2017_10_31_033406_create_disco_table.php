@@ -20,6 +20,7 @@ class CreateDiscoTable extends Migration
             $table->integer('año');
             $table->string('sello');
             $table->string('tipo');
+            $table->string('caratula');
             $table->timestamps();
         });
     }

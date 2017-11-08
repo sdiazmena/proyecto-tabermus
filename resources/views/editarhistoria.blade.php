@@ -18,7 +18,7 @@
                         {!! Form::textarea('historia', $banda->historia, ['class' => 'form-control', 'placeholder' => 'Historia de la banda...', 'value' => '{{$banda->historia}}']) !!}
                     </div>
                     <div class="col-xs-9">
-                        {!! Form::submit('Actualizar Histoira', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::submit('Actualizar Historia', ['class' => 'btn btn-primary']) !!}
                     </div>
                 {!! Form::close() !!}
             </div>

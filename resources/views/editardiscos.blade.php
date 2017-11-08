@@ -10,8 +10,9 @@
                 <li class="active"><a href="/tabermus/public/profile/banda/{{$banda->id}}/discos">Musica y Discos</a></li>
                 <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/fechas">Fechas</a></li>
             </ul>
-            <a id="agregar" data-href="{{ url('calendario') }}" data-id="" class="btn btn-danger">Agregar Nuevo Disco</a>
-             {{ Form::open(['route' => 'calendario.store', 'method' => 'post', 'role' => 'form'])}}
+            <div class='text-danger'>{{$errors->first('image')}}</div>
+            <a id="agregar"  class="btn btn-danger">Agregar Nuevo Disco</a>
+             {{ Form::open(['url' => '/profile/banda/'.$banda->id.'/discos/update', 'method' => 'POST', 'role' => 'form','files'=>'true'])}}
             <div id="responsive-modal" class="modal fade" tabindex="-1" data-backdrop="static">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -49,14 +50,10 @@
                                 {{ Form::text('tipo', old('tipo'),['id'=>'date_end','class' => 'form-control']) }}
                             </div>
                             <div class="form-group">
-                                {{ Form::label('informacion', 'INFORMACIÓN')}}
-                                {{ Form::text('informacion', old('informacion'),['class' => 'form-control']) }}
-                            </div>
-                            <div class="form-group">
                                 {{ Form::label('canciones', 'CANCIONES')}}
-                                {{ Form::text('canciones', old('canciones'),['class' => 'form-control']) }}
+                                
                                 <fieldset id="fiel" >
-                                    <input type="button" value="Crear" onclick="crear(this)" />
+                                    <input type="button" value="agregar" name="canciones[]" onclick="crear(this)" />
                                 </fieldset>
                             </div>
                         </div>
@@ -80,29 +77,29 @@
         });
     });
 num=0;
-function crear(obj) {
-  num++;
-  fi = document.getElementById('fiel'); // 1
-  contenedor = document.createElement('div'); // 2
-  contenedor.id = 'div'+num; // 3
-  fi.appendChild(contenedor); // 4
- 
-  ele = document.createElement('input'); // 5
-  ele.type = 'text'; // 6
-  ele.name = 'canciones'+num;
-  ele.class = 'form-control'; // 6
-  contenedor.appendChild(ele); // 7
-  
-  ele = document.createElement('input'); // 5
-  ele.type = 'button'; // 6
-  ele.value = 'Borrar'; // 8
-  ele.name = 'div'+num; // 8
-  ele.onclick = function () {borrar(this.name)} // 9
-  contenedor.appendChild(ele); // 7
-}
-function borrar(obj) {
-  fi = document.getElementById('fiel'); // 1 
-  fi.removeChild(document.getElementById(obj)); // 10
-}
+        function crear(obj) {
+          num++;
+          fi = document.getElementById('fiel'); // 1
+          contenedor = document.createElement('div'); // 2
+          contenedor.id = 'div'+num; // 3
+          fi.appendChild(contenedor); // 4
+         
+          ele = document.createElement('input'); // 5
+          ele.type = 'text'; // 6
+          ele.name = 'canciones'+num;
+          ele.class = 'form-control'; // 6
+          contenedor.appendChild(ele); // 7
+          
+          ele = document.createElement('input'); // 5
+          ele.type = 'button'; // 6
+          ele.value = 'Borrar'; // 8
+          ele.name = 'div'+num; // 8
+          ele.onclick = function () {borrar(this.name)} // 9
+          contenedor.appendChild(ele); // 7
+        }
+        function borrar(obj) {
+          fi = document.getElementById('fiel'); // 1 
+          fi.removeChild(document.getElementById(obj)); // 10
+        }
     </script>
 @endsection
