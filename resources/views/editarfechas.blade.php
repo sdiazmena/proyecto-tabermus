@@ -220,7 +220,6 @@ $(document).ready(function() {
           
             url: delete_url,
             type: 'DELETE',
-
             succes: function(result){
                 alert('success');
             },
