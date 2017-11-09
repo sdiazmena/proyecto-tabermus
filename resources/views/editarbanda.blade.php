@@ -76,6 +76,9 @@
                             </div>
                             <div class="form-group">
                                 {{ Form::label('integrantes', 'Integrantes')}}
+                                <script type="text/javascript">
+                                    var num=0;
+                                </script>
                                 @foreach($integrantes as $integrante)
                                 <fieldset id="fiel2" >
                                     <script type="text/javascript">
@@ -83,7 +86,7 @@
                                             $code_array = json_encode($integrante);
                                         ?>
                                         var array_code = <?php echo $code_array; ?>;
-                                        num=0;
+                                        
                                         fi = document.getElementById('fiel2'); // 1
                                         contenedor = document.createElement('div'); // 2
                                         contenedor.id = 'div'+num; // 3
@@ -94,7 +97,7 @@
                                         ele.name = 'integrantes'+num;
                                         ele.class = 'form-control';
                                         ele.value = array_code.nombre;
-                                        ele.placeholder = 'Integrantes'; // 6
+                                        ele.placeholder = array_code.nombre;; // 6
                                         contenedor.appendChild(ele); // 7
                                           
                                         ele = document.createElement('input'); // 5
@@ -107,6 +110,7 @@
                                             fi = document.getElementById('fiel2'); // 1 
                                             fi.removeChild(document.getElementById(obj)); // 10
                                         }
+                                        num++;
                                     </script>
                                 </fieldset>
                                 @endforeach
