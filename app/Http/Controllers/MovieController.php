@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Region;
 use DB;
 use Storage;
 use Input;
@@ -13,39 +12,34 @@ use App\Genero;
 use App\Lirica;
 use App\Banda;
 use App\User;
-use App\Movie as Movie;
+use App\DatoBusqueda as Datos;
 
 class MovieController extends Controller
 {
     public function index()
     {
-        $movies = Movie::all();
-        $liricas = Lirica::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
-        $generos = Genero::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
-        $regiones = Region::orderBy('id', 'ASC')->pluck('nombre','id')->all();
-        return \View::make('list',compact('movies'))->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos);
+        $datos = Datos::all();
+        return \View::make('list',compact('datos'));
     }
 
     public function store(Request $request)
     {
-        $movie = new Movie;
-        $movie->nombre = $request->nombre;
-        $movie->description = $request->description;
-        $movie->save();
-        return redirect('movie');
+        $dato = new Datos;
+        $dato->nombre = $request->nombre;
+        $dato->description = $request->description;
+        $dato->save();
+        return redirect('list');
 
     }
     public function search(Request $request){
-        $movies = Movie::where('nombre','like','%'.$request->name.'%')->get();
-        $liricas = Lirica::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
-        $generos = Genero::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
-        $regiones = Region::orderBy('id', 'ASC')->pluck('nombre','id')->all();
-        return \View::make('list', compact('movies'))->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos);
+        if($request->tipo == "Banda"){
+            $datos = Datos::where('nombre','like','%'.$request->nombre.'%')->get();
+        }else if($request->tipo == "Banda"){
+            $datos = Datos::where('nombre','like','%'.$request->nombre.'%')->get();
+        }else{
+            $datos = Datos::where('nombre','like','%'.$request->nombre.'%')->get();
+        }
+        return \View::make('list', compact('datos'));
     }
 
-    public function create()
-    {
-        return \View::make('new');
-    }
 }
-

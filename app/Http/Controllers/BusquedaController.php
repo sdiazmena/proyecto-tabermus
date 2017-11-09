@@ -32,7 +32,13 @@ class BusquedaController extends Controller
 
     }
     public function search(Request $request){
-        $datos = Datos::where('nombre','like','%'.$request->name.'%')->get();
+        if($request->tipo == "Banda"){
+            $datos = Datos::where('nombre','like','%'.$request->nombre.'%')->get();
+        }else if($request->tipo == "Banda"){
+            $datos = Datos::where('nombre','like','%'.$request->nombre.'%')->get();
+        }else{
+            $datos = Datos::where('nombre','like','%'.$request->nombre.'%')->get();
+        }
         return \View::make('buscar', compact('datos'));
     }
 

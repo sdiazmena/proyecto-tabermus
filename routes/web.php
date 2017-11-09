@@ -49,8 +49,6 @@ Route::post('cambiarVista', function (){
 Route::get('/filtrado', 'FiltradoController@index');
 
 Route::resource('movie','MovieController');
-//una nueva ruta para eliminar registros con el metodo get
-Route::get('movie/destroy/{id}', ['as' => 'movie/destroy', 'uses'=>'MovieController@destroy']);
 //ruta para realizar busqueda de registros.
 Route::post('movie/search', ['as' => 'movie/search', 'uses'=>'MovieController@search']);
 
@@ -58,4 +56,4 @@ Route::resource('buscar','BusquedaController');
 //una nueva ruta para eliminar registros con el metodo get
 Route::get('movie/destroy/{id}', ['as' => 'movie/destroy', 'uses'=>'MovieController@destroy']);
 //ruta para realizar busqueda de registros.
-Route::post('buscar/search', ['as' => 'buscar/search', 'uses'=>'BusquedaController@search']);
+Route::post('buscar', ['as' => 'buscar/search', 'uses'=>'BusquedaController@search']);
