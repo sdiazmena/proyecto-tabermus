@@ -196,7 +196,7 @@
     <div class="col-sm-3 text-center">
         <div class="fondoContenido">
             <p class="titulo"><img  src="{{ asset('img/twitter.png') }}" style="width:100px; height: 40px"></p>
-            <a class="twitter-timeline" href="https://twitter.com/TabermusChile">Tweets by TabermusChile</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <a class="twitter-timeline" href="https://twitter.com/TabermusChile?ref_src=twsrc%5Etfw">Tweets by TabermusChile</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
         <div class="fondoContenido">
             <p class="titulo"><img  src="{{ asset('img/instagram.png') }}" style="width:100px; height: 40px"></p>

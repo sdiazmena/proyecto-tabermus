@@ -18,8 +18,7 @@ class BusquedaController extends Controller
 {
     public function index()
     {
-        $datos = Datos::all();
-        return \View::make('buscar',compact('datos'));
+        return view('buscar');
     }
 
     public function store(Request $request)
@@ -28,7 +27,7 @@ class BusquedaController extends Controller
         $dato->nombre = $request->nombre;
         $dato->description = $request->description;
         $dato->save();
-        return redirect('buscar');
+        return redirect('buscarResultado');
 
     }
     public function search(Request $request){
@@ -39,7 +38,7 @@ class BusquedaController extends Controller
         }else{
             $datos = Datos::where('nombre','like','%'.$request->nombre.'%')->get();
         }
-        return \View::make('buscar', compact('datos'));
+        return \View::make('buscarResultado', compact('datos'));
     }
 
 }

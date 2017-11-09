@@ -25,8 +25,8 @@
 
 @section('content')    
     <div class="col-sm-8 bloqueContenido">
-        <h1 class="well text-center">{{ $banda->nombre }} Shows</h1>
-        <div class="well">
+        <h1 class="titulo letraTitulo text-center">{{ $banda->nombre }} Shows</h1>
+        <div class="fondoContenido letraTitulo">
             <ul class="nav nav-tabs">
                 <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/edit">Perfil</a></li>
                 <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/historia">Historia</a></li>
@@ -36,7 +36,7 @@
 
         </div>
         {{ Form::open(['route' => 'calendario.store', 'method' => 'post', 'role' => 'form'])}}
-        <div id="responsive-modal" class="modal fade" tabindex="-1" data-backdrop="static">
+        <div id="responsive-modal" class="modal fade letraPortada" tabindex="-1" data-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -90,7 +90,7 @@
             </div>
         </div>
         {{ Form::close() }}
-        <div id="calendar"></div>
+        <div id="calendar" class="fondoContenido letraTexto"></div>
         <div id="upload-modal" class="modal fade" tabindex="-1" data-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">

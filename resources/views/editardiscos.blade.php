@@ -2,8 +2,8 @@
 
 @section('content')    
     <div class="col-sm-8 bloqueContenido">
-        <h1 class="well text-center">{{ $banda->nombre }} Perfil</h1>
-        <div class="well">
+        <h1 class="fondoContenido letraTitulo text-center">{{ $banda->nombre }} Perfil</h1>
+        <div class="fondoContenido letraTexto">
             <ul class="nav nav-tabs">
                 <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/edit">Perfil</a></li>
                 <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/historia">Historia</a></li>
