@@ -2,202 +2,160 @@
 
 @section('content')    
     <div class="col-sm-8 bloqueContenido">
-            <h1 class="titulo text-center letraTitulo">{{ $banda->nombre }} Perfil</h1>
-            <div class="fondoContenido letraTitulo">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="/tabermus/public/profile/banda/{{$banda->id}}/edit">Perfil</a></li>
-                    <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/historia">Historia</a></li>
-                    <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/discos">Musica y Discos</a></li>
-                    <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/fechas">Fechas</a></li>
-                </ul>
-                {!! Form::open(['url' => 'profile/banda/'.$banda->id,  'enctype' => 'multipart/form-data', 'files' => 'true','method' => 'PUT']) !!}
-                {{csrf_field()}}
-                <div class="col-sm-5">
+        <h1 class="titulo text-center letraTitulo">{{ $banda->nombre }} Perfil</h1>
+        <div class="fondoContenido letraTitulo">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="/tabermus/public/profile/banda/{{$banda->id}}/edit">Perfil</a></li>
+                <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/historia">Historia</a></li>
+                <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/discos">Musica y Discos</a></li>
+                <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/fechas">Fechas</a></li>
+            </ul>
+            <hr class="featurette-divider">
+
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h1 class="featurette-heading">{{$banda->nombre}} </h1>
+                    <p class="lead">Region: {{ $region->nombre }}</p>
+                    <p class="lead">Ciudad: {{ $ciudad->nombre }}</p>
+                    <p class="lead">Genero: {{ $genero->nombre }}</p>
+                    <p class="lead">Genero: {{ $lirica->nombre }}</p>
+                    <p class="lead">¿Quienes Somos?</p>
+                    <p>{{ $banda->descripcion}}</p>
+                </div>
+                <div class="col-md-5">
                     <img src="http://localhost/tabermus/public/{{$banda->imagen}}" class="img-responsive" style="width:100%" alt="Image">
-		            <div class='form-group'>
-		                <label for='image'>Imagen: </label>
-		                <input type="file" name="image"/>
-		                <div class='text-danger'>{{$errors->first('image')}}</div>
-		            </div>
+                    <br>
+                    <p class="lead"><img class="media-object" src="https://www.facebook.com/images/fb_icon_325x325.png" alt="..." height= "30px">{{$banda->facebook}}</p>
+                    <p class="lead"><img class="media-object" src="https://www.gstatic.com/images/icons/material/product/2x/youtube_64dp.png" alt="..." height= "30px">{{$banda->youtube}}</p>
+                    <p class="lead"><img class="media-object" src="https://instagram-brand.com/wp-content/themes/ig-branding/assets/images/ig-logo-email.png" alt="..." height= "30px">{{$banda->instagram}}</p>
+                    <p class="lead"><img class="media-object" src="https://lh3.googleusercontent.com/UrY7BAZ-XfXGpfkeWg0zCCeo-7ras4DCoRalC_WXXWTK9q5b0Iw7B0YQMsVxZaNB7DM=w300" alt="..." height= "30px">{{$banda->spotify}}</p>
+                    <p class="lead"><img class="media-object" src="http://www.espiritudeportivo.es/images/twitter-contacto.png" alt="..." height= "30px">{{$banda->twitter}}</p>
+                    <p class="lead"><img class="media-object" src="http://industriamusical.es/wp-content/uploads/2014/05/soundcloud-icon.png" alt="..." height= "30px">{{$banda->soundcloud}}</p>
                 </div>
-
-
-                <div>
-                    
-                        <fieldset>
-                            
-                                <div class="row">
-                                    
-                                    <div class="col-sm-3">
-                                        {!! Form::label('nombre', 'Nombre') !!}
-                                    </div>
-                                    <div class="col-xs-9">
-                                        {!! Form::text('nombre', $banda->nombre, ['class' => 'form-control', 'placeholder' => 'Nombre','value' => '{{$banda->nombre}}']) !!}
-
-                                    </div>
-
-                                </div>
-                                <br>
-                                <div class="row">
-                                    {!! Form::label('region', 'Region',['class' => 'col-sm-3 control-label']) !!}
-                                    <div class="col-xs-9">
-                                        <h4 class="titulo text-center">{{ $region->nombre }} </h4>
-                                        {!! Form::select('region', $regiones, null,['id'=>'region','class' => 'form-control', 'placeholder' => 'Seleccione una región..']) !!}
-                                    </div>
-                                    <br>
-                                    <br>
-                                    <br>
-
-                                    <div class="col-sm-3"> 
-                                        {!! Form::label('ciudad_id', 'Ciudad') !!}  
-                                    </div>
-                                    <div class="col-xs-9 "> 
-                                        <h4 class="titulo text-center">{{ $ciudad->nombre }} </h4>
-                                        {!! Form::select('ciudad', ['placeholder' => 'Seleccione una ciudad..'], null,['id'=>'ciudad','class' => 'form-control','value' => '{{$banda->id_ciudad}}']) !!}
-                                               
-                                         
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <label class="col-sm-3 control-label" for="generoSeleccionado">Genero:</label>
-                                    <div class="col-xs-6">
-                                        <h4 class="titulo text-center">{{ $genero->nombre }} </h4>
-                                        {!! Form::select('generoSeleccionado', $generos, null,['class' => 'form-control', 'placeholder' => 'Seleccione un Genero..','value' => '{{$banda->id_genero}}']) !!}
-                                    </div>
-                                    <!--
-                                    <div>
-                                        <a id="agregarGenero" href="#">agregar</a>
-                                    </div>-->
-
-                                </div><!--
-                                <div style="margin-left: 145px;">
-                                    <table>
-                                        <thead><tr>
-                                            <th></th>
-                                        </tr></thead>
-                                        <tbody id="tabla-genero">
-                                        </tbody>
-                                    </table>
-                                </div>-->
-                                <br>
-                                <div class="row">
-                                    <label class="col-sm-3 control-label">Lirica:</label>
-                                    <div class="col-xs-6">
-                                        <h4 class="titulo text-center">{{ $lirica->nombre }} </h4>
-                                        {!! Form::select('liricaSeleccionado', $liricas, null,['class' => 'form-control', 'placeholder' => 'Seleccione una lirica..','value' => '{{$banda->id_lirica}}']) !!}
-                                    </div><!--
-                                    <div>
-                                        <a id="agregarlirica" href="#">agregar</a>
-                                    </div>-->
-                                </div>
-                                <!--
-                                <div style="margin-left: 145px;">
-                                    <table>
-                                        <thead><tr>
-                                            <th></th>
-                                        </tr></thead>
-                                        <tbody id="tabla-lirica">
-                                        </tbody>
-                                    </table>
-                                </div>-->
-
-                                <br>
-                                <div class="row">
-                                    <label class="col-sm-3 control-label" for="Integrantes">Integrantes:</label>
-                                 
-                                        <div id="contenedor">
-                                        <div class="added">
-                                            
-                                            <div class="col-xs-9 letraPortada">
-                                                     <input type="text" name="Integrantes[]" id="Integrantes" placeholder="Integrantes"/>
-                                            </div>
-                                        </div>
-                                        </div>
-                                        <a id="agregarCampo" href="#">Agregar Campo</a>                                        
-
-                                </div>
-                           
-                        </fieldset>
-                        <br>
-                    
-                </div>
-
-                <div class="container-fluid">
-                        <div class="col-sm-12">
-                            {!! Form::label('descripcion', '¿Quienes Somos?') !!}
-                            {!! Form::textarea('descripcion', $banda->descripcion, ['class' => 'form-control', 'placeholder' => '¿Quienes Somos?', 'value' => '{{$banda->descripcion}}']) !!}
+            </div>
+            <a id="editar"  class="btn btn-danger">Editar</a>
+            <hr class="featurette-divider">
+            {!! Form::open(['url' => 'profile/banda/'.$banda->id,  'enctype' => 'multipart/form-data', 'files' => 'true','method' => 'PUT']) !!}
+            {{csrf_field()}}
+            <div id="responsive-modal" class="modal fade" tabindex="-1" data-backdrop="static">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 color="black">Agregar Nuevo Disco</h4>
                         </div>
-                    </div>
-                <div class="text-center">
-                        <br>
-                        <h3>Links:</h3>
-                        <br>
-                </div>
-
-                <div class="container-fluid">
-                        <div>
-                            <div class="col-sm-6">
-                                <a class="pull-left">
-                                    <img class="media-object" src="https://www.facebook.com/images/fb_icon_325x325.png" alt="..." height= "30px">
-                                </a>
-                                <div class="col-sm-6 input-group-sm">
+                        <div class="modal-body">
+                            <div class="form-group">                                
+                                {{ Form::label('nombre', 'NOMBRE:')}}
+                                {!! Form::text('nombre', $banda->nombre, ['class' => 'form-control', 'placeholder' => 'Nombre','value' => '{{$banda->nombre}}']) !!}
+                            </div>
+                            <div class='form-group'>
+                                <label for='image'>IMAGEN </label>
+                                <input type="file" name="image"/>
+                                <div class='text-danger'>{{$errors->first('image')}}</div>
+                            </div>
+                            <div class="form-group">
+                                
+                                {!! Form::label('region', 'Region',['class' => 'col-sm-3 control-label']) !!}
+                                <h4>{{ $region->nombre }} </h4>
+                                {!! Form::select('region', $regiones, null,['id'=>'region','class' => 'form-control', 'placeholder' => 'Seleccione una región..']) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('ciudad_id', 'Ciudad',['class' => 'col-sm-3 control-label']) !!}  
+                                <h4>{{ $ciudad->nombre }} </h4>
+                                {!! Form::select('ciudad', ['placeholder' => 'Seleccione una ciudad..'], null,['id'=>'ciudad','class' => 'form-control','value' => '{{$banda->id_ciudad}}']) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('generoSeleccionado', 'Genero',['class' => 'col-sm-3 control-label']) !!}  
+                                <h4 >{{ $genero->nombre }} </h4>
+                                {!! Form::select('generoSeleccionado', $generos, null,['class' => 'form-control', 'placeholder' => 'Seleccione un Genero..','value' => '{{$banda->id_genero}}']) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('liricaSeleccionado', 'Lirica',['class' => 'col-sm-3 control-label']) !!}  
+                                <h4 >{{ $lirica->nombre }} </h4>
+                                {!! Form::select('liricaSeleccionado', $liricas, null,['class' => 'form-control', 'placeholder' => 'Seleccione una lirica..','value' => '{{$banda->id_lirica}}']) !!}
+                            </div>
+                            <div class="form-group">
+                                {{ Form::label('integrantes', 'Integrantes')}}
+                                @foreach($integrantes as $integrante)
+                                    {!! Form::text('integrantes', $integrante->nombre, ['class' => 'form-control', 'placeholder' => 'Nombre Integrante','value' => '{{$integrante->nombre}}']) !!}
+                                @endforeach
+                                <fieldset id="fiel" >
+                                    <input type="button" value="agregar" name="integrantes[]" onclick="crear(this)" />
+                                </fieldset>
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('descripcion', '¿Quienes Somos?') !!}
+                                {!! Form::textarea('descripcion', $banda->descripcion, ['class' => 'form-control', 'placeholder' => '¿Quienes Somos?', 'value' => '{{$banda->descripcion}}']) !!}
+                            </div>
+                            <div class="form-group">
+                                <img class="media-object" src="https://www.facebook.com/images/fb_icon_325x325.png" alt="..." height= "30px">
                                 {!! Form::text('facebook', $banda->facebook, ['class' => 'form-control', 'placeholder' => 'Facebook','value' => '{{$banda->facebook}}']) !!}
-                                </div>
                             </div>
-                            <div class="col-sm-6">
-                                <a class="pull-left">
-                                    <img class="media-object" src="https://www.gstatic.com/images/icons/material/product/2x/youtube_64dp.png" alt="..." height= "30px">
-                                </a>
-                                <div class="col-sm-6 input-group-sm">
-                                	{!! Form::text('youtube', $banda->youtube, ['class' => 'form-control', 'placeholder' => 'Youtube','value' => '{{$banda->youtube}}']) !!}
-                                </div>
+                            <div class="form-group">
+                                <img class="media-object" src="https://www.gstatic.com/images/icons/material/product/2x/youtube_64dp.png" alt="..." height= "30px">
+                                {!! Form::text('youtube', $banda->youtube, ['class' => 'form-control', 'placeholder' => 'Youtube','value' => '{{$banda->youtube}}']) !!}
                             </div>
-                        </div>
-
-
-                        <div class="col-sm-6">
-                            <a class="pull-left">
+                            <div class="form-group">
                                 <img class="media-object" src="https://instagram-brand.com/wp-content/themes/ig-branding/assets/images/ig-logo-email.png" alt="..." height= "30px">
-                            </a>
-                            <div class="col-sm-6 input-group-sm">
                                 {!! Form::text('instagram', $banda->instagram, ['class' => 'form-control', 'placeholder' => 'Instagram','value'=>'{{$banda->instagram}}']) !!}
                             </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <a class="pull-left">
+                            <div class="form-group">
                                 <img class="media-object" src="https://lh3.googleusercontent.com/UrY7BAZ-XfXGpfkeWg0zCCeo-7ras4DCoRalC_WXXWTK9q5b0Iw7B0YQMsVxZaNB7DM=w300" alt="..." height= "30px">
-                            </a>
-                            <div class="col-sm-6 input-group-sm">
                                 {!! Form::text('spotify', $banda->spotify, ['class' => 'form-control', 'placeholder' => 'Spotify','value'=>'$banda->spotify']) !!}
                             </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <a class="pull-left">
+                            <div class="form-group">
                                 <img class="media-object" src="http://www.espiritudeportivo.es/images/twitter-contacto.png" alt="..." height= "30px">
-                            </a>
-                            <div class="col-sm-6 input-group-sm">
                                 {!! Form::text('twitter', $banda->twitter, ['class' => 'form-control', 'placeholder' => 'Twitter','value' => '{{$banda->twitter}}']) !!}
                             </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <a class="pull-left" href="#">
+                            <div class="form-group">
                                 <img class="media-object" src="http://industriamusical.es/wp-content/uploads/2014/05/soundcloud-icon.png" alt="..." height= "30px">
-                            </a>
-                            <div class="col-sm-6 input-group-sm">
                                 {!! Form::text('soundcloud', $banda->twitter, ['class' => 'form-control', 'placeholder' => 'SoundCloud','value' => '$banda->twitter']) !!}
                             </div>
                         </div>
-
-
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-dafault" data-dismiss="modal">CANCELAR</button>
+                            {!! Form::submit('Actualizar', ['class' => 'btn btn-success']) !!}
+                        </div>
                     </div>
-                <br>
-                
+                </div>
             </div>
-            {!! Form::submit('Acrualizar Datos', ['class' => 'btn btn-primary']) !!}
-            {!! Form::close() !!}
+            {{ Form::close() }}
+        </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+    $(document).ready(function() {
+
+        $('#editar').on('click', function(){
+            $('#responsive-modal').modal('show');
+        });
+    });
+num=0;
+        function crear(obj) {
+          num++;
+          fi = document.getElementById('fiel'); // 1
+          contenedor = document.createElement('div'); // 2
+          contenedor.id = 'div'+num; // 3
+          fi.appendChild(contenedor); // 4
+         
+          ele = document.createElement('input'); // 5
+          ele.type = 'text'; // 6
+          ele.name = 'canciones'+num;
+          ele.class = 'form-control'; // 6
+          contenedor.appendChild(ele); // 7
+          
+          ele = document.createElement('input'); // 5
+          ele.type = 'button'; // 6
+          ele.value = 'Borrar'; // 8
+          ele.name = 'div'+num; // 8
+          ele.onclick = function () {borrar(this.name)} // 9
+          contenedor.appendChild(ele); // 7
+        }
+        function borrar(obj) {
+          fi = document.getElementById('fiel'); // 1 
+          fi.removeChild(document.getElementById(obj)); // 10
+        }
+    </script>
 @endsection

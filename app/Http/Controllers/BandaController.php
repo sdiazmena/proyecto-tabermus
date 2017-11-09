@@ -123,8 +123,8 @@ class BandaController extends Controller
         $region = DB::table('region')->where('id',$ciudad->id_region)->first();
         $lirica = DB::table('lirica')->where('id',$banda->id_lirica)->first();
         $genero = DB::table('genero')->where('id',$banda->id_genero)->first();
-
-        return view("editarbanda")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('ciudad',$ciudad)->with('region',$region)->with('lirica',$lirica)->with('genero',$genero);
+        $integrantes = DB::table('integrante')->where('id_banda',$id)->get();
+        return view("editarbanda")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('ciudad',$ciudad)->with('region',$region)->with('lirica',$lirica)->with('genero',$genero)->with('integrantes',$integrantes);
     }
     public function editHistory($id)
     {
@@ -145,9 +145,23 @@ class BandaController extends Controller
         $liricas = Lirica::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
         $generos = Genero::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
         $regiones = Region::orderBy('id', 'ASC')->pluck('nombre','id')->all();
-  
+        $discos =  DB::table('disco')->where('id_banda', $id)->get();
+        $listacanciones = array();
+        foreach($discos as $disco){
+            $lista = DB::table('lista_canciones')->where('id_disco', $disco->id)->first();
+            array_push($listacanciones, $lista);
+        }
+        $largo = count($listacanciones);
+        //var_dump($largo);
+        $canciones = array();
+        for($i=0;$i<$largo;$i++){
+            $cancion = DB::table('cancion')->where('id_lista', $listacanciones[$i]->id)->get();
+            array_push($canciones, $cancion);
+        }
+        //var_dump($canciones[0][0]->id);
+      
 
-        return view("editardiscos")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda);
+        return view("editardiscos")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('discos',$discos)->with('listacanciones',$listacanciones)->with('canciones',$canciones)->with('largo',$largo);
     }
     public function updateDiscos(Request $request, $id)
     {
