@@ -3,11 +3,37 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use Storage;
+use Input;
+use Validator;
+use Auth;
+use App\Genero;
+use App\Lirica;
+use App\Banda;
+use App\User;
+use App\DatoBusqueda as Datos;
 
 class BusquedaController extends Controller
 {
     public function index()
     {
-        return view('buscar');
+        $datos = Datos::all();
+        return \View::make('buscar',compact('datos'));
     }
+
+    public function store(Request $request)
+    {
+        $dato = new Datos;
+        $dato->nombre = $request->nombre;
+        $dato->description = $request->description;
+        $dato->save();
+        return redirect('buscar');
+
+    }
+    public function search(Request $request){
+        $datos = Datos::where('nombre','like','%'.$request->name.'%')->get();
+        return \View::make('buscar', compact('datos'));
+    }
+
 }

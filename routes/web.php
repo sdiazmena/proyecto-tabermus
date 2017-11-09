@@ -13,10 +13,6 @@
 
 Route::get('/', 'IndexController@index');
 
-Route::get('/busqueda', function () {
-    return view('busqueda');
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
@@ -51,4 +47,15 @@ Route::post('cambiarVista', function (){
 
 
 Route::get('/filtrado', 'FiltradoController@index');
-Route::get('/buscar', 'BusquedaController@index');
+
+Route::resource('movie','MovieController');
+//una nueva ruta para eliminar registros con el metodo get
+Route::get('movie/destroy/{id}', ['as' => 'movie/destroy', 'uses'=>'MovieController@destroy']);
+//ruta para realizar busqueda de registros.
+Route::post('movie/search', ['as' => 'movie/search', 'uses'=>'MovieController@search']);
+
+Route::resource('buscar','BusquedaController');
+//una nueva ruta para eliminar registros con el metodo get
+Route::get('movie/destroy/{id}', ['as' => 'movie/destroy', 'uses'=>'MovieController@destroy']);
+//ruta para realizar busqueda de registros.
+Route::post('buscar/search', ['as' => 'buscar/search', 'uses'=>'BusquedaController@search']);
