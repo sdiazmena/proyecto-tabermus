@@ -45,8 +45,10 @@ Route::post('cambiarVista', function (){
     return redirect('/home');
 });
 
-
-Route::get('/filtrado', 'FiltradoController@index');
+Route::resource('filtrado','FiltradoController');
+Route::post('filtradoRegional', ['as'=>'filtrado/regional', 'uses'=>'FiltradoController@filtradoRegional']);
+Route::post('filtradoNacional', ['as'=>'filtrado/nacional', 'uses'=>'FiltradoController@filtradoNacional']);
+Route::post('filtrado', ['as'=>'filtrado/resultado', 'uses'=>'FiltradoController@filtrado']);
 
 Route::resource('buscar','BusquedaController');
 //una nueva ruta para eliminar registros con el metodo get

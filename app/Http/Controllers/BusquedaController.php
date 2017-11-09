@@ -24,7 +24,7 @@ class BusquedaController extends Controller
     public function store(Request $request)
     {
         $dato = new Datos;
-        $dato->nombre = $request->nombre;
+        $dato->nombre = $request->name;
         $dato->description = $request->description;
         $dato->save();
         return redirect('buscarResultado');

@@ -6,6 +6,7 @@
         <p class="titulo text-center"><img  src="{{ asset('img/titulos/filtrado.png') }}" style="width:350px; height: 90px"></p>
         <div>
             <div class="fondoContenido" id="contenidoMostrar">
+                {!! Form::open(['route' => 'filtrado/resultado', 'method' => 'post', 'novalidate', 'class' => 'form-inline']) !!}
                 <div class="row">
                     {!! Form::label('region', 'Region:',['class' => 'col-sm-2 letraTitulo']) !!}
                     {!! Form::select('region', $regiones, null,['class' => 'col-sm-4','id'=>'region', 'placeholder' => 'Seleccione una región..','required']) !!}
@@ -32,11 +33,38 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-1">
-                        <button id="botonNacional" class="glyphicon glyphicon-search" onclick="actualizarNacional()"></button>
+                        <button type="submit" id="botonNacional" class="glyphicon glyphicon-search"></button>
                     </div>
                 </div>
+                {!! Form::close() !!}
             </div>
-            <div class="fondoContenido" id="resultadoBusqueda"></div>
+            <div class="fondoContenido" id="resultadoBusqueda">
+                <table class="table table-condensed table-striped table-bordered">
+                    <thead>
+                    <tr class="letraTitulo">
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Ciudad</th>
+                        <th>Region</th>
+                        <th>Genero</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($bandas as $banda)
+                        <tr>
+                            <td>{{ $banda->nombre }}</td>
+                            <td>{{ $banda->id_lirica }}</td>
+                            <td>{{ $banda->id_ciudad }}</td>
+                            <td>{{ $banda->id_ciudad }}</td>
+                            <td>{{ $banda->id_genero }}</td>
+                            <td>
+                                <a class="btn btn-danger btn-xs" href="{{ route('movie/destroy',['id' => $banda->id] )}}" >Ver</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     </div>
