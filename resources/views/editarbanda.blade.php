@@ -41,7 +41,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 color="black">Agregar Nuevo Disco</h4>
+                            <h4 color="black">Editar Perfil Banda</h4>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">                                
@@ -77,10 +77,41 @@
                             <div class="form-group">
                                 {{ Form::label('integrantes', 'Integrantes')}}
                                 @foreach($integrantes as $integrante)
-                                    {!! Form::text('integrantes', $integrante->nombre, ['class' => 'form-control', 'placeholder' => 'Nombre Integrante','value' => '{{$integrante->nombre}}']) !!}
+                                <fieldset id="fiel2" >
+                                    <script type="text/javascript">
+                                        <?php
+                                            $code_array = json_encode($integrante);
+                                        ?>
+                                        var array_code = <?php echo $code_array; ?>;
+                                        num=0;
+                                        fi = document.getElementById('fiel2'); // 1
+                                        contenedor = document.createElement('div'); // 2
+                                        contenedor.id = 'div'+num; // 3
+                                        fi.appendChild(contenedor); // 4
+                                         
+                                        ele = document.createElement('input'); // 5
+                                        ele.type = 'text'; // 6
+                                        ele.name = 'integrantes'+num;
+                                        ele.class = 'form-control';
+                                        ele.value = array_code.nombre;
+                                        ele.placeholder = 'Integrantes'; // 6
+                                        contenedor.appendChild(ele); // 7
+                                          
+                                        ele = document.createElement('input'); // 5
+                                        ele.type = 'button'; // 6
+                                        ele.value = 'Borrar'; // 8
+                                        ele.name = 'div'+num; // 8
+                                        ele.onclick = function () {borrar(this.name)} // 9
+                                        contenedor.appendChild(ele); 
+                                        function borrar(obj) {
+                                            fi = document.getElementById('fiel2'); // 1 
+                                            fi.removeChild(document.getElementById(obj)); // 10
+                                        }
+                                    </script>
+                                </fieldset>
                                 @endforeach
                                 <fieldset id="fiel" >
-                                    <input type="button" value="agregar" name="integrantes[]" onclick="crear(this)" />
+                                    <input type="button" value="agregar" name="integrante[]" onclick="crear(this)" />
                                 </fieldset>
                             </div>
                             <div class="form-group">
@@ -132,28 +163,28 @@
             $('#responsive-modal').modal('show');
         });
     });
-num=0;
+        num1=0;
         function crear(obj) {
           num++;
           fi = document.getElementById('fiel'); // 1
           contenedor = document.createElement('div'); // 2
-          contenedor.id = 'div'+num; // 3
+          contenedor.id = 'div'+num1; // 3
           fi.appendChild(contenedor); // 4
          
           ele = document.createElement('input'); // 5
           ele.type = 'text'; // 6
-          ele.name = 'canciones'+num;
+          ele.name = 'integrante'+num1;
           ele.class = 'form-control'; // 6
           contenedor.appendChild(ele); // 7
           
           ele = document.createElement('input'); // 5
           ele.type = 'button'; // 6
           ele.value = 'Borrar'; // 8
-          ele.name = 'div'+num; // 8
-          ele.onclick = function () {borrar(this.name)} // 9
+          ele.name = 'div'+num1; // 8
+          ele.onclick = function () {borrar1(this.name)} // 9
           contenedor.appendChild(ele); // 7
         }
-        function borrar(obj) {
+        function borrar1(obj) {
           fi = document.getElementById('fiel'); // 1 
           fi.removeChild(document.getElementById(obj)); // 10
         }

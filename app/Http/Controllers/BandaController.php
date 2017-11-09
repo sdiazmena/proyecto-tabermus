@@ -69,7 +69,7 @@ class BandaController extends Controller
             
             $request->file('image')->move('uploads/bandas', $name);
 
-            $id = DB::table('banda')->insertGetId(['id_usuario' => $iduser,'nombre' => $request->nombre,'id_ciudad' => $request->ciudad,'id_lirica' => $request->liricaSeleccionado,'id_genero' => $request->generoSeleccionado,'descripcion' => $request->descripcion,'imagen'=>'uploads/bandas/'.$name]);
+            $id = DB::table('banda')->insertGetId(['id_usuario' => $iduser,'nombre' => ucwords($request->nombre),'id_ciudad' => $request->ciudad,'id_lirica' => $request->liricaSeleccionado,'id_genero' => $request->generoSeleccionado,'descripcion' => ucfirst($request->descripcion),'imagen'=>'uploads/bandas/'.$name]);
             if($request->facebook){
                 DB::table('banda')->where('id', $id)->update(['facebook' => $request->facebook]);
             }
@@ -135,7 +135,7 @@ class BandaController extends Controller
     {
         $banda = new Banda; 
         $banda->where('id','=', $id)
-            ->update(['historia' => $request->historia]);
+            ->update(['historia' => ucfirst($request->historia)]);
         return redirect('/profile')->with('status', 'Historia de Banda editada correctamente');
     }
     public function editDiscos($id)
@@ -215,6 +215,8 @@ class BandaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        var_dump($request->all());
+        /*
         if($request->file('image')){
             $name = str_random(30) . '-' . $request->file('image')->getClientOriginalName();   
             $request->file('image')->move('uploads/bandas', $name);
@@ -253,7 +255,7 @@ class BandaController extends Controller
                      ->update(['id_ciudad' => $request->ciudad]);
             }
             return redirect('/profile')->with('status', 'Perfil de Banda editada correctamente');
-        }
+        }*/
     }
 
     /**
