@@ -24,3 +24,4 @@ class FiltradoController extends Controller
         return view('filtrado')->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos);
     }
 }
+
