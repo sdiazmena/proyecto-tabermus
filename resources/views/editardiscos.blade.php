@@ -10,6 +10,7 @@
                 <li class="active"><a href="/tabermus/public/profile/banda/{{$banda->id}}/discos">Musica y Discos</a></li>
                 <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/fechas">Fechas</a></li>
             </ul>
+            <hr class="featurette-divider">
             <div class='text-danger'>{{$errors->first('image')}}</div>
             <a id="agregar"  class="btn btn-danger">Agregar Nuevo Disco</a>
             @foreach ($discos as $disco)

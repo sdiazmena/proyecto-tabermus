@@ -215,10 +215,10 @@ class BandaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //var_dump($request->all());
+       //var_dump($request->all());
             
             
-        
+       
         if($request->file('image')){
             $name = str_random(30) . '-' . $request->file('image')->getClientOriginalName();   
             $request->file('image')->move('uploads/bandas', $name);
@@ -240,19 +240,22 @@ class BandaController extends Controller
             }
             $lar = count($request->all());
             $array = $request->all();
-            for($i=1;$i<$lar;$i++){
+            $prueba = Array();
+            $x = 0;
+            for($i=0;$i<$lar;$i++){
                 if(array_key_exists('integrante'.$i, $array)){
                     $integrante = new Integrante();
                     $integrante->nombre = $array['integrante'.$i];
                     $integrante->id_banda = $id;
+                    $prueba[$x] = $integrante->nombre;
                     $integrante->save();
+                    $x++;
                 }
             }
             $largo = count($request->all());
             $array1 = $request->all();
             $int_actuales = DB::table('integrante')->where('id_banda',$id)->get();
-            $prueba = Array();
-            $x = 0;
+
             $m = 0;
             for($i=0;$i<$largo;$i++){
                 if(array_key_exists('integrantes'.$i, $array1)){
@@ -306,19 +309,22 @@ class BandaController extends Controller
             }
             $lar = count($request->all());
             $array = $request->all();
-            for($i=1;$i<$lar;$i++){
+            $prueba = Array();
+            $x = 0;
+            for($i=0;$i<$lar;$i++){
                 if(array_key_exists('integrante'.$i, $array)){
                     $integrante = new Integrante();
                     $integrante->nombre = $array['integrante'.$i];
                     $integrante->id_banda = $id;
+                    $prueba[$x] = $integrante->nombre;
                     $integrante->save();
+                    $x++;
                 }
             }
             $largo = count($request->all());
             $array1 = $request->all();
             $int_actuales = DB::table('integrante')->where('id_banda',$id)->get();
-            $prueba = Array();
-            $x = 0;
+
             $m = 0;
             for($i=0;$i<$largo;$i++){
                 if(array_key_exists('integrantes'.$i, $array1)){
