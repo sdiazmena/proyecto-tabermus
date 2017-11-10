@@ -5,14 +5,17 @@
         <h1 class="fondoContenido letraTitulo text-center">{{ $banda->nombre }} Perfil</h1>
         <div class="fondoContenido letraTexto">
             <ul class="nav nav-tabs">
-                <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/edit">Perfil</a></li>
-                <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/historia">Historia</a></li>
-                <li class="active"><a href="/tabermus/public/profile/banda/{{$banda->id}}/discos">Musica y Discos</a></li>
-                <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/fechas">Fechas</a></li>
+                <li><a href="{{$rutaPerfil}}">Perfil</a></li>
+                <li><a href="{{$rutaHistoria}}">Historia</a></li>
+                <li class="active"><a href="{{$rutaDiscos}}">Musica y Discos</a></li>
+                <li><a href="{{$rutaFechas}}">Fechas</a></li>
             </ul>
+            @if($editable == 1)
             <hr class="featurette-divider">
             <div class='text-danger'>{{$errors->first('image')}}</div>
+            
             <a id="agregar"  class="btn btn-danger">Agregar Nuevo Disco</a>
+            @endif
             @foreach ($discos as $disco)
                 <hr class="featurette-divider">
 
@@ -39,8 +42,9 @@
                         <img src="http://localhost/tabermus/public/{{$disco->caratula}}" class="img-responsive" style="width:100%" alt="Image">
                     </div>
                 </div>
-                <a id="editar"  class="btn btn-danger">Editar</a>
+                
             @endforeach
+               <!-- <a id="editar"  class="btn btn-danger">Editar Discos</a>-->
              {{ Form::open(['url' => '/profile/banda/'.$banda->id.'/discos/update', 'method' => 'POST', 'role' => 'form','files'=>'true'])}}
             <div id="responsive-modal" class="modal fade letraTitulo" tabindex="-1" data-backdrop="static">
                 <div class="modal-dialog">
@@ -94,6 +98,89 @@
                 </div>
             </div>
             {{ Form::close() }}
+ 
+            <div id="selectDisco-modal" class="modal fade letraTitulo" tabindex="-1" data-backdrop="static">
+                <div class="modal-dialog">
+                    <div class="modal-content fondoContenido">
+                        <div class="modal-header">
+                            <h4>Seleccionar Disco</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h1 class="featurette-heading">Discos: </h1>
+                            
+                                <div class="form-group">                                
+                                    
+                                    <select name="año" class="form-control" id="select" >
+                                    @foreach ($discos as $disco)
+                                        <option value="{{$disco->nombre}}">{{$disco->nombre}}</option>
+                                        <input type="hidden" name="id_banda" value= "{{$banda->id}}">
+                                        <input type="hidden" name="id_banda" value= "{{$banda->id}}">
+                                    @endforeach
+                                </select>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-dafault letraPortada" data-dismiss="modal">CANCELAR</button>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+             {{ Form::open(['url' => '/profile/banda/'.$banda->id.'/discos/editar', 'method' => 'POST', 'role' => 'form','files'=>'true'])}}
+            <div id="selectDisco2-modal" class="modal fade letraTitulo" tabindex="-1" data-backdrop="static">
+                <div class="modal-dialog">
+                    <div class="modal-content fondoContenido">
+                        <div class="modal-header">
+                            <h4>Agregar Nuevo Disco</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                
+                                {{ Form::label('nombre', 'NOMBRE DISCO')}}
+                                {{ Form::text('nombre', old('nombre'),['class' => 'form-control']) }}
+                            </div>
+                            <div class='form-group'>
+                                <label for='image'>IMAGEN </label>
+                                <input type="file" name="image"/>
+                                <div class='text-danger'>{{$errors->first('image')}}</div>
+                            </div>
+                            <div class="form-group">
+                                
+                                {{ Form::label('año', 'AÑO')}}
+                                {{ Form::text('año', old('año'),['class' => 'form-control', 'readonly' => 'true']) }}
+                                <select name="año" class="form-control" >
+                                    <?php
+                                        for ($i=1990; $i<=2018; $i++) {
+                                           echo "<option value='$i'>$i</option>";
+                                        }  
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                {{ Form::label('sello', 'SELLO')}}
+                                {{ Form::text('sello', old('sello'),['id'=>'time_start','class' => 'form-control']) }}
+                            </div>
+                            <div class="form-group">
+                                {{ Form::label('tipo', 'TIPO')}}
+                                {{ Form::text('tipo', old('tipo'),['id'=>'date_end','class' => 'form-control']) }}
+                            </div>
+                            <div class="form-group">
+                                {{ Form::label('canciones', 'CANCIONES')}}
+                                
+                                <fieldset id="fiel" class="letraPortada" >
+                                    <input type="button" value="agregar" name="canciones[]" onclick="crear(this)" />
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-dafault letraPortada" data-dismiss="modal">CANCELAR</button>
+                            {!! Form::submit('Editar', ['class' => 'btn btn-success']) !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ Form::close() }}
+            
         </div>
     </div>
 @endsection
@@ -105,9 +192,17 @@
             $('#responsive-modal').modal('show');
         });
         $('#editar').on('click', function(){
-            $('#responsive-modal').modal('show');
+            $('#selectDisco-modal').modal('show');
+        });
+ 
+        $("#select").change(function(event){
+            $('#selectDisco2-modal #nombre').val(event.target.value);
+            $('#selectDisco2-modal #año').val(event.target.value);
+            $('#selectDisco2-modal').modal('show');
+            
         });
     });
+
 num=0;
         function crear(obj) {
           num++;

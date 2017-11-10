@@ -124,12 +124,22 @@ class BandaController extends Controller
         $lirica = DB::table('lirica')->where('id',$banda->id_lirica)->first();
         $genero = DB::table('genero')->where('id',$banda->id_genero)->first();
         $integrantes = DB::table('integrante')->where('id_banda',$id)->get();
-        return view("editarbanda")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('ciudad',$ciudad)->with('region',$region)->with('lirica',$lirica)->with('genero',$genero)->with('integrantes',$integrantes);
+        $rutaPerfil = '/tabermus/public/profile/banda/'.$id.'/edit';
+        $rutaHistoria = '/tabermus/public/profile/banda/'.$id.'/historia';
+        $rutaDiscos = '/tabermus/public/profile/banda/'.$id.'/discos';
+        $rutaFechas = '/tabermus/public/profile/banda/'.$id.'/fechas';
+        $editable = 1;
+        return view("editarbanda")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('ciudad',$ciudad)->with('region',$region)->with('lirica',$lirica)->with('genero',$genero)->with('integrantes',$integrantes)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas);
     }
     public function editHistory($id)
     {
         $banda = DB::table('banda')->where('id', $id)->first();
-        return view("editarhistoria")->with('banda',$banda);
+        $rutaPerfil = '/tabermus/public/profile/banda/'.$id.'/edit';
+        $rutaHistoria = '/tabermus/public/profile/banda/'.$id.'/historia';
+        $rutaDiscos = '/tabermus/public/profile/banda/'.$id.'/discos';
+        $rutaFechas = '/tabermus/public/profile/banda/'.$id.'/fechas';
+        $editable = 1;        
+        return view("editarhistoria")->with('banda',$banda)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas);
     }
     public function updateHistory(Request $request, $id)
     {
@@ -137,6 +147,10 @@ class BandaController extends Controller
         $banda->where('id','=', $id)
             ->update(['historia' => ucfirst($request->historia)]);
         return redirect('/profile')->with('status', 'Historia de Banda editada correctamente');
+    }
+    public function editarDisco(Request $request, $id)
+    {
+
     }
     public function editDiscos($id)
     {
@@ -159,9 +173,12 @@ class BandaController extends Controller
             array_push($canciones, $cancion);
         }
         //var_dump($canciones[0][0]->id);
-      
-
-        return view("editardiscos")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('discos',$discos)->with('listacanciones',$listacanciones)->with('canciones',$canciones)->with('largo',$largo);
+        $rutaPerfil = '/tabermus/public/profile/banda/'.$id.'/edit';
+        $rutaHistoria = '/tabermus/public/profile/banda/'.$id.'/historia';
+        $rutaDiscos = '/tabermus/public/profile/banda/'.$id.'/discos';
+        $rutaFechas = '/tabermus/public/profile/banda/'.$id.'/fechas';      
+        $editable = 1; 
+        return view("editardiscos")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('discos',$discos)->with('listacanciones',$listacanciones)->with('canciones',$canciones)->with('largo',$largo)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas);
     }
     public function updateDiscos(Request $request, $id)
     {
@@ -202,9 +219,12 @@ class BandaController extends Controller
         $liricas = Lirica::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
         $generos = Genero::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
         $regiones = Region::orderBy('id', 'ASC')->pluck('nombre','id')->all();
-  
-
-        return view("editarfechas")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda);
+        $rutaPerfil = '/tabermus/public/profile/banda/'.$id.'/edit';
+        $rutaHistoria = '/tabermus/public/profile/banda/'.$id.'/historia';
+        $rutaDiscos = '/tabermus/public/profile/banda/'.$id.'/discos';
+        $rutaFechas = '/tabermus/public/profile/banda/'.$id.'/fechas';  
+        $editable = 1; 
+        return view("editarfechas")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas);
     }
     /**
      * Update the specified resource in storage.

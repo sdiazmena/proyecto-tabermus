@@ -30,6 +30,8 @@ Route::get('/profile/banda/{id}/historia','BandaController@editHistory');
 Route::post('/profile/banda/{id}/historia/update','BandaController@updateHistory');
 Route::get('/profile/banda/{id}/discos','BandaController@editDiscos');
 Route::post('/profile/banda/{id}/discos/update','BandaController@updateDiscos');
+Route::post('/profile/banda/{id}/discos/editar','BandaController@editarDiscos');
+
 Route::get('/profile/banda/{id}/fechas','BandaController@editFechas');
 Route::post('/profile/banda/{id}/fechas/update','BandaController@updateFechas');
 Route::get('/profile/ciudades/{id}', 'RegionController@getCiudades');
@@ -52,6 +54,9 @@ Route::post('filtrado', ['as'=>'filtrado/resultado', 'uses'=>'FiltradoController
 
 Route::resource('buscar','BusquedaController');
 //una nueva ruta para eliminar registros con el metodo get
-Route::get('movie/destroy/{id}', ['as' => 'movie/destroy', 'uses'=>'MovieController@destroy']);
+Route::get('buscar/banda/{id}', ['as' => 'buscar/banda', 'uses'=>'BusquedaController@resultado']);
+Route::get('/buscar/banda/{id}/discos','BusquedaController@discos');
+Route::get('/buscar/banda/{id}/historia','BusquedaController@historia');
+Route::get('/buscar/banda/{id}/fechas','BusquedaController@fechas');
 //ruta para realizar busqueda de registros.
 Route::post('buscar', ['as' => 'buscar/search', 'uses'=>'BusquedaController@search']);

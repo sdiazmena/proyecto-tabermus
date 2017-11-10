@@ -28,13 +28,15 @@
         <h1 class="titulo letraTitulo text-center">{{ $banda->nombre }} Shows</h1>
         <div class="fondoContenido letraTitulo">
             <ul class="nav nav-tabs">
-                <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/edit">Perfil</a></li>
-                <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/historia">Historia</a></li>
-                <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/discos">Musica y Discos</a></li>
-                <li class="active"><a href="/tabermus/public/profile/banda/{{$banda->id}}/fechas">Fechas</a></li>
+                <li ><a href="{{$rutaPerfil}}">Perfil</a></li>
+                <li ><a href="{{$rutaHistoria}}">Historia</a></li>
+                <li><a href="{{$rutaDiscos}}">Musica y Discos</a></li>
+                <li class="active"><a href="{{$rutaFechas}}">Fechas</a></li>
+
             </ul>
 
         </div>
+        @if($editable==1)
         {{ Form::open(['route' => 'calendario.store', 'method' => 'post', 'role' => 'form'])}}
         <div id="responsive-modal" class="modal fade letraPortada" tabindex="-1" data-backdrop="static">
             <div class="modal-dialog">
@@ -90,7 +92,9 @@
             </div>
         </div>
         {{ Form::close() }}
+        @endif
         <div id="calendar" class="fondoContenido letraTexto"></div>
+        @if($editable==1)
         <div id="upload-modal" class="modal fade" tabindex="-1" data-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -145,6 +149,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 @endsection
 

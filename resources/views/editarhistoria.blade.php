@@ -5,10 +5,10 @@
         <h1 class="titulo letraTitulo text-center">{{ $banda->nombre }} Perfil</h1>
         <div class="fondoContenido">
             <ul class="nav nav-tabs">
-                <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/edit">Perfil</a></li>
-                <li class="active"><a href="/tabermus/public/profile/banda/{{$banda->id}}/historia">Historia</a></li>
-                <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/discos">Musica y Discos</a></li>
-                <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/fechas">Fechas</a></li>
+                <li ><a href="{{$rutaPerfil}}">Perfil</a></li>
+                <li class="active"><a href="{{$rutaHistoria}}">Historia</a></li>
+                <li><a href="{{$rutaDiscos}}">Musica y Discos</a></li>
+                <li><a href="{{$rutaFechas}}">Fechas</a></li>
             </ul>
             
                 <hr class="featurette-divider">
@@ -16,9 +16,9 @@
                         <h3 class="letraTitulo">    Historia de {{ $banda->nombre }}</h3>
 
                         <p>{{ $banda->historia}}</p>
-                    
+                    @if($editable == 1)
                     <a id="editar"  class="btn btn-danger">Actualizar Historia</a>
-
+                    @endif
                 <hr class="featurette-divider">
             {!! Form::open(['url' => '/profile/banda/'.$banda->id.'/historia/update','method' => 'POST']) !!}
             {{csrf_field()}}

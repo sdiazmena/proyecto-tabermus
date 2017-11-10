@@ -5,10 +5,10 @@
         <h1 class="titulo text-center letraTitulo">{{ $banda->nombre }} Perfil</h1>
         <div class="fondoContenido letraTitulo">
             <ul class="nav nav-tabs">
-                <li class="active"><a href="/tabermus/public/profile/banda/{{$banda->id}}/edit">Perfil</a></li>
-                <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/historia">Historia</a></li>
-                <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/discos">Musica y Discos</a></li>
-                <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/fechas">Fechas</a></li>
+                <li class="active"><a href="{{$rutaPerfil}}">Perfil</a></li>
+                <li><a href="{{$rutaHistoria}}">Historia</a></li>
+                <li><a href="{{$rutaDiscos}}">Musica y Discos</a></li>
+                <li><a href="{{$rutaFechas}}">Fechas</a></li>
             </ul>
             <hr class="featurette-divider">
 
@@ -21,19 +21,23 @@
                     <p class="lead">Genero: {{ $lirica->nombre }}</p>
                     <p class="lead">¿Quienes Somos?</p>
                     <p>{{ $banda->descripcion}}</p>
+                
+
+                    <br>
+                    <p class="lead"><img class="media-object" src="https://www.facebook.com/images/fb_icon_325x325.png" alt="..." height= "30px"><a href="{{$banda->facebook}}">{{$banda->facebook}}</p>
+                    <p class="lead"><img class="media-object" src="https://www.gstatic.com/images/icons/material/product/2x/youtube_64dp.png" alt="..." height= "30px"><a href="{{$banda->youtube}}">{{$banda->youtube}}</p>
+                    <p class="lead"><img class="media-object" src="https://instagram-brand.com/wp-content/themes/ig-branding/assets/images/ig-logo-email.png" alt="..." height= "30px"><a href="{{$banda->instagram}}">{{$banda->instagram}}</p>
+                    <p class="lead"><img class="media-object" src="https://lh3.googleusercontent.com/UrY7BAZ-XfXGpfkeWg0zCCeo-7ras4DCoRalC_WXXWTK9q5b0Iw7B0YQMsVxZaNB7DM=w300" alt="..." height= "30px"><a href="{{$banda->spotify}}">{{$banda->spotify}}</p>
+                    <p class="lead"><img class="media-object" src="http://www.espiritudeportivo.es/images/twitter-contacto.png" alt="..." height= "30px"><a href="{{$banda->twitter}}">{{$banda->twitter}}</p>
+                    <p class="lead"><img class="media-object" src="http://industriamusical.es/wp-content/uploads/2014/05/soundcloud-icon.png" alt="..." height= "30px"><a href="{{$banda->soundcloud}}">{{$banda->soundcloud}}</p>
                 </div>
                 <div class="col-md-5">
                     <img src="http://localhost/tabermus/public/{{$banda->imagen}}" class="img-responsive" style="width:100%" alt="Image">
-                    <br>
-                    <p class="lead"><img class="media-object" src="https://www.facebook.com/images/fb_icon_325x325.png" alt="..." height= "30px">{{$banda->facebook}}</p>
-                    <p class="lead"><img class="media-object" src="https://www.gstatic.com/images/icons/material/product/2x/youtube_64dp.png" alt="..." height= "30px">{{$banda->youtube}}</p>
-                    <p class="lead"><img class="media-object" src="https://instagram-brand.com/wp-content/themes/ig-branding/assets/images/ig-logo-email.png" alt="..." height= "30px">{{$banda->instagram}}</p>
-                    <p class="lead"><img class="media-object" src="https://lh3.googleusercontent.com/UrY7BAZ-XfXGpfkeWg0zCCeo-7ras4DCoRalC_WXXWTK9q5b0Iw7B0YQMsVxZaNB7DM=w300" alt="..." height= "30px">{{$banda->spotify}}</p>
-                    <p class="lead"><img class="media-object" src="http://www.espiritudeportivo.es/images/twitter-contacto.png" alt="..." height= "30px">{{$banda->twitter}}</p>
-                    <p class="lead"><img class="media-object" src="http://industriamusical.es/wp-content/uploads/2014/05/soundcloud-icon.png" alt="..." height= "30px">{{$banda->soundcloud}}</p>
                 </div>
             </div>
+            @if($editable == 1)
             <a id="editar"  class="btn btn-danger">Editar</a>
+            @endif
             <hr class="featurette-divider">
             {!! Form::open(['url' => 'profile/banda/'.$banda->id,  'enctype' => 'multipart/form-data', 'files' => 'true','method' => 'PUT']) !!}
             {{csrf_field()}}
