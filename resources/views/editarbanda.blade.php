@@ -39,9 +39,9 @@
             {{csrf_field()}}
             <div id="responsive-modal" class="modal fade" tabindex="-1" data-backdrop="static">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content fondoContenido letraTitulo">
                         <div class="modal-header">
-                            <h4 color="black">Editar Perfil Banda</h4>
+                            <h4 color="black" class="titulo">Editar Perfil Banda</h4>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">                                
@@ -148,7 +148,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-dafault" data-dismiss="modal">CANCELAR</button>
+                            <button type="button" class="btn btn-dafault letraPortada" data-dismiss="modal">CANCELAR</button>
                             {!! Form::submit('Actualizar', ['class' => 'btn btn-success']) !!}
                         </div>
                     </div>
