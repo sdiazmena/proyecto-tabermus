@@ -80,7 +80,7 @@
                                     var num=0;
                                 </script>
                                 @foreach($integrantes as $integrante)
-                                <fieldset id="fiel2" >
+                                <fieldset id="fiel2" class="letraPortada">
                                     <script type="text/javascript">
                                         <?php
                                             $code_array = json_encode($integrante);
@@ -114,7 +114,7 @@
                                     </script>
                                 </fieldset>
                                 @endforeach
-                                <fieldset id="fiel" >
+                                <fieldset id="fiel" class="letraPortada" >
                                     <input type="button" value="agregar" name="integrante[]" onclick="crear(this)" />
                                 </fieldset>
                             </div>
