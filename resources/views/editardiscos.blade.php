@@ -41,9 +41,9 @@
                 <a id="editar"  class="btn btn-danger">Editar</a>
             @endforeach
              {{ Form::open(['url' => '/profile/banda/'.$banda->id.'/discos/update', 'method' => 'POST', 'role' => 'form','files'=>'true'])}}
-            <div id="responsive-modal" class="modal fade" tabindex="-1" data-backdrop="static">
+            <div id="responsive-modal" class="modal fade letraTitulo" tabindex="-1" data-backdrop="static">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content fondoContenido">
                         <div class="modal-header">
                             <h4>Agregar Nuevo Disco</h4>
                         </div>
@@ -80,13 +80,13 @@
                             <div class="form-group">
                                 {{ Form::label('canciones', 'CANCIONES')}}
                                 
-                                <fieldset id="fiel" >
+                                <fieldset id="fiel" class="letraPortada" >
                                     <input type="button" value="agregar" name="canciones[]" onclick="crear(this)" />
                                 </fieldset>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-dafault" data-dismiss="modal">CANCELAR</button>
+                            <button type="button" class="btn btn-dafault letraPortada" data-dismiss="modal">CANCELAR</button>
                             {!! Form::submit('GUARDAR', ['class' => 'btn btn-success']) !!}
                         </div>
                     </div>

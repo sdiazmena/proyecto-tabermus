@@ -2,8 +2,8 @@
 
 @section('content')    
     <div class="col-sm-8 bloqueContenido">
-        <h1 class="well text-center">{{ $banda->nombre }} Perfil</h1>
-        <div class="well">
+        <h1 class="titulo letraTitulo text-center">{{ $banda->nombre }} Perfil</h1>
+        <div class="fondoContenido">
             <ul class="nav nav-tabs">
                 <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/edit">Perfil</a></li>
                 <li class="active"><a href="/tabermus/public/profile/banda/{{$banda->id}}/historia">Historia</a></li>
@@ -11,7 +11,7 @@
                 <li><a href="/tabermus/public/profile/banda/{{$banda->id}}/fechas">Fechas</a></li>
             </ul>
             <div class= "row">
-                <h3>Cambiar Historia de {{ $banda->nombre }}</h3>
+                <h3 class="letraTitulo">Cambiar Historia de {{ $banda->nombre }}</h3>
                 {!! Form::open(['url' => '/profile/banda/'.$banda->id.'/historia/update','method' => 'POST']) !!}
                     <div class="col-sm-12">
                         
