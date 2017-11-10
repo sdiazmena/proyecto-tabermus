@@ -13,6 +13,8 @@ class SomosController extends Controller
      */
     public function index()
     {
+        
+        
         return view('somos');
     }
 }

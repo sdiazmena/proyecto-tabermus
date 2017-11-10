@@ -69,7 +69,7 @@
                         <div>
                             {!! Form::label('ciudad_id', 'CIUDAD') !!} 
                             {!! Form::select('ciudad_id', ['placeholder' => 'Seleccione una ciudad..'], null,['id'=>'ciudad','class' => 'form-control','value' => '{{$banda->id_ciudad}}']) !!}
-                        </div>
+                        </div><!--
                         <div class="form-group">
                             {{ Form::label('color', 'COLOR')}}
                             <div class="input-group colorpicker">
@@ -78,7 +78,7 @@
                                     <i></i>
                                 </span>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             {{ Form::label('informacion', 'INFORMACIÓN')}}
                             {{ Form::text('informacion', old('informacion'),['class' => 'form-control']) }}
@@ -126,7 +126,7 @@
                         <div>
                             {!! Form::label('ciudad_id', 'CIUDAD') !!} 
                             {!! Form::select('ciudad_id', ['placeholder' => 'Seleccione una ciudad..'], null,['id'=>'ciudad','class' => 'form-control','value' => '{{$banda->id_ciudad}}']) !!}
-                        </div>
+                        </div><!--
                         <div class="form-group">
                             {{ Form::label('color', 'COLOR')}}
                             <div class="input-group colorpicker">
@@ -135,7 +135,7 @@
                                     <i></i>
                                 </span>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             {{ Form::label('informacion', 'INFORMACIÓN')}}
                             {{ Form::text('informacion', old('informacion'),['class' => 'form-control']) }}
@@ -169,6 +169,7 @@
     <script>
         //inicializamos el calendario al cargar la pagina
         var BASEURL = '{{ url('/') }}';
+        var mivarJS=<?php echo $banda->id ?>;
 $(document).ready(function() {
         
         $('#calendar').fullCalendar({
@@ -188,7 +189,7 @@ $(document).ready(function() {
                 $('#date_start').val(start.format('YYYY-MM-DD'));
                 $('#responsive-modal').modal('show');
             },
-            events: BASEURL+'/calendarios',
+            events: BASEURL+'/calendarios/banda/'+mivarJS,
 
             eventClick: function(event, jsEvent, view){
                 var date_start = $.fullCalendar.moment(event.start).format('YYYY-MM-DD');

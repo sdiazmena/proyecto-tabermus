@@ -17,6 +17,7 @@ use App\Cancion;
 use App\Disco;
 use App\ListaCanciones;
 use App\Integrante;
+use App\Actualizacion;
 
 class BandaController extends Controller
 {
@@ -91,6 +92,12 @@ class BandaController extends Controller
             for($i=0;$i < count($int);$i++){
                 DB::table('integrante')->insert(['nombre' => $int[$i],'id_banda' => $id]);
             }
+            $actualizacion = new Actualizacion();
+            $now = new \DateTime();
+            $actualizacion->fecha = $now->format('d-m-y');
+            $actualizacion->id_banda = $id;
+            $actualizacion->id_ciudad = $request->ciudad;
+            $actualizacion->detalles = "Se ha añadido una nueva Banda";
             return redirect('/profile')->with('status', 'Banda creada correctamente');
         }
     }
@@ -143,6 +150,14 @@ class BandaController extends Controller
     }
     public function updateHistory(Request $request, $id)
     {
+        
+        $banda = DB::table('banda')->where('id', $id)->first();
+        $actualizacion = new Actualizacion();
+        $now = new \DateTime();
+        $actualizacion->fecha = $now->format('d-m-y');
+        $actualizacion->id_banda = $banda->id;
+        $actualizacion->id_ciudad = $banda->id_ciudad;
+        $actualizacion->detalles = "A Actualizado su Historia";
         $banda = new Banda; 
         $banda->where('id','=', $id)
             ->update(['historia' => ucfirst($request->historia)]);
@@ -192,6 +207,14 @@ class BandaController extends Controller
         if ($validator->fails()){
             return redirect('/profile/banda/'.$id.'/discos')->withErrors($validator);
         }else{
+            $banda = DB::table('banda')->where('id', $id)->first();
+
+            $actualizacion = new Actualizacion();
+            $now = new \DateTime();
+            $actualizacion->fecha = $now->format('d-m-y');
+            $actualizacion->id_banda = $banda->id;
+            $actualizacion->id_ciudad = $banda->id_ciudad;
+            $actualizacion->detalles = "A Agregado un Disco";
             $name = str_random(30) . '-' . $request->file('image')->getClientOriginalName();
             
             $request->file('image')->move('uploads/discos', $name);
@@ -240,6 +263,13 @@ class BandaController extends Controller
             
        
         if($request->file('image')){
+            $banda = DB::table('banda')->where('id', $id)->first();
+            $actualizacion = new Actualizacion();
+            $now = new \DateTime();
+        $actualizacion->fecha = $now->format('d-m-y');
+            $actualizacion->id_banda = $banda->id;
+            $actualizacion->id_ciudad = $banda->id_ciudad;
+            $actualizacion->detalles = "A Actualizado su Perfil";
             $name = str_random(30) . '-' . $request->file('image')->getClientOriginalName();   
             $request->file('image')->move('uploads/bandas', $name);
 
@@ -312,6 +342,13 @@ class BandaController extends Controller
                 return redirect('/profile')->with('status', 'Perfil de Banda editada correctamente');
             
         }else{
+            $banda = DB::table('banda')->where('id', $id)->first();
+            $actualizacion = new Actualizacion();
+            $now = new \DateTime();
+        $actualizacion->fecha = $now->format('d-m-y');
+            $actualizacion->id_banda = $banda->id;
+            $actualizacion->id_ciudad = $banda->id_ciudad;
+            $actualizacion->detalles = "A Actualizado su Perfil";
             $banda = new Banda;
             $banda->where('id','=', $id)
                      ->update(['nombre' => $request->nombre, 'descripcion' => $request->descripcion, 'facebook' => $request->facebook, 'instagram' => $request->instagram, 'twitter' => $request->twitter, 'soundcloud' => $request->soundcloud, 'spotify' => $request->spotify, 'youtube' => $request->youtube]);

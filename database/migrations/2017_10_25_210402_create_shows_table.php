@@ -19,8 +19,9 @@ class CreateShowsTable extends Migration
             $table->string('title');
             $table->datetime('start');
             $table->datetime('end');
-            $table->string('color', 7);
+            $table->string('color', 7)->default('#0000FF');
             $table->string('id_ciudad');
+            $table->string('id_region');
             $table->string('id_banda');
             $table->timestamps();
         });

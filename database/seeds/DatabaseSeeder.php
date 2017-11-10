@@ -16,7 +16,9 @@ class DatabaseSeeder extends Seeder
         $this->call('RegionTableSeeder');
         $this->call('LiricaTableSeeder');
         $this->call('GeneroTableSeeder');
-         $this->call('ShowsTableSeeder');
+         //$this->call('ShowsTableSeeder');
+         $this->call('UsersTableSeeder');
+
 
     }
 }

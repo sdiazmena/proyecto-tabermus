@@ -31,7 +31,7 @@ function actualizarBarraRegion(valor) {
         $("#barraRegionesTop").append("<li><a href=\"home\" onclick=\"setRegion('9','Araucania')\">Araucania</a></li>");
     }
     if(!(valor === "10")){
-        $("#barraRegionesTop").append("<li><a href=\"home\" onclick=\"setRegion('10','Los Lagos')\">Los lagos</a></li>");
+        $("#barraRegionesTop").append("<li><a href=\"home\" onclick=\"setRegion('10','Los Lagos')\">Los Lagos</a></li>");
     }
     if(!(valor === "11")){
         $("#barraRegionesTop").append("<li><a href=\"home\" onclick=\"setRegion('11','Aisén')\">Aisén</a></li>");
@@ -43,7 +43,7 @@ function actualizarBarraRegion(valor) {
         $("#barraRegionesTop").append("<li><a href=\"home\" onclick=\"setRegion('13','Santiago')\">Santiago</a></li>");
     }
     if(!(valor === "14")){
-        $("#barraRegionesTop").append("<li><a href=\"home\" onclick=\"setRegion('14','Los Rios')\">Los rios</a></li>");
+        $("#barraRegionesTop").append("<li><a href=\"home\" onclick=\"setRegion('14','Los Rios')\">Los Rios</a></li>");
     }
     if(!(valor === "15")){
         $("#barraRegionesTop").append("<li><a href=\"home\" onclick=\"setRegion('15','Arica')\">Arica</a></li>");
