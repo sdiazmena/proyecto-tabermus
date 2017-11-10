@@ -16,7 +16,7 @@ use App\User;
 use App\Cancion;
 use App\Disco;
 use App\ListaCanciones;
-
+use App\Integrante;
 
 class BandaController extends Controller
 {
@@ -215,8 +215,10 @@ class BandaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        var_dump($request->all());
-        /*
+        //var_dump($request->all());
+            
+            
+        
         if($request->file('image')){
             $name = str_random(30) . '-' . $request->file('image')->getClientOriginalName();   
             $request->file('image')->move('uploads/bandas', $name);
@@ -236,6 +238,54 @@ class BandaController extends Controller
                 $banda->where('id','=', $id)
                      ->update(['id_ciudad' => $request->ciudad]);
             }
+            $lar = count($request->all());
+            $array = $request->all();
+            for($i=1;$i<$lar;$i++){
+                if(array_key_exists('integrante'.$i, $array)){
+                    $integrante = new Integrante();
+                    $integrante->nombre = $array['integrante'.$i];
+                    $integrante->id_banda = $id;
+                    $integrante->save();
+                }
+            }
+            $largo = count($request->all());
+            $array1 = $request->all();
+            $int_actuales = DB::table('integrante')->where('id_banda',$id)->get();
+            $prueba = Array();
+            $x = 0;
+            $m = 0;
+            for($i=0;$i<$largo;$i++){
+                if(array_key_exists('integrantes'.$i, $array1)){
+                    foreach($int_actuales as $int){
+                        if($int->nombre == $array1['integrantes'.$i]){
+                            $prueba[$x] = $array1['integrantes'.$i];
+                            $x++;
+                            $m = 1;
+                        }
+                    }
+                    if($m == 0){
+                        $miembro = new Integrante();
+                        $miembro->nombre = $array1['integrantes'.$i];
+                        $miembro->id_banda = $id;
+                        $prueba[$x] = $miembro->nombre;
+                        $miembro->save();     
+                        $x++;                   
+                    }
+                    $m = 0;
+                }
+            }
+            $m=0;
+            foreach($int_actuales as $int){
+                for($i=0;$i<count($prueba);$i++){
+                    if($int->nombre == $prueba[$i]){
+                        $m = 1;
+                    }
+                }
+                if($m==0){
+                    DB::table('integrante')->where('nombre', $int->nombre)->delete();
+                }
+                $m=0;
+            }
                 return redirect('/profile')->with('status', 'Perfil de Banda editada correctamente');
             
         }else{
@@ -254,8 +304,56 @@ class BandaController extends Controller
                 $banda->where('id','=', $id)
                      ->update(['id_ciudad' => $request->ciudad]);
             }
+            $lar = count($request->all());
+            $array = $request->all();
+            for($i=1;$i<$lar;$i++){
+                if(array_key_exists('integrante'.$i, $array)){
+                    $integrante = new Integrante();
+                    $integrante->nombre = $array['integrante'.$i];
+                    $integrante->id_banda = $id;
+                    $integrante->save();
+                }
+            }
+            $largo = count($request->all());
+            $array1 = $request->all();
+            $int_actuales = DB::table('integrante')->where('id_banda',$id)->get();
+            $prueba = Array();
+            $x = 0;
+            $m = 0;
+            for($i=0;$i<$largo;$i++){
+                if(array_key_exists('integrantes'.$i, $array1)){
+                    foreach($int_actuales as $int){
+                        if($int->nombre == $array1['integrantes'.$i]){
+                            $prueba[$x] = $array1['integrantes'.$i];
+                            $x++;
+                            $m = 1;
+                        }
+                    }
+                    if($m == 0){
+                        $miembro = new Integrante();
+                        $miembro->nombre = $array1['integrantes'.$i];
+                        $miembro->id_banda = $id;
+                        $prueba[$x] = $miembro->nombre;
+                        $miembro->save();     
+                        $x++;                   
+                    }
+                    $m = 0;
+                }
+            }
+            $m=0;
+            foreach($int_actuales as $int){
+                for($i=0;$i<count($prueba);$i++){
+                    if($int->nombre == $prueba[$i]){
+                        $m = 1;
+                    }
+                }
+                if($m==0){
+                    DB::table('integrante')->where('nombre', $int->nombre)->delete();
+                }
+                $m=0;
+            }
             return redirect('/profile')->with('status', 'Perfil de Banda editada correctamente');
-        }*/
+        }
     }
 
     /**
