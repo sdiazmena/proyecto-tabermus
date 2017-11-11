@@ -174,15 +174,15 @@
                 <div class="fondoContenido text-center">
                     <h4 class="letraTitulo">En tu Region</h4>
                     {!! Form::open(['route' => 'filtrado/regional', 'method' => 'post', 'novalidate', 'class' => 'form-inline']) !!}
-                    <button type="submit" value="Ciudad">Ciudad</button>
-                    <button type="submit" value="Genero">Genero</button>
-                    <button type="submit" value="Letra">Alfabeticamente</button>
+                    <button type="submit" name="seleccion" value="Ciudad">Ciudad</button>
+                    <button type="submit" name="seleccion" value="Genero">Genero</button>
+                    <button type="submit" name="seleccion" value="Letra">Alfabeticamente</button>
                     {!! Form::close() !!}
                     <h4 class="letraTitulo">Nacional</h4>
                     {!! Form::open(['route' => 'filtrado/nacional', 'method' => 'post', 'novalidate', 'class' => 'form-inline']) !!}
-                    <button type="submit" value="region">Region</button>
-                    <button type="submit" value="genero">Genero</button>
-                    <button type="submit" value="letra">Alfabeticamente</button>
+                    <button type="submit" name="seleccion" value="region">Region</button>
+                    <button type="submit" name="seleccion" value="genero">Genero</button>
+                    <button type="submit" name="seleccion" value="letra">Alfabeticamente</button>
                     {!! Form::close() !!}
                 </div>
             </ul>
