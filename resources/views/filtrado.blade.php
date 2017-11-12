@@ -63,6 +63,7 @@
                             <td>
 <<<<<<< HEAD
 <<<<<<< HEAD
+                                
                                 <a class="btn btn-danger btn-xs" href="{{ route('buscar/banda',['id' => $dato->id] )}}" >Ver</a>
 =======
                                 <a class="btn btn-danger btn-xs" href="{{ route('buscar/banda',['id' => $banda->id] )}}" >Ver</a>
