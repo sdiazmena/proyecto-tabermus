@@ -43,7 +43,11 @@ class BusquedaController extends Controller
         }else{
             $datos = Datos::where('nombre','like','%'.$request->nombre.'%')->get();
         }
-        return \View::make('buscarResultado', compact('datos'));
+        $ciudades = DB::table('ciudad')->get();
+        $regiones = DB::table('region')->get();
+        $generos = DB::table('genero')->get();
+        $liricas = DB::table('lirica')->get();
+        return \View::make('buscarResultado', compact('datos'))->with('ciudades',$ciudades)->with('regiones',$regiones)->with('generos',$generos)->with('liricas',$liricas);
     }
     public function resultado($id){
         $banda = DB::table('banda')->where('id', $id)->first();

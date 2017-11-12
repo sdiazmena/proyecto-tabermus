@@ -55,45 +55,24 @@
             </div>
         </div>
         <div class="fondoContenido">
-            <h4>07/08/2017</h4>
+            <hr class="featurette-divider">
             <div class="row">
+                @foreach($actualizaciones as $actualizacion)
                 <div class="col-sm-4">
-                    <div class="well">
-                        <h4>Noticia 1</h4>
-                        <p>Se agrego la siguiente entrada</p>
+                    <div class="well ">
+                        @foreach($bandas as $banda)
+                            @if($banda->id == $actualizacion->id_banda)
+                                <h4 class="letraPortada">{{$actualizacion->fecha}}</h4>
+                                <h3 class="letraPortada">{{$banda->nombre}}</h3>
+                                <p class="letraPortada">{{$actualizacion->detalles}}</p>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="well">
-                        <h4>Noticia 3</h4>
-                        <p>Se agrego la siguiente entrada</p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="well">
-                        <h4>Noticia 3</h4>
-                        <p>Se agrego la siguiente entrada</p>
-                    </div>
-                </div>
-                <hr>
+              
+                @endforeach
             </div>
-            <div class="row">
-                <h4>06/08/2017</h4>
-
-                <div class="col-sm-4">
-                    <div class="well">
-                        <h4>Noticia 4</h4>
-                        <p>Se agrego la siguiente entrada</p>
-                    </div>
-                </div>
-                <div class="col-sm-12">
-                    <hr>
-                    <ul class="pager">
-                        <li><a href="#">Previous</a></li>
-                        <li><a href="#">Next</a></li>
-                    </ul>
-                </div>
-            </div>
+            <hr class="featurette-divider">
         </div>
 
     </div>

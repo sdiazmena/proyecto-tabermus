@@ -23,7 +23,14 @@
 
 @endsection
 
-@section('content')    
+@section('content')   
+    @if (Session::has('status'))
+    <hr />
+        <div class='text-success' style = "text-align:center">
+            {{Session::get('status')}}
+        </div>
+    <hr />
+    @endif 
     <div class="col-sm-8 bloqueContenido">
         <h1 class="titulo letraTitulo text-center">{{ $banda->nombre }} Shows</h1>
         <div class="fondoContenido letraTitulo">
@@ -190,7 +197,7 @@ $(document).ready(function() {
                 $('#responsive-modal').modal('show');
             },
             events: BASEURL+'/calendarios/banda/'+mivarJS,
-
+/*
             eventClick: function(event, jsEvent, view){
                 var date_start = $.fullCalendar.moment(event.start).format('YYYY-MM-DD');
                 var time_start = $.fullCalendar.moment(event.start).format('hh:mm:ss');
@@ -202,7 +209,7 @@ $(document).ready(function() {
                 $('#upload-modal #date_end').val(date_end);
                 $('#upload-modal #color').val(event.color);
                 $('#upload-modal').modal('show');
-            }
+            }*/
         });
         
     

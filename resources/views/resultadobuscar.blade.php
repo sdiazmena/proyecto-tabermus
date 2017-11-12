@@ -20,7 +20,7 @@
                 <td>{{ $dato->id_ciudad }}</td>
                 <td>{{ $dato->id_genero }}</td>
                 <td>
-                    <a class="btn btn-danger btn-xs" href="{{ route('movie/destroy',['id' => $dato->id] )}}" >Ver</a>
+                    <a class="btn btn-danger btn-xs" href="{{ route('buscar/banda',['id' => $dato->id] )}}" >Ver</a>
                 </td>
             </tr>
         @endforeach

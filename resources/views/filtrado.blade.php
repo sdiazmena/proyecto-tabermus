@@ -61,7 +61,15 @@
                             <td>{{ $banda->id_lirica }}</td>
                             <td>{{ $banda->id_genero }}</td>
                             <td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+                                <a class="btn btn-danger btn-xs" href="{{ route('buscar/banda',['id' => $dato->id] )}}" >Ver</a>
+=======
                                 <a class="btn btn-danger btn-xs" href="{{ route('buscar/banda',['id' => $banda->id] )}}" >Ver</a>
+>>>>>>> 8c6663f9165c3884d06f2eb12f85d0a073a6713a
+=======
+                                <a class="btn btn-danger btn-xs" href="{{ route('buscar/banda',['id' => $banda->id] )}}" >Ver</a>
+>>>>>>> 8c6663f9165c3884d06f2eb12f85d0a073a6713a
                             </td>
                         </tr>
                     @endforeach
