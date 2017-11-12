@@ -55,6 +55,7 @@
             </div>
         </div>
         <div class="fondoContenido">
+            <h1 class="letraTitulo">Noticias <?php echo $_COOKIE["nameRegion"];?>:</h1>
             <hr class="featurette-divider">
             <div class="row">
                 @foreach($actualizaciones as $actualizacion)
