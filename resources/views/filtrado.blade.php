@@ -16,10 +16,6 @@
                     {!! Form::select('genero', $generos, null,['class' => 'col-sm-3', 'placeholder' => 'Seleccione un Genero..']) !!}
                 </div>
                 <div class="row">
-                    {!! Form::label('ciudad', 'Ciudad:',['class' => 'col-sm-2 letraTitulo']) !!}
-                    {!! Form::select('ciudad', ['placeholder' => 'Seleccione una ciudad..'], null,['id'=>'ciudad','class' => 'col-sm-4','required']) !!}
-                </div>
-                <div class="row">
                     {!! Form::label('letra_id', 'Alfabeto:',['class' => 'col-sm-2 letraTitulo']) !!}
                     <select class="col-sm-2" name="letra">
                         <option>Todo</option>
@@ -29,6 +25,13 @@
                         <option>P</option><option>Q</option><option>R</option><option>S</option><option>T</option>
                         <option>U</option><option>V</option><option>W</option><option>X</option><option>Y</option>
                         <option>Z</option><option>NUMERICO</option>
+                    </select>
+                    {!! Form::label('letra_id', 'Ordenar por:',['class' => 'col-sm-2 letraTitulo']) !!}
+                    <select class="col-sm-2" name="orden">
+                        <option>Alfabeticamente</option>
+                        <option>Ciudad</option>
+                        <option>Genero</option>
+                        <option>Lirica</option>
                     </select>
                 </div>
                 <div class="row">
