@@ -43,9 +43,9 @@
                     <thead>
                     <tr class="letraTitulo">
                         <th>Nombre</th>
-                        <th>Tipo</th>
-                        <th>Ciudad</th>
                         <th>Region</th>
+                        <th>Ciudad</th>
+                        <th>Lirica</th>
                         <th>Genero</th>
                     </tr>
                     </thead>
@@ -53,9 +53,9 @@
                     @foreach($bandas as $banda)
                         <tr>
                             <td>{{ $banda->nombre }}</td>
+                            <td>{{ $banda->id_ciudad }}</td>
+                            <td>{{ $banda->id_ciudad }}</td>
                             <td>{{ $banda->id_lirica }}</td>
-                            <td>{{ $banda->id_ciudad }}</td>
-                            <td>{{ $banda->id_ciudad }}</td>
                             <td>{{ $banda->id_genero }}</td>
                             <td>
                                 <a class="btn btn-danger btn-xs" href="{{ route('buscar/banda',['id' => $banda->id] )}}" >Ver</a>
