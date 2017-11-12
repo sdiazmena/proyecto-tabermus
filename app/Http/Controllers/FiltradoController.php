@@ -146,14 +146,12 @@ class FiltradoController extends Controller
                     ->get();
 
             }
-
         }else{
             if($request->orden == 'Alfabeticamente'){
                 $bandas = Banda::where('nombre','like','%'.$request->letra.'%')
                     ->whereIn('banda.id_ciudad', $ciudad )
                     ->orderBy('nombre','asc')
                     ->get();
-
 
             }elseif ($request->orden == 'Ciudad'){
                 $bandas = Banda::where('nombre','like','%'.$request->letra.'%')
