@@ -46,8 +46,8 @@
                     <thead>
                     <tr class="letraTitulo">
                         <th>Nombre</th>
-                        <th>Region</th>
                         <th>Ciudad</th>
+                        <th>Region</th>
                         <th>Lirica</th>
                         <th>Genero</th>
                     </tr>
@@ -56,21 +56,28 @@
                     @foreach($bandas as $banda)
                         <tr>
                             <td>{{ $banda->nombre }}</td>
-                            <td>{{ $banda->id_ciudad }}</td>
-                            <td>{{ $banda->id_ciudad }}</td>
-                            <td>{{ $banda->id_lirica }}</td>
-                            <td>{{ $banda->id_genero }}</td>
+                            @foreach($ciudadestraductor as $ciudad)
+                                @if($ciudad->id == $banda->id_ciudad)
+                                    <td>{{ $ciudad->nombre }}</td>
+                                    @foreach($regionestraductor as $region)
+                                        @if($region->id == $ciudad->id_region)
+                                            <td>{{ $region->nombre }}</td>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            @endforeach
+                            @foreach($liricastraductor as $lirica)
+                                @if($lirica->id == $banda->id_lirica)
+                                    <td>{{ $lirica->nombre }}</td>
+                                @endif
+                            @endforeach
+                        @foreach($generostraductor as $genero)
+                                @if($genero->id == $banda->id_genero)
+                                    <td>{{ $genero->nombre }}</td>
+                                @endif
+                            @endforeach
                             <td>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                
-                                <a class="btn btn-danger btn-xs" href="{{ route('buscar/banda',['id' => $dato->id] )}}" >Ver</a>
-=======
                                 <a class="btn btn-danger btn-xs" href="{{ route('buscar/banda',['id' => $banda->id] )}}" >Ver</a>
->>>>>>> 8c6663f9165c3884d06f2eb12f85d0a073a6713a
-=======
-                                <a class="btn btn-danger btn-xs" href="{{ route('buscar/banda',['id' => $banda->id] )}}" >Ver</a>
->>>>>>> 8c6663f9165c3884d06f2eb12f85d0a073a6713a
                             </td>
                         </tr>
                     @endforeach
