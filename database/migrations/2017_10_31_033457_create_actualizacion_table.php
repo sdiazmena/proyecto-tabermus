@@ -20,6 +20,7 @@ class CreateActualizacionTable extends Migration
             $table->integer('id_show')->nulleable();
             $table->string('detalles');
             $table->datetime('fecha');
+            $table->string('id_region');
             $table->timestamps();
         });
     }

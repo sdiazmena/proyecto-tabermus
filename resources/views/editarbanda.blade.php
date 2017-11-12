@@ -1,6 +1,13 @@
 @extends('layouts.prueba')
 
 @section('content')    
+    @if (Session::has('status'))
+    <hr />
+        <div class='text-success' style = "text-align:center">
+            {{Session::get('status')}}
+        </div>
+    <hr />
+    @endif
     <div class="col-sm-8 bloqueContenido">
         <h1 class="titulo text-center letraTitulo">{{ $banda->nombre }} Perfil</h1>
         <div class="fondoContenido letraTitulo">

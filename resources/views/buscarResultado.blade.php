@@ -26,20 +26,36 @@
                     <thead>
                     <tr class="letraTitulo">
                         <th>Nombre</th>
-                        <th>Tipo</th>
                         <th>Ciudad</th>
                         <th>Region</th>
                         <th>Genero</th>
+                        <th>Lirica</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($datos as $dato)
                         <tr>
                             <td>{{ $dato->nombre }}</td>
-                            <td>{{ $dato->id_lirica }}</td>
-                            <td>{{ $dato->id_ciudad }}</td>
-                            <td>{{ $dato->id_ciudad }}</td>
-                            <td>{{ $dato->id_genero }}</td>
+                            @foreach($ciudades as $ciudad)
+                                @if($ciudad->id == $dato->id_ciudad)                            
+                                    <td>{{ $ciudad->nombre }}</td>
+                                    @foreach($regiones as $region)
+                                        @if($region->id == $ciudad->id_region)
+                                            <td>{{ $region->nombre }}</td>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            @endforeach
+                            @foreach($generos as $genero)
+                                @if($genero->id == $dato->id_genero)
+                                    <td>{{ $genero->nombre }}</td>
+                                @endif
+                            @endforeach 
+                            @foreach($liricas as $lirica)
+                                @if($lirica->id == $dato->id_lirica)
+                                <td>{{ $lirica->nombre }}</td>
+                                @endif
+                            @endforeach 
                             <td>
                                 <a class="btn btn-danger btn-xs" href="{{ route('buscar/banda',['id' => $dato->id] )}}" >Ver</a>
                             </td>

@@ -98,6 +98,9 @@ class BandaController extends Controller
             $actualizacion->id_banda = $id;
             $actualizacion->id_ciudad = $request->ciudad;
             $actualizacion->detalles = "Se ha añadido una nueva Banda";
+            $actualizacion->id_region = $request->region;
+            $actualizacion->id_show = 5000;
+            $actualizacion->save();
             return redirect('/profile')->with('status', 'Banda creada correctamente');
         }
     }
@@ -152,16 +155,27 @@ class BandaController extends Controller
     {
         
         $banda = DB::table('banda')->where('id', $id)->first();
+        $ciudad = DB::table('ciudad')->where('id', $banda->id_ciudad)->first();
         $actualizacion = new Actualizacion();
         $now = new \DateTime();
         $actualizacion->fecha = $now->format('d-m-y');
         $actualizacion->id_banda = $banda->id;
         $actualizacion->id_ciudad = $banda->id_ciudad;
         $actualizacion->detalles = "A Actualizado su Historia";
+        $actualizacion->id_region = $ciudad->id_region;
+        $actualizacion->id_show = 5000;
+        $actualizacion->save();
         $banda = new Banda; 
         $banda->where('id','=', $id)
             ->update(['historia' => ucfirst($request->historia)]);
-        return redirect('/profile')->with('status', 'Historia de Banda editada correctamente');
+        $banda = DB::table('banda')->where('id', $id)->first();
+        $rutaPerfil = '/tabermus/public/profile/banda/'.$id.'/edit';
+        $rutaHistoria = '/tabermus/public/profile/banda/'.$id.'/historia';
+        $rutaDiscos = '/tabermus/public/profile/banda/'.$id.'/discos';
+        $rutaFechas = '/tabermus/public/profile/banda/'.$id.'/fechas';
+        $editable = 1;        
+        return view("editarhistoria")->with('banda',$banda)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas)->with('status', 'Historia de Banda editada correctamente');
+        //return redirect('/profile')->with('status', 'Historia de Banda editada correctamente');
     }
     public function editarDisco(Request $request, $id)
     {
@@ -208,13 +222,16 @@ class BandaController extends Controller
             return redirect('/profile/banda/'.$id.'/discos')->withErrors($validator);
         }else{
             $banda = DB::table('banda')->where('id', $id)->first();
-
+            $ciudad = DB::table('ciudad')->where('id',$banda->id_ciudad)->first();
             $actualizacion = new Actualizacion();
             $now = new \DateTime();
             $actualizacion->fecha = $now->format('d-m-y');
             $actualizacion->id_banda = $banda->id;
             $actualizacion->id_ciudad = $banda->id_ciudad;
             $actualizacion->detalles = "A Agregado un Disco";
+            $actualizacion->id_region = $ciudad->id_region;
+            $actualizacion->id_show = 5000;
+            $actualizacion->save();
             $name = str_random(30) . '-' . $request->file('image')->getClientOriginalName();
             
             $request->file('image')->move('uploads/discos', $name);
@@ -264,12 +281,16 @@ class BandaController extends Controller
        
         if($request->file('image')){
             $banda = DB::table('banda')->where('id', $id)->first();
+            $ciudad = DB::table('ciudad')->where('id',$banda->id_ciudad)->first();
             $actualizacion = new Actualizacion();
             $now = new \DateTime();
         $actualizacion->fecha = $now->format('d-m-y');
             $actualizacion->id_banda = $banda->id;
             $actualizacion->id_ciudad = $banda->id_ciudad;
             $actualizacion->detalles = "A Actualizado su Perfil";
+            $actualizacion->id_region = $ciudad->id_region;
+            $actualizacion->id_show = 5000;
+            $actualizacion->save();
             $name = str_random(30) . '-' . $request->file('image')->getClientOriginalName();   
             $request->file('image')->move('uploads/bandas', $name);
 
@@ -343,12 +364,16 @@ class BandaController extends Controller
             
         }else{
             $banda = DB::table('banda')->where('id', $id)->first();
+            $ciudad = DB::table('ciudad')->where('id',$banda->id_ciudad)->first();
             $actualizacion = new Actualizacion();
             $now = new \DateTime();
         $actualizacion->fecha = $now->format('d-m-y');
             $actualizacion->id_banda = $banda->id;
             $actualizacion->id_ciudad = $banda->id_ciudad;
             $actualizacion->detalles = "A Actualizado su Perfil";
+            $actualizacion->id_region = $ciudad->id_region;
+            $actualizacion->id_show = 5000;
+            $actualizacion->save();
             $banda = new Banda;
             $banda->where('id','=', $id)
                      ->update(['nombre' => $request->nombre, 'descripcion' => $request->descripcion, 'facebook' => $request->facebook, 'instagram' => $request->instagram, 'twitter' => $request->twitter, 'soundcloud' => $request->soundcloud, 'spotify' => $request->spotify, 'youtube' => $request->youtube]);

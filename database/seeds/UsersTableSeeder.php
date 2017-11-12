@@ -11,7 +11,26 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        for($i=0; $i<=80; $i++){
+            DB::table('users')->insert([
+                'name' => str_random(5),
+                'email' => str_random(8).'@gmail.com',
+                'password' => bcrypt('123456'),
+            ]);
+
+            DB::table('banda')->insert([
+                'id_usuario' => $i,
+                'id_ciudad' => random_int(1,344),
+                'id_lirica' => random_int(1,26),
+                'id_genero' => random_int(1,74),
+                'nombre' => str_random(5),
+                'descripcion' => 'somos una banda',
+                'imagen' => 'uploads/bandas/default.jpg',
+
+            ]);
+        }
+
+       /* DB::table('users')->insert([
             'name' => 'a',
             'email' => 'a@gmail.com',
             'password' => bcrypt('123456'),
@@ -136,6 +155,9 @@ class UsersTableSeeder extends Seeder
             'email' => 'z@gmail.com',
             'password' => bcrypt('123456'),
         ]);
+
+
+
         DB::table('banda')->insert([
             'id_usuario' => '1',
             'id_ciudad' => random_int(1,344),
@@ -365,7 +387,7 @@ class UsersTableSeeder extends Seeder
             'descripcion' => 'somos una banda',
             'imagen' => 'uploads/bandas/default.jpg',
 
-        ]);
+        ]);*/
     }
 
 }

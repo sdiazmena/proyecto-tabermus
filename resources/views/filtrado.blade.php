@@ -12,16 +12,16 @@
                     {!! Form::select('region', $regiones, null,['class' => 'col-sm-4','id'=>'region', 'placeholder' => 'Seleccione una región..','required']) !!}
                 </div>
                 <div class="row">
-                    {!! Form::label('genero_id', 'Genero:',['class' => 'col-sm-2 letraTitulo']) !!}
-                    {!! Form::select('generoSeleccionado', $generos, null,['class' => 'col-sm-3', 'placeholder' => 'Seleccione un Genero..']) !!}
+                    {!! Form::label('genero', 'Genero:',['class' => 'col-sm-2 letraTitulo']) !!}
+                    {!! Form::select('genero', $generos, null,['class' => 'col-sm-3', 'placeholder' => 'Seleccione un Genero..']) !!}
                 </div>
                 <div class="row">
-                    {!! Form::label('ciudad_id', 'Ciudad:',['class' => 'col-sm-2 letraTitulo']) !!}
+                    {!! Form::label('ciudad', 'Ciudad:',['class' => 'col-sm-2 letraTitulo']) !!}
                     {!! Form::select('ciudad', ['placeholder' => 'Seleccione una ciudad..'], null,['id'=>'ciudad','class' => 'col-sm-4','required']) !!}
                 </div>
                 <div class="row">
                     {!! Form::label('letra_id', 'Alfabeto:',['class' => 'col-sm-2 letraTitulo']) !!}
-                    <select class="col-sm-2">
+                    <select class="col-sm-2" name="letra">
                         <option>Todo</option>
                         <option>A</option><option>B</option><option>C</option><option>D</option><option>E</option>
                         <option>F</option><option>G</option><option>H</option><option>I</option><option>J</option>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-1">
-                        <button type="submit" id="botonNacional" class="glyphicon glyphicon-search"></button>
+                        <button type="submit" class="glyphicon glyphicon-search"></button>
                     </div>
                 </div>
                 {!! Form::close() !!}
@@ -43,9 +43,9 @@
                     <thead>
                     <tr class="letraTitulo">
                         <th>Nombre</th>
-                        <th>Tipo</th>
-                        <th>Ciudad</th>
                         <th>Region</th>
+                        <th>Ciudad</th>
+                        <th>Lirica</th>
                         <th>Genero</th>
                     </tr>
                     </thead>
@@ -53,12 +53,16 @@
                     @foreach($bandas as $banda)
                         <tr>
                             <td>{{ $banda->nombre }}</td>
+                            <td>{{ $banda->id_ciudad }}</td>
+                            <td>{{ $banda->id_ciudad }}</td>
                             <td>{{ $banda->id_lirica }}</td>
-                            <td>{{ $banda->id_ciudad }}</td>
-                            <td>{{ $banda->id_ciudad }}</td>
                             <td>{{ $banda->id_genero }}</td>
                             <td>
-                                <a class="btn btn-danger btn-xs" href="{{ route('movie/destroy',['id' => $banda->id] )}}" >Ver</a>
+<<<<<<< HEAD
+                                <a class="btn btn-danger btn-xs" href="{{ route('buscar/banda',['id' => $dato->id] )}}" >Ver</a>
+=======
+                                <a class="btn btn-danger btn-xs" href="{{ route('buscar/banda',['id' => $banda->id] )}}" >Ver</a>
+>>>>>>> 8c6663f9165c3884d06f2eb12f85d0a073a6713a
                             </td>
                         </tr>
                     @endforeach
