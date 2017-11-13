@@ -61,3 +61,7 @@ Route::get('/buscar/banda/{id}/historia','BusquedaController@historia');
 Route::get('/buscar/banda/{id}/fechas','BusquedaController@fechas');
 //ruta para realizar busqueda de registros.
 Route::post('buscar', ['as' => 'buscar/search', 'uses'=>'BusquedaController@search']);
+
+Route::get('banda/{id}', ['as' => 'banda/ver', 'uses'=>'BusquedaController@verBanda']);
+Route::get('banda/{id}/historia', ['as' => 'banda/ver/historia', 'uses'=>'BusquedaController@verHistoria']);
+Route::get('banda/{id}/discografia', ['as' => 'banda/ver/discografia', 'uses'=>'BusquedaController@verDiscos']);

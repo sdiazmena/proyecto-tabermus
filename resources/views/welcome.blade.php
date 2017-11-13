@@ -65,7 +65,7 @@
                                     <p class="letraTexto">{{substr($actualizacion->fecha, 0,10)}}</p>
                                     <h3 class="letraTitulo">{{$banda->nombre}}</h3>
                                     <p class="letraTexto">{{$actualizacion->detalles}}</p>
-                                    <a class="btn btn-danger btn-xs" href="{{ route('buscar/banda',['id' => $banda->id] )}}" >Ver</a>
+                                    <a class="btn btn-danger btn-xs" href="{{ route('banda/ver',['id' => $banda->id] )}}" >Ver</a>
                                 </div>
 
                             @endif
