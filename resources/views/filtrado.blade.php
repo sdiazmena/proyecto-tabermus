@@ -77,7 +77,7 @@
                                 @endif
                             @endforeach
                             <td>
-                                <a class="btn btn-danger btn-xs" href="{{ route('buscar/banda',['id' => $banda->id] )}}" >Ver</a>
+                                <a class="btn btn-danger btn-xs" href="{{ route('banda/ver',['id' => $banda->id] )}}" >Ver</a>
                             </td>
                         </tr>
                     @endforeach
