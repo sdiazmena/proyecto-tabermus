@@ -20,9 +20,9 @@
                 </div>
             </div>
             <div class="fondoContenido" id="resultadoBusqueda">
-                <h3 class="letraTitulo">Resultado para:</h3>
+                <h3 class="letraTitulo">Resultado para: {{$datos->palabra}}</h3>
                 <h3 id="tituloBusqueda" class="letraTitulo"></h3>
-                <table class="table table-condensed table-striped table-bordered">
+                <table class="table table-condensed table-bordered">
                     <thead>
                     <tr class="letraTitulo">
                         <th>Nombre</th>
@@ -32,7 +32,7 @@
                         <th>Lirica</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="letraTexto">
                     @foreach($datos as $dato)
                         <tr>
                             <td>{{ $dato->nombre }}</td>

@@ -43,6 +43,7 @@ class BusquedaController extends Controller
         }else{
             $datos = Datos::where('nombre','like','%'.$request->nombre.'%')->get();
         }
+        $datos->palabra = $request->nombre;
         $ciudades = DB::table('ciudad')->get();
         $regiones = DB::table('region')->get();
         $generos = DB::table('genero')->get();

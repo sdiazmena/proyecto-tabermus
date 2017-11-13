@@ -42,7 +42,7 @@
                 {!! Form::close() !!}
             </div>
             <div class="fondoContenido" id="resultadoBusqueda">
-                <table class="table table-condensed table-striped table-bordered">
+                <table class="table table-condensed table-bordered">
                     <thead>
                     <tr class="letraTitulo">
                         <th>Nombre</th>
@@ -52,7 +52,7 @@
                         <th>Genero</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="letraTexto">
                     @foreach($bandas as $banda)
                         <tr>
                             <td>{{ $banda->nombre }}</td>
