@@ -24,9 +24,7 @@
                     </div>
 
                     <div id="hola" class="item">
-                        <script type="text/javascript">
-                            cargarPortada();
-                        </script>
+                        <?php echo $foto?>
                         <div class="carousel-caption">
                             <h3><?php echo $_COOKIE["nameRegion"];?></h3>
                             <!--<p>Thank you, Chicago!</p> -->
@@ -57,23 +55,41 @@
         <div class="fondoContenido">
             <h1 class="letraTitulo">Noticias <?php echo $_COOKIE["nameRegion"];?>:</h1>
             <hr class="featurette-divider">
-            <div class="row">
-                @foreach($actualizaciones as $actualizacion)
-                <div class="col-sm-4">
-                    <div class="well ">
+            <div class="row" class="col-sm-6">
+                    <p class="titulo">Actualizacion de bandas:</p>
+                    @foreach($actualizaciones as $actualizacion)
+                    @foreach($bandas as $banda)
+                        @if($banda->id == $actualizacion->id_banda)
+                            @if($actualizacion->id_show === 0)
+                                <div class="fondoContenido col-sm-4">
+                                    <p class="letraTexto">{{substr($actualizacion->fecha, 0,10)}}</p>
+                                    <h3 class="letraTitulo">{{$banda->nombre}}</h3>
+                                    <p class="letraTexto">{{$actualizacion->detalles}}</p>
+                                    <a class="btn btn-danger btn-xs" href="{{ route('buscar/banda',['id' => $banda->id] )}}" >Ver</a>
+                                </div>
+
+                            @endif
+                        @endif
+                        @endforeach
+                    @endforeach
+                </div>
+            <div class="row" class="col-sm-6">
+                    <p class="titulo">Shows:</p>
+                    @foreach($actualizaciones as $actualizacion)
                         @foreach($bandas as $banda)
                             @if($banda->id == $actualizacion->id_banda)
-                                <h4 class="letraPortada">{{$actualizacion->fecha}}</h4>
-                                <h3 class="letraPortada">{{$banda->nombre}}</h3>
-                                <p class="letraPortada">{{$actualizacion->detalles}}</p>
-                            @endif
-                        @endforeach
+                                @if($actualizacion->id_show > 0)
+                    <div class="fondoContenido col-sm-4">
+                        <p class="letraTexto">{{substr($actualizacion->fecha, 0,10)}}</p>
+                        <h3 class="letraTitulo">{{$banda->nombre}}</h3>
+                        <p class="letraTexto">{{$actualizacion->detalles}}</p>
+                    <!--<a class="btn btn-danger btn-xs" href="{{ route('buscar/banda',['id' => $banda->id] )}}" >Ver</a>-->
                     </div>
+                                @endif
+                            @endif
+                    @endforeach
+                    @endforeach
                 </div>
-              
-                @endforeach
-            </div>
-            <hr class="featurette-divider">
         </div>
 
     </div>

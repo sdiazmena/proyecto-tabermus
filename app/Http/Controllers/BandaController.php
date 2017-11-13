@@ -18,6 +18,7 @@ use App\Disco;
 use App\ListaCanciones;
 use App\Integrante;
 use App\Actualizacion;
+use Carbon\Carbon;
 
 class BandaController extends Controller
 {
@@ -94,12 +95,13 @@ class BandaController extends Controller
             }
             $actualizacion = new Actualizacion();
             $now = new \DateTime();
-            $actualizacion->fecha = $now->format('d-m-y');
+            $myTme = Carbon::now();
+            $actualizacion->fecha = $myTme->toDateString();
             $actualizacion->id_banda = $id;
             $actualizacion->id_ciudad = $request->ciudad;
             $actualizacion->detalles = "Se ha añadido una nueva Banda";
             $actualizacion->id_region = $request->region;
-            $actualizacion->id_show = 5000;
+            $actualizacion->id_show = 0;
             $actualizacion->save();
             return redirect('/profile')->with('status', 'Banda creada correctamente');
         }

@@ -9,6 +9,12 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $valor = $_COOKIE["idRegion"];
+        $valorImprimir = "img/region/portada".$valor.".jpg";
+        $valorImprimir = "<img id='portada1' class='img-responsive ' src=".$valorImprimir." class='img-thumbnail' style='width:820px; height: 350px'>";
+
+        //dd($valorImprimir);
+
         $nombreRegion =  $_COOKIE["nameRegion"];
         if($nombreRegion == "O'Higgins"){
             $nombreRegion = "Región del Libertador Gral. Bernardo O’Higgins";
@@ -43,7 +49,7 @@ class HomeController extends Controller
     	$id = DB::table('region')->where('nombre',$nombreRegion)->get(['id']);
     	$data = DB::table('Actualizacion')->where('id_region',$id[0]->id)->get();
     	$bandas = DB::table('banda')->get();
-
-        return view('welcome')->with('actualizaciones',$data)->with('bandas',$bandas);
+        //dd($data);
+        return view('welcome')->with('actualizaciones',$data)->with('bandas',$bandas)->with('foto',$valorImprimir);
     }
 }

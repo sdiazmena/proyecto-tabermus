@@ -3,7 +3,7 @@
 @section('content')
     @if (Session::has('status'))
     <hr />
-        <div class='text-success letraPortada' style = "text-align:center">
+        <div class='letraTitulo fondoContenido' style = "text-align:center">
             {{Session::get('status')}}
         </div>
     <hr />

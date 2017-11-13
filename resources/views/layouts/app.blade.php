@@ -90,13 +90,12 @@
                         </li>
                         <script type="text/javascript">
                             actualizarBarraRegion(getRegion());
-                            cargarPortada();
                         </script>
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Informacion<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="somos">¿Quienes somos?</a></li>
                                 <li><a href="contacto">Contacto</a></li>
-                                <li><a href="sugerencia">Sugerencias</a></li>
+                                <!--<li><a href="sugerencia">Sugerencias</a></li>-->
                             </ul>
                         </li>
 

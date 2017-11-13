@@ -103,7 +103,7 @@ class ShowController extends Controller
         $actualizacion->id_banda = $request->id_banda;
         $actualizacion->id_ciudad = $request->ciudad_id;
         $actualizacion->id_show = $id[0]->id;
-        $actualizacion->detalles = "A Creado un nuevo show";
+        $actualizacion->detalles = "Se ha añadido un nuevo show";
         $actualizacion->id_region = $request->region;
         $actualizacion->save();
         return redirect('/profile')->with('status', 'Evento creado correctamente');
