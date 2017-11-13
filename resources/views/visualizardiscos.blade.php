@@ -11,7 +11,7 @@
                 <li><a href="{{$rutaFechas}}">Fechas</a></li>
             </ul>
             <h1 class="letraTitulo titulo">    Discografia de {{ $banda->nombre }}</h1>
-            @if($discos)
+            <?php $numerodiscos = 0 ?>
                 @foreach ($discos as $disco)
                     <div class="row fondoContenido">
                         <div>
@@ -51,7 +51,8 @@
                                                             <strong class="letraTexto col-md-offset-2">{{$indice}}</strong>
                                                             <strong class="letraTexto col-md-offset-2">{{ $can->titulo }}</strong>
                                                             <!--<strong class="letraTexto col-md-offset-2">{{ $can->titulo }}</strong>-->
-                                                            <?php $indice = $indice +1 ?>
+                                                            <?php $indice = $indice +1;
+                                                            $numerodiscos = 1?>
                                                         </div>
                                                     @endif
                                                 @endforeach
@@ -63,7 +64,7 @@
                         </div>
                     </div>
                 @endforeach
-            @else
+            @if($numerodiscos == 0)
                 <h4 class="letraTexto">Actualmente la banda no ha registrado discos para ver</h4>
             @endif
         </div>

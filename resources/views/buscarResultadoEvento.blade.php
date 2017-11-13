@@ -27,14 +27,14 @@
                         <th>Nombre</th>
                         <th>Ciudad</th>
                         <th>Region</th>
-                        <th>Genero</th>
-                        <th>Lirica</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
                     </tr>
                     </thead>
                     <tbody class="letraTexto">
                     @foreach($datos as $dato)
                         <tr>
-                            <td>{{ $dato->nombre }}</td>
+                            <td>{{ $dato->title }}</td>
                             @foreach($ciudades as $ciudad)
                                 @if($ciudad->id == $dato->id_ciudad)                            
                                     <td>{{ $ciudad->nombre }}</td>
@@ -45,16 +45,8 @@
                                     @endforeach
                                 @endif
                             @endforeach
-                            @foreach($generos as $genero)
-                                @if($genero->id == $dato->id_genero)
-                                    <td>{{ $genero->nombre }}</td>
-                                @endif
-                            @endforeach 
-                            @foreach($liricas as $lirica)
-                                @if($lirica->id == $dato->id_lirica)
-                                <td>{{ $lirica->nombre }}</td>
-                                @endif
-                            @endforeach 
+                            <td>{{substr($dato->start, 0,10)}}</td>
+                            <td>{{substr($dato->end, 11,5)}}</td>
                             <td>
                                 <a class="btn btn-danger btn-xs" href="{{ route('banda/ver',['id' => $dato->id] )}}" >Ver</a>
                             </td>

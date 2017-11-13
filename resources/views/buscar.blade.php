@@ -11,9 +11,8 @@
                     <label for="palabraClave" class="letraTitulo col-xs-2">Nombre:</label>
                     <input type="text" class="col-xs-4" name = "nombre" >
                     <select name="tipo" class=" col-md-offset-1">
-                        <!--<option>Todo</option>-->
                         <option>Banda</option>
-                        <!--<option>Evento</option>-->
+                        <option>Evento</option>
                     </select>
                     <button type="submit" class="btn btn-default col-md-offset-2">Buscar</button>
                     {!! Form::close() !!}

@@ -36,19 +36,21 @@ class BusquedaController extends Controller
 
     }
     public function search(Request $request){
-        if($request->tipo == "Banda"){
-            $datos = Datos::where('nombre','like','%'.$request->nombre.'%')->get();
-        }else if($request->tipo == "Banda"){
-            $datos = Datos::where('nombre','like','%'.$request->nombre.'%')->get();
-        }else{
-            $datos = Datos::where('nombre','like','%'.$request->nombre.'%')->get();
-        }
-        $datos->palabra = $request->nombre;
         $ciudades = DB::table('ciudad')->get();
         $regiones = DB::table('region')->get();
         $generos = DB::table('genero')->get();
         $liricas = DB::table('lirica')->get();
-        return \View::make('buscarResultado', compact('datos'))->with('ciudades',$ciudades)->with('regiones',$regiones)->with('generos',$generos)->with('liricas',$liricas);
+
+        if($request->tipo == "Banda"){
+            $datos = Datos::where('nombre','like','%'.$request->nombre.'%')->get();
+            $datos->palabra = $request->nombre;
+            return \View::make('buscarResultado', compact('datos'))->with('ciudades',$ciudades)->with('regiones',$regiones)->with('generos',$generos)->with('liricas',$liricas);
+        }else{
+            $datos = DB::table('shows')->where('title','like','%'.$request->nombre.'%')->get();
+            $datos->palabra = $request->nombre;
+            return \View::make('buscarResultadoEvento', compact('datos'))->with('ciudades',$ciudades)->with('regiones',$regiones)->with('generos',$generos)->with('liricas',$liricas);
+        }
+
     }
     public function resultado($id){
         $banda = DB::table('banda')->where('id', $id)->first();
