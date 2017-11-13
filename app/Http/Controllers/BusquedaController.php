@@ -177,10 +177,10 @@ class BusquedaController extends Controller
         $liricas = Lirica::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
         $generos = Genero::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
         $regiones = Region::orderBy('id', 'ASC')->pluck('nombre','id')->all();
-        $rutaPerfil = '/tabermus/public/buscar/banda/'.$id;
-        $rutaHistoria = '/tabermus/public/buscar/banda/'.$id.'/historia';
-        $rutaDiscos = '/tabermus/public/buscar/banda/'.$id.'/discos';
-        $rutaFechas = '/tabermus/public/buscar/banda/'.$id.'/fechas';
+        $rutaPerfil = '/tabermus/public/banda/'.$id;
+        $rutaHistoria = '/tabermus/public//banda/'.$id.'/historia';
+        $rutaDiscos = '/tabermus/public/banda/'.$id.'/discos';
+        $rutaFechas = '/tabermus/public/banda/'.$id.'/fechas';
         $editable = 0;
         $shows = DB::table('shows')->where('id_banda', '=', $id)->get();
         return view("visualizarfechas")->with('regionestraductor',$regionestraductor)->with('ciudadestraductor',$ciudadestraductor)->with('shows',$shows)->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas);
