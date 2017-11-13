@@ -19,15 +19,37 @@
                             <div class="col-sm-1 letraTitulo">Nombre:</div>
                             <div class="col-sm-2 letraTexto">{{$show->title}}</div>
                             <div class="col-sm-1 letraTitulo">Region:</div>
-                            <div class="col-sm-2 letraTexto">{{$show->id_region}}</div>
+                            @foreach($ciudadestraductor as $ciudad)
+                                @if($ciudad->id == $banda->id_ciudad)
+                                    @foreach($regionestraductor as $region)
+                                        @if($region->id == $ciudad->id_region)
+                                            <div class="col-sm-2 letraTexto">{{$region->nombre}}</div>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            @endforeach
                             <div class="col-sm-1 letraTitulo">Ciudad:</div>
-                            <div class="col-sm-2 letraTexto">{{$show->id_ciudad}}</div>
+                            @foreach($ciudadestraductor as $ciudad)
+                                @if($ciudad->id == $banda->id_ciudad)
+                                    <div class="col-sm-2 letraTexto">{{$ciudad->nombre}}</div>
+                                @endif
+                            @endforeach
+
+
                         </div>
                         <div class="row">
-                            <div class="col-sm-1 letraTitulo">Inicio:</div>
-                            <div class="col-sm-4 letraTexto">{{$show->start}}</div>
-                            <div class="col-sm-1 letraTitulo">Termino:</div>
-                            <div class="col-sm-4 letraTexto">{{$show->end}}</div>
+                            <div class="col-sm-1 letraTitulo">Inicio</div>
+                            <div class="col-sm-1 letraTitulo">Dia</div>
+                            <div class="col-sm-2 letraTexto">{{substr($show->start, 0,10)}}</div>
+                            <div class="col-sm-1 letraTitulo">Hora:</div>
+                            <div class="col-sm-2 letraTexto">{{substr($show->start, 11)}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-1 letraTitulo">Termino</div>
+                            <div class="col-sm-1 letraTitulo">Dia</div>
+                            <div class="col-sm-2 letraTexto">{{substr($show->end, 0,10)}}</div>
+                            <div class="col-sm-1 letraTitulo">Hora:</div>
+                            <div class="col-sm-2 letraTexto">{{substr($show->end, 11)}}</div>
                         </div>
                         <div class="row">
                             <div class="col-sm-2 letraTitulo">Informacion:</div>
