@@ -99,7 +99,7 @@ class BandaController extends Controller
             $actualizacion->fecha = $myTme->toDateString();
             $actualizacion->id_banda = $id;
             $actualizacion->id_ciudad = $request->ciudad;
-            $actualizacion->detalles = "Se ha añadido una nueva Banda";
+            $actualizacion->detalles = "Se ha registrado esta banda a tu region";
             $actualizacion->id_region = $request->region;
             $actualizacion->id_show = 0;
             $actualizacion->save();
@@ -163,9 +163,9 @@ class BandaController extends Controller
         $actualizacion->fecha = $now->format('d-m-y');
         $actualizacion->id_banda = $banda->id;
         $actualizacion->id_ciudad = $banda->id_ciudad;
-        $actualizacion->detalles = "A Actualizado su Historia";
+        $actualizacion->detalles = "Esta banda ha actualizado su Historia";
         $actualizacion->id_region = $ciudad->id_region;
-        $actualizacion->id_show = 5000;
+        $actualizacion->id_show = 0;
         $actualizacion->save();
         $banda = new Banda; 
         $banda->where('id','=', $id)
@@ -230,9 +230,9 @@ class BandaController extends Controller
             $actualizacion->fecha = $now->format('d-m-y');
             $actualizacion->id_banda = $banda->id;
             $actualizacion->id_ciudad = $banda->id_ciudad;
-            $actualizacion->detalles = "A Agregado un Disco";
+            $actualizacion->detalles = "Esta banda ha agregado un Disco";
             $actualizacion->id_region = $ciudad->id_region;
-            $actualizacion->id_show = 5000;
+            $actualizacion->id_show = 0;
             $actualizacion->save();
             $name = str_random(30) . '-' . $request->file('image')->getClientOriginalName();
             
@@ -289,9 +289,9 @@ class BandaController extends Controller
         $actualizacion->fecha = $now->format('d-m-y');
             $actualizacion->id_banda = $banda->id;
             $actualizacion->id_ciudad = $banda->id_ciudad;
-            $actualizacion->detalles = "A Actualizado su Perfil";
+            $actualizacion->detalles = "Esta banda ha actualizado su Perfil";
             $actualizacion->id_region = $ciudad->id_region;
-            $actualizacion->id_show = 5000;
+            $actualizacion->id_show = 0;
             $actualizacion->save();
             $name = str_random(30) . '-' . $request->file('image')->getClientOriginalName();   
             $request->file('image')->move('uploads/bandas', $name);
@@ -372,9 +372,9 @@ class BandaController extends Controller
         $actualizacion->fecha = $now->format('d-m-y');
             $actualizacion->id_banda = $banda->id;
             $actualizacion->id_ciudad = $banda->id_ciudad;
-            $actualizacion->detalles = "A Actualizado su Perfil";
+            $actualizacion->detalles = "Esta Banda ha actualizado su Perfil";
             $actualizacion->id_region = $ciudad->id_region;
-            $actualizacion->id_show = 5000;
+            $actualizacion->id_show = 0;
             $actualizacion->save();
             $banda = new Banda;
             $banda->where('id','=', $id)

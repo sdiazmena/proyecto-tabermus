@@ -47,7 +47,7 @@ class HomeController extends Controller
             $nombreRegion = "Arica y Parinacota";
         }
     	$id = DB::table('region')->where('nombre',$nombreRegion)->get(['id']);
-    	$data = DB::table('Actualizacion')->where('id_region',$id[0]->id)->get();
+    	$data = DB::table('Actualizacion')->where('id_region',$id[0]->id)->orderBy('id', 'desc')->get();
     	$bandas = DB::table('banda')->get();
         //dd($data);
         return view('welcome')->with('actualizaciones',$data)->with('bandas',$bandas)->with('foto',$valorImprimir);
