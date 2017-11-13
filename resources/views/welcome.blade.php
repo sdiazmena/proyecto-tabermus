@@ -55,41 +55,52 @@
         <div class="fondoContenido">
             <h1 class="letraTitulo">Noticias <?php echo $_COOKIE["nameRegion"];?>:</h1>
             <hr class="featurette-divider">
-            <div class="row" class="col-sm-6">
-                    <p class="titulo">Actualizacion de bandas:</p>
+            <div class="row">
+                <div class="col-sm-6">
+                    <?php $existeNoticiaBanda = 0?>
+                    <p class="titulo letraTitulo">Actualizacion de bandas:</p>
                     @foreach($actualizaciones as $actualizacion)
-                    @foreach($bandas as $banda)
-                        @if($banda->id == $actualizacion->id_banda)
-                            @if($actualizacion->id_show === 0)
-                                <div class="fondoContenido col-sm-4">
-                                    <p class="letraTexto">{{substr($actualizacion->fecha, 0,10)}}</p>
-                                    <h3 class="letraTitulo">{{$banda->nombre}}</h3>
-                                    <p class="letraTexto">{{$actualizacion->detalles}}</p>
-                                    <a class="btn btn-danger btn-xs" href="{{ route('banda/ver',['id' => $banda->id] )}}" >Ver</a>
-                                </div>
-
+                        @foreach($bandas as $banda)
+                            @if($banda->id == $actualizacion->id_banda)
+                                @if($actualizacion->id_show === 0)
+                                    <div class="fondoContenido col-sm-6">
+                                        <p class="letraTexto">{{substr($actualizacion->fecha, 0,10)}}</p>
+                                        <h3 class="letraTitulo">{{$banda->nombre}}</h3>
+                                        <p class="letraTexto">{{$actualizacion->detalles}}</p>
+                                        <a class="btn btn-danger btn-xs" href="{{ route('banda/ver',['id' => $banda->id] )}}" >Ver</a>
+                                        <?php $existeNoticiaBanda = 1?>
+                                    </div>
+                                @endif
                             @endif
-                        @endif
                         @endforeach
                     @endforeach
+                    @if($existeNoticiaBanda == 0)
+                        <h4 class="letraTexto">Actualmente no existen noticias sobre bandas en esta region</h4>
+                    @endif
                 </div>
-            <div class="row" class="col-sm-6">
-                    <p class="titulo">Shows:</p>
+                <div class="col-sm-6">
+                    <?php $existeNoticiaShow = 0?>
+                    <p class="titulo letraTitulo">Shows:</p>
                     @foreach($actualizaciones as $actualizacion)
                         @foreach($bandas as $banda)
                             @if($banda->id == $actualizacion->id_banda)
                                 @if($actualizacion->id_show > 0)
-                    <div class="fondoContenido col-sm-4">
-                        <p class="letraTexto">{{substr($actualizacion->fecha, 0,10)}}</p>
-                        <h3 class="letraTitulo">{{$banda->nombre}}</h3>
-                        <p class="letraTexto">{{$actualizacion->detalles}}</p>
-                    <!--<a class="btn btn-danger btn-xs" href="{{ route('buscar/banda',['id' => $banda->id] )}}" >Ver</a>-->
-                    </div>
+                                    <div class="fondoContenido col-sm-6">
+                                        <p class="letraTexto">{{substr($actualizacion->fecha, 0,10)}}</p>
+                                        <h3 class="letraTitulo">{{$banda->nombre}}</h3>
+                                        <p class="letraTexto">{{$actualizacion->detalles}}</p>
+                                    <!--<a class="btn btn-danger btn-xs" href="{{ route('buscar/banda',['id' => $banda->id] )}}" >Ver</a>-->
+                                        <?php $existeNoticiaShow = 1?>
+                                    </div>
                                 @endif
                             @endif
+                        @endforeach
                     @endforeach
-                    @endforeach
+                    @if($existeNoticiaShow == 0)
+                        <h4 class="letraTexto">Actualmente no existen noticias sobre shows en esta region</h4>
+                    @endif
                 </div>
+            </div>
         </div>
 
     </div>
