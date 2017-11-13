@@ -170,4 +170,17 @@ class BusquedaController extends Controller
 
         return view("visualizardiscos")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('discos',$discos)->with('listacanciones',$listacanciones)->with('canciones',$canciones)->with('largo',$largo)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas);
     }
+    public function verFechas($id){
+        $banda = DB::table('banda')->where('id', $id)->first();
+        $liricas = Lirica::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+        $generos = Genero::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+        $regiones = Region::orderBy('id', 'ASC')->pluck('nombre','id')->all();
+        $rutaPerfil = '/tabermus/public/buscar/banda/'.$id;
+        $rutaHistoria = '/tabermus/public/buscar/banda/'.$id.'/historia';
+        $rutaDiscos = '/tabermus/public/buscar/banda/'.$id.'/discos';
+        $rutaFechas = '/tabermus/public/buscar/banda/'.$id.'/fechas';
+        $editable = 0;
+        $shows = DB::table('shows')->where('id_banda', '=', $id)->get();
+        return view("visualizarfechas")->with('shows',$shows)->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas);
+    }
 }

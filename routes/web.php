@@ -65,3 +65,4 @@ Route::post('buscar', ['as' => 'buscar/search', 'uses'=>'BusquedaController@sear
 Route::get('banda/{id}', ['as' => 'banda/ver', 'uses'=>'BusquedaController@verBanda']);
 Route::get('banda/{id}/historia', ['as' => 'banda/ver/historia', 'uses'=>'BusquedaController@verHistoria']);
 Route::get('banda/{id}/discografia', ['as' => 'banda/ver/discografia', 'uses'=>'BusquedaController@verDiscos']);
+Route::get('banda/{id}/fechas', ['as' => 'banda/ver/fechas', 'uses'=>'BusquedaController@verFechas']);
