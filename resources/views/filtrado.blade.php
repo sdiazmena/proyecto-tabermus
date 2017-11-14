@@ -9,7 +9,7 @@
                 {!! Form::open(['route' => 'filtrado/resultado', 'method' => 'post', 'novalidate', 'class' => 'form-inline']) !!}
                 <div class="row">
                     {!! Form::label('region', 'Region:',['class' => 'col-sm-2 letraTitulo']) !!}
-                    {!! Form::select('region', $regiones, null,['class' => 'col-sm-4','id'=>'region', 'placeholder' => 'Seleccione una región..','required']) !!}
+                    {!! Form::select('region', $regiones, ['class' => 'col-sm-4','id'=>'region', 'placeholder' => 'Seleccione una región..','required']) !!}
                 </div>
                 <div class="row">
                     {!! Form::label('genero', 'Genero:',['class' => 'col-sm-2 letraTitulo']) !!}
@@ -43,6 +43,7 @@
             </div>
             <div class="fondoContenido" id="resultadoBusqueda">
                 <table class="table table-condensed table-bordered">
+                    <?php $conteo = 0?>
                     <thead>
                     <tr class="letraTitulo">
                         <th>Nombre</th>
@@ -75,6 +76,7 @@
                                 @if($genero->id == $banda->id_genero)
                                     <td>{{ $genero->nombre }}</td>
                                 @endif
+                            <?php $conteo = 1?>
                             @endforeach
                             <td>
                                 <a class="btn btn-danger btn-xs" href="{{ route('banda/ver',['id' => $banda->id] )}}" >Ver</a>
@@ -82,6 +84,9 @@
                         </tr>
                     @endforeach
                     </tbody>
+                    @if($conteo == 0)
+                        <h4 class="letraTitulo">No se registran resultados para este filtrado</h4>
+                        @endif
                 </table>
             </div>
         </div>

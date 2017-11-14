@@ -111,10 +111,8 @@ class FiltradoController extends Controller
 
         if($request->region){
             $ciudad = Ciudad::ciudades($request->region);
-        }else{
-            $ciudad = DB::table('ciudad')->get();
         }
-        //dd($ciudad)
+
         if($request->genero){
             if($request->orden == 'Alfabeticamente'){
                 $bandas = Banda::where('nombre','like','%'.$request->letra.'%')
