@@ -1,10 +1,10 @@
 @extends('layouts.prueba')
 
 @section('content')    
-    @if (Session::has('status'))
+    @if ($status)
     <hr />
-        <div class='text-success' style = "text-align:center">
-            {{Session::get('status')}}
+        <div class='titulo letraTitulo text-center' style = "text-align:center">
+            {{$status}}
         </div>
     <hr />
     @endif

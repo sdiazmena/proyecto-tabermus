@@ -24,13 +24,13 @@
 @endsection
 
 @section('content')   
-    @if (Session::has('status'))
+    @if ($status)
     <hr />
-        <div class='text-success' style = "text-align:center">
-            {{Session::get('status')}}
+        <div class='titulo letraTitulo text-center' style = "text-align:center">
+            {{$status}}
         </div>
     <hr />
-    @endif 
+    @endif
     <div class="col-sm-8 bloqueContenido">
         <h1 class="titulo letraTitulo text-center">{{ $banda->nombre }} Shows</h1>
         <div class="fondoContenido letraTitulo">
@@ -168,16 +168,16 @@
 
     {{ Html::script('calendar/fullcalendar/lib/moment.min.js') }}
 
-{{ Html::script('calendar/bootstrap/dist/js/bootstrap.min.js') }}
+    {{ Html::script('calendar/bootstrap/dist/js/bootstrap.min.js') }}
     {{ Html::script('calendar/fullcalendar/fullcalendar.min.js') }}
-
+    {{ Html::script('calendar/fullcalendar/locale/es.js') }}
     {{ Html::script('calendar/bootstrap-datetimepicker/js/bootstrap-material-datetimepicker.js') }}
     {{ Html::script('calendar/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js') }}
     <script>
         //inicializamos el calendario al cargar la pagina
         var BASEURL = '{{ url('/') }}';
         var mivarJS=<?php echo $banda->id ?>;
-$(document).ready(function() {
+        $(document).ready(function() {
         
         $('#calendar').fullCalendar({
             header: {

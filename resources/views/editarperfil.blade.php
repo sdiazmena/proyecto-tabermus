@@ -1,6 +1,13 @@
 @extends('layouts.prueba')
 
 @section('content')
+    @if ($status)
+    <hr />
+        <div class='titulo letraTitulo text-center' style = "text-align:center">
+            {{$status}}
+        </div>
+    <hr />
+    @endif
     <div class="col-sm-8 bloqueContenido">
 		<br>
 		<div class="fondoContenido">

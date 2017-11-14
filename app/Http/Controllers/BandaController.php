@@ -103,6 +103,7 @@ class BandaController extends Controller
             $actualizacion->id_region = $request->region;
             $actualizacion->id_show = 0;
             $actualizacion->save();
+
             return redirect('/profile')->with('status', 'Banda creada correctamente');
         }
     }
@@ -141,7 +142,8 @@ class BandaController extends Controller
         $rutaDiscos = '/tabermus/public/profile/banda/'.$id.'/discos';
         $rutaFechas = '/tabermus/public/profile/banda/'.$id.'/fechas';
         $editable = 1;
-        return view("editarbanda")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('ciudad',$ciudad)->with('region',$region)->with('lirica',$lirica)->with('genero',$genero)->with('integrantes',$integrantes)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas);
+        $status = NULL;
+        return view("editarbanda")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('ciudad',$ciudad)->with('region',$region)->with('lirica',$lirica)->with('genero',$genero)->with('integrantes',$integrantes)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas)->with('status',$status);
     }
     public function editHistory($id)
     {
@@ -150,8 +152,9 @@ class BandaController extends Controller
         $rutaHistoria = '/tabermus/public/profile/banda/'.$id.'/historia';
         $rutaDiscos = '/tabermus/public/profile/banda/'.$id.'/discos';
         $rutaFechas = '/tabermus/public/profile/banda/'.$id.'/fechas';
-        $editable = 1;        
-        return view("editarhistoria")->with('banda',$banda)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas);
+        $editable = 1;   
+        $status = NULL;     
+        return view("editarhistoria")->with('banda',$banda)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas)->with('status',$status);
     }
     public function updateHistory(Request $request, $id)
     {
@@ -175,13 +178,24 @@ class BandaController extends Controller
         $rutaHistoria = '/tabermus/public/profile/banda/'.$id.'/historia';
         $rutaDiscos = '/tabermus/public/profile/banda/'.$id.'/discos';
         $rutaFechas = '/tabermus/public/profile/banda/'.$id.'/fechas';
-        $editable = 1;        
-        return view("editarhistoria")->with('banda',$banda)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas)->with('status', 'Historia de Banda editada correctamente');
+        $editable = 1;    
+        $status =  'Historia de Banda editada correctamente'; 
+        return view("editarhistoria")->with('banda',$banda)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas)->with('status', $status);
         //return redirect('/profile')->with('status', 'Historia de Banda editada correctamente');
     }
-    public function editarDisco(Request $request, $id)
+    public function getDisco(Request $request, $id)
     {
-
+        if($request->ajax())
+        {
+            $disco = array();
+            $disco = Disco::where('id',$id)->get();
+            
+            return response()->json($disco);
+        }
+    }
+    public function editarDiscos(Request $request, $id)
+    {
+        var_dump($request->all());
     }
     public function editDiscos($id)
     {
@@ -209,7 +223,8 @@ class BandaController extends Controller
         $rutaDiscos = '/tabermus/public/profile/banda/'.$id.'/discos';
         $rutaFechas = '/tabermus/public/profile/banda/'.$id.'/fechas';      
         $editable = 1; 
-        return view("editardiscos")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('discos',$discos)->with('listacanciones',$listacanciones)->with('canciones',$canciones)->with('largo',$largo)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas);
+        $status = NULL;
+        return view("editardiscos")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('discos',$discos)->with('listacanciones',$listacanciones)->with('canciones',$canciones)->with('largo',$largo)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas)->with('status',$status);
     }
     public function updateDiscos(Request $request, $id)
     {
@@ -230,7 +245,7 @@ class BandaController extends Controller
             $actualizacion->fecha = $now->format('d-m-y');
             $actualizacion->id_banda = $banda->id;
             $actualizacion->id_ciudad = $banda->id_ciudad;
-            $actualizacion->detalles = "Esta banda ha agregado un Disco";
+            $actualizacion->detalles = "Esta banda ha agregado un nuevo Disco";
             $actualizacion->id_region = $ciudad->id_region;
             $actualizacion->id_show = 0;
             $actualizacion->save();
@@ -249,7 +264,31 @@ class BandaController extends Controller
                     $cancion->id_banda = $id;
                     $cancion->save();
                 }else{
-                    return redirect('/profile')->with('status', 'Disco de Banda editada correctamente');
+                    $banda = DB::table('banda')->where('id', $id)->first();
+                    $liricas = Lirica::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+                    $generos = Genero::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+                    $regiones = Region::orderBy('id', 'ASC')->pluck('nombre','id')->all();
+                    $discos =  DB::table('disco')->where('id_banda', $id)->get();
+                    $listacanciones = array();
+                    foreach($discos as $disco){
+                        $lista = DB::table('lista_canciones')->where('id_disco', $disco->id)->first();
+                        array_push($listacanciones, $lista);
+                    }
+                    $largo = count($listacanciones);
+                    //var_dump($largo);
+                    $canciones = array();
+                    for($i=0;$i<$largo;$i++){
+                        $cancion = DB::table('cancion')->where('id_lista', $listacanciones[$i]->id)->get();
+                        array_push($canciones, $cancion);
+                    }
+                    //var_dump($canciones[0][0]->id);
+                    $rutaPerfil = '/tabermus/public/profile/banda/'.$id.'/edit';
+                    $rutaHistoria = '/tabermus/public/profile/banda/'.$id.'/historia';
+                    $rutaDiscos = '/tabermus/public/profile/banda/'.$id.'/discos';
+                    $rutaFechas = '/tabermus/public/profile/banda/'.$id.'/fechas';      
+                    $editable = 1; 
+                    $status = 'Discos de Banda Editados correctamente';
+                    return view("editardiscos")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('discos',$discos)->with('listacanciones',$listacanciones)->with('canciones',$canciones)->with('largo',$largo)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas)->with('status',$status);
                 }
             }
             
@@ -266,7 +305,8 @@ class BandaController extends Controller
         $rutaDiscos = '/tabermus/public/profile/banda/'.$id.'/discos';
         $rutaFechas = '/tabermus/public/profile/banda/'.$id.'/fechas';  
         $editable = 1; 
-        return view("editarfechas")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas);
+        $status = NULL;
+        return view("editarfechas")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas)->with('status',$status);
     }
     /**
      * Update the specified resource in storage.
@@ -286,7 +326,7 @@ class BandaController extends Controller
             $ciudad = DB::table('ciudad')->where('id',$banda->id_ciudad)->first();
             $actualizacion = new Actualizacion();
             $now = new \DateTime();
-        $actualizacion->fecha = $now->format('d-m-y');
+            $actualizacion->fecha = $now->format('d-m-y');
             $actualizacion->id_banda = $banda->id;
             $actualizacion->id_ciudad = $banda->id_ciudad;
             $actualizacion->detalles = "Esta banda ha actualizado su Perfil";
@@ -362,14 +402,30 @@ class BandaController extends Controller
                 }
                 $m=0;
             }
-                return redirect('/profile')->with('status', 'Perfil de Banda editada correctamente');
+            $banda = DB::table('banda')->where('id', $id)->first();
+            $liricas = Lirica::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+            $generos = Genero::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+            $regiones = Region::orderBy('id', 'ASC')->pluck('nombre','id')->all();
+            $ciudad = DB::table('ciudad')->where('id',$banda->id_ciudad)->first();
+            $region = DB::table('region')->where('id',$ciudad->id_region)->first();
+            $lirica = DB::table('lirica')->where('id',$banda->id_lirica)->first();
+            $genero = DB::table('genero')->where('id',$banda->id_genero)->first();
+            $integrantes = DB::table('integrante')->where('id_banda',$id)->get();
+            $rutaPerfil = '/tabermus/public/profile/banda/'.$id.'/edit';
+            $rutaHistoria = '/tabermus/public/profile/banda/'.$id.'/historia';
+            $rutaDiscos = '/tabermus/public/profile/banda/'.$id.'/discos';
+            $rutaFechas = '/tabermus/public/profile/banda/'.$id.'/fechas';
+            $editable = 1;
+            $status = 'Perfil de Banda editada correctamente';
+            return view("editarbanda")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('ciudad',$ciudad)->with('region',$region)->with('lirica',$lirica)->with('genero',$genero)->with('integrantes',$integrantes)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas)->with('status',$status);
+            
             
         }else{
             $banda = DB::table('banda')->where('id', $id)->first();
             $ciudad = DB::table('ciudad')->where('id',$banda->id_ciudad)->first();
             $actualizacion = new Actualizacion();
             $now = new \DateTime();
-        $actualizacion->fecha = $now->format('d-m-y');
+            $actualizacion->fecha = $now->format('d-m-y');
             $actualizacion->id_banda = $banda->id;
             $actualizacion->id_ciudad = $banda->id_ciudad;
             $actualizacion->detalles = "Esta Banda ha actualizado su Perfil";
@@ -442,7 +498,22 @@ class BandaController extends Controller
                 }
                 $m=0;
             }
-            return redirect('/profile')->with('status', 'Perfil de Banda editada correctamente');
+            $banda = DB::table('banda')->where('id', $id)->first();
+            $liricas = Lirica::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+            $generos = Genero::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+            $regiones = Region::orderBy('id', 'ASC')->pluck('nombre','id')->all();
+            $ciudad = DB::table('ciudad')->where('id',$banda->id_ciudad)->first();
+            $region = DB::table('region')->where('id',$ciudad->id_region)->first();
+            $lirica = DB::table('lirica')->where('id',$banda->id_lirica)->first();
+            $genero = DB::table('genero')->where('id',$banda->id_genero)->first();
+            $integrantes = DB::table('integrante')->where('id_banda',$id)->get();
+            $rutaPerfil = '/tabermus/public/profile/banda/'.$id.'/edit';
+            $rutaHistoria = '/tabermus/public/profile/banda/'.$id.'/historia';
+            $rutaDiscos = '/tabermus/public/profile/banda/'.$id.'/discos';
+            $rutaFechas = '/tabermus/public/profile/banda/'.$id.'/fechas';
+            $editable = 1;
+            $status = 'Perfil de Banda editada correctamente';
+            return view("editarbanda")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('ciudad',$ciudad)->with('region',$region)->with('lirica',$lirica)->with('genero',$genero)->with('integrantes',$integrantes)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas)->with('status',$status);
         }
     }
 

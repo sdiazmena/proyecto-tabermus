@@ -54,7 +54,7 @@
 
                     @if($redesSociales == 0)
                     <h4 class="letraTexto"><strong>Redes Sociales:</strong> Actualmente no registrados en esta banda</h4>
-                        @endif
+                    @endif
                 </div>
                 <div class="col-md-6">
                     <br>

@@ -12,16 +12,16 @@ class UserController extends Controller
 {
     public function profile(){
     	$iduser = \Auth::user()->id;
-
+        $status = NULL;
     	if(Banda::where('id_usuario',$iduser)->pluck('nombre')->all())
     	{
             $banda1 = DB::table('banda')->where('id_usuario', $iduser)->first();
     		$banda = Banda::where('id_usuario',$iduser)->pluck('nombre')->all();
 
-    		return view('profile', array('user' => Auth::user(),'banda'=>$banda,'banda1'=>$banda1));
+    		return view('profile', array('user' => Auth::user(),'banda'=>$banda,'banda1'=>$banda1))->with('status',$status);
     	}else{
     		$banda[0] = 0;
-    		return view('profile', array('user' => Auth::user(),'banda'=>$banda));
+    		return view('profile', array('user' => Auth::user(),'banda'=>$banda))->with('status',$status);
     	}
 
     }

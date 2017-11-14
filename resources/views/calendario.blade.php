@@ -36,7 +36,8 @@
     {{ Html::script('calendar/fullcalendar/lib/jquery-ui.min.js') }}
     {{ Html::script('calendar/fullcalendar/lib/moment.min.js') }}
     {{ Html::script('calendar/fullcalendar/fullcalendar.min.js') }}
-    {{ Html::script('calendar/fullcalendar/locale-all.js') }}
+    
+    {{ Html::script('calendar/fullcalendar/locale/es.js') }}
     <script>
         //inicializamos el calendario al cargar la pagina
         var BASEURL = '{{ url('/') }}';
