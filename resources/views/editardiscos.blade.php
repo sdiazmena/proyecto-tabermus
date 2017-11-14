@@ -218,12 +218,12 @@
                 url: BASEURL+'/profile/banda/disco/'+x.value,
                 type : 'GET',
                 success: function(result){
-                    console.log(result);
+                    console.log(result);/*
                     $('#selectDisco2-modal #nombre').val(result[0].nombre);
                     $('#selectDisco2-modal #año').val(result[0].año);
                     $('#selectDisco2-modal #sello').val(result[0].sello);
                     $('#selectDisco2-modal #tipo').val(result[0].tipo);
-                    $('#selectDisco2-modal').modal('show');
+                    $('#selectDisco2-modal').modal('show');*/
                 },
                 error: function(result){
                     console.log('Error:',data);

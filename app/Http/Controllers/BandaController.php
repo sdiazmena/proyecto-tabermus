@@ -189,8 +189,10 @@ class BandaController extends Controller
         {
             $disco = array();
             $disco = Disco::where('id',$id)->get();
-            
-            return response()->json($disco);
+            $lista = ListaCanciones::where('id_disco', $disco[0]->id)->get();
+            $canciones = DB::table('cancion')->where('id_lista', $lista[0]->id)->get();
+            $data= array_merge($disco,$canciones);
+            return response()->json($data);
         }
     }
     public function editarDiscos(Request $request, $id)
