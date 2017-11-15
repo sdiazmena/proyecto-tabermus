@@ -143,6 +143,8 @@
                                 
                                 {{ Form::label('nombre', 'NOMBRE DISCO')}}
                                 {{ Form::text('nombre', old('nombre'),[' class' => 'form-control']) }}
+                                <input type="hidden" name="id" id="id">
+                                
                             </div>
                             <div class='form-group'>
                                 <label for='image'>IMAGEN </label>
@@ -173,8 +175,9 @@
                                 {{ Form::label('canciones', 'CANCIONES')}}
                                 
                                 <fieldset id="fiel2" class="letraPortada" >
-                                    <input type="button" value="agregar" name="canciones[]" onclick="crear(this)" />
+                                    <input type="button" value="agregar" name="cancionesEditadas[]" onclick="crear2(this)" />
                                 </fieldset>
+
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -223,7 +226,7 @@
                     $('#selectDisco2-modal #año').val(result[0].año);
                     $('#selectDisco2-modal #sello').val(result[0].sello);
                     $('#selectDisco2-modal #tipo').val(result[0].tipo);
-                    
+                    $('#selectDisco2-modal #id').val(result[0].id);
                     $.ajax({
                         url: BASEURL+'/profile/banda/disco/canciones/'+result[0].id,
                         type : 'GET', 
@@ -239,7 +242,7 @@
                                  
                                 ele = document.createElement('input'); // 5
                                 ele.type = 'text'; // 6
-                                ele.name = 'canciones'+num;
+                                ele.name = 'cancionesEditadas'+num;
                                 ele.class = 'form-control';
                                 ele.value = canciones.titulo;
                                 ele.placeholder = canciones.titulo;; // 6
@@ -249,15 +252,15 @@
                                 ele.type = 'button'; // 6
                                 ele.value = 'Borrar'; // 8
                                 ele.name = 'div'+num; // 8
-                                ele.onclick = function () {borrar(this.name)} // 9
+                                ele.onclick = function () {borrar3(this.name)} // 9
                                 contenedor.appendChild(ele); 
-                                function borrar(obj) {
+                                function borrar3(obj) {
                                     fi = document.getElementById('fiel2'); // 1 
                                     fi.removeChild(document.getElementById(obj)); // 10
                                 }
                                 num++;
                             });
-
+                            
                             $('#selectDisco2-modal').modal('show');
                         },
                         error: function(data){
@@ -273,7 +276,7 @@
         num=0;
         function crear(obj) {
           
-          fi = document.getElementById('fiel2'); // 1
+          fi = document.getElementById('fiel'); // 1
           contenedor = document.createElement('div'); // 2
           contenedor.id = 'div'+num; // 3
           fi.appendChild(contenedor); // 4
@@ -293,6 +296,31 @@
           num++;
         }
         function borrar(obj) {
+          fi = document.getElementById('fiel'); // 1 
+          fi.removeChild(document.getElementById(obj)); // 10
+        }
+        function crear2(obj) {
+          
+          fi = document.getElementById('fiel2'); // 1
+          contenedor = document.createElement('div'); // 2
+          contenedor.id = 'div'+num; // 3
+          fi.appendChild(contenedor); // 4
+         
+          ele = document.createElement('input'); // 5
+          ele.type = 'text'; // 6
+          ele.name = 'canciones'+num;
+          ele.class = 'form-control'; // 6
+          contenedor.appendChild(ele); // 7
+          
+          ele = document.createElement('input'); // 5
+          ele.type = 'button'; // 6
+          ele.value = 'Borrar'; // 8
+          ele.name = 'div'+num; // 8
+          ele.onclick = function () {borrar2(this.name)} // 9
+          contenedor.appendChild(ele); // 7
+          num++;
+        }
+        function borrar2(obj) {
           fi = document.getElementById('fiel2'); // 1 
           fi.removeChild(document.getElementById(obj)); // 10
         }

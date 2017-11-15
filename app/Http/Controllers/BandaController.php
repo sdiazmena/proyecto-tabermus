@@ -211,7 +211,122 @@ class BandaController extends Controller
     }
     public function editarDiscos(Request $request, $id)
     {
-        var_dump($request->all());
+            if($request->file('image')){
+                $banda = DB::table('banda')->where('id', $id)->first();
+                $ciudad = DB::table('ciudad')->where('id',$banda->id_ciudad)->first();
+                $actualizacion = new Actualizacion();
+                $now = new \DateTime();
+                $actualizacion->fecha = $now->format('d-m-y');
+                $actualizacion->id_banda = $banda->id;
+                $actualizacion->id_ciudad = $banda->id_ciudad;
+                $actualizacion->detalles = "Esta banda ha editado un Disco";
+                $actualizacion->id_region = $ciudad->id_region;
+                $actualizacion->id_show = 0;
+                $actualizacion->save();
+                $name = str_random(30) . '-' . $request->file('image')->getClientOriginalName();
+                
+                $request->file('image')->move('uploads/discos', $name);
+                DB::table('disco')->where('id', $request->id)->update(['id_banda' => $id, 'nombre' => $request->nombre,'año' => $request->año ,'sello' =>  $request->sello ,'tipo' => $request->tipo,'caratula' => 'uploads/discos/'.$name ]);
+            }else{
+                $banda = DB::table('banda')->where('id', $id)->first();
+                $ciudad = DB::table('ciudad')->where('id',$banda->id_ciudad)->first();
+                $actualizacion = new Actualizacion();
+                $now = new \DateTime();
+                $actualizacion->fecha = $now->format('d-m-y');
+                $actualizacion->id_banda = $banda->id;
+                $actualizacion->id_ciudad = $banda->id_ciudad;
+                $actualizacion->detalles = "Esta banda ha editado un Disco";
+                $actualizacion->id_region = $ciudad->id_region;
+                $actualizacion->id_show = 0;
+                $actualizacion->save();
+
+                
+      
+                DB::table('disco')->where('id', $request->id)->update(['id_banda' => $id, 'nombre' => $request->nombre,'año' => $request->año ,'sello' =>  $request->sello ,'tipo' => $request->tipo ]);
+            }
+                $lista = DB::table('lista_canciones')->where('id_disco',$request->id)->first();
+                $lar = count($request->all());
+                $array = $request->all();
+                $prueba = Array();
+                $x = 0;
+                for($i=0;$i<$lar;$i++){
+                    if(array_key_exists('canciones'.$i, $array)){
+                        $cancion = new Cancion();
+                        $cancion->titulo = $array['canciones'.$i];
+                        $cancion->id_lista = $lista->id;
+                        $cancion->id_banda = $id;
+                        $prueba[$x] = $cancion->titulo;
+                        $cancion->save();
+                        $x++;
+                    }
+                }
+                $largo = count($request->all());
+                $array1 = $request->all();
+                $int_actuales = DB::table('cancion')->where('id_lista',$lista->id)->get();
+
+                $m = 0;
+                for($i=0;$i<$largo;$i++){
+                    if(array_key_exists('cancionesEditadas'.$i, $array1)){
+                        foreach($int_actuales as $int){
+                            if($int->titulo == $array1['cancionesEditadas'.$i]){
+                                $prueba[$x] = $array1['cancionesEditadas'.$i];
+                                $x++;
+                                $m = 1;
+                            }
+                        }
+                        if($m == 0){
+                            $cancion = new Cancion();
+                            $cancion->titulo = $array1['cancionesEditadas'.$i];
+                            $cancion->id_banda = $id;
+                            $cancion->id_lista = $lista->id;
+                            $prueba[$x] = $cancion->titulo;
+                            $cancion->save();     
+                            $x++;                   
+                        }
+                        $m = 0;
+                    }
+                }
+                $m=0;
+                foreach($int_actuales as $int){
+                    for($i=0;$i<count($prueba);$i++){
+                        if($int->titulo == $prueba[$i]){
+                            $m = 1;
+                        }
+                    }
+                    if($m==0){
+                        DB::table('cancion')->where('titulo', $int->titulo)->delete();
+                    }
+                    $m=0;
+                }
+                            $banda = DB::table('banda')->where('id', $id)->first();
+                            $liricas = Lirica::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+                            $generos = Genero::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+                            $regiones = Region::orderBy('id', 'ASC')->pluck('nombre','id')->all();
+                            $discos =  DB::table('disco')->where('id_banda', $id)->get();
+                            $listacanciones = array();
+                            foreach($discos as $disco){
+                                $lista = DB::table('lista_canciones')->where('id_disco', $disco->id)->first();
+                                array_push($listacanciones, $lista);
+                            }
+                            $largo = count($listacanciones);
+                            //var_dump($largo);
+                            $canciones = array();
+                            for($i=0;$i<$largo;$i++){
+                                $cancion = DB::table('cancion')->where('id_lista', $listacanciones[$i]->id)->get();
+                                array_push($canciones, $cancion);
+                            }
+                            //var_dump($canciones[0][0]->id);
+                            $rutaPerfil = '/tabermus/public/profile/banda/'.$id.'/edit';
+                            $rutaHistoria = '/tabermus/public/profile/banda/'.$id.'/historia';
+                            $rutaDiscos = '/tabermus/public/profile/banda/'.$id.'/discos';
+                            $rutaFechas = '/tabermus/public/profile/banda/'.$id.'/fechas';      
+                            $editable = 1; 
+                            $status = 'Disco de Banda editado correctamente';
+                            return view("editardiscos")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('discos',$discos)->with('listacanciones',$listacanciones)->with('canciones',$canciones)->with('largo',$largo)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas)->with('status',$status);
+
+            
+            
+       
     }
     public function editDiscos($id)
     {
@@ -272,7 +387,7 @@ class BandaController extends Controller
             $id_lista = DB::table('lista_canciones')->insertGetId(['id_disco' =>  $id_disco,'id_cancion' => 'prueba']);
             $lar = count($request->all());
             $array = $request->all();
-            for($i=1;$i<$lar;$i++){
+            for($i=0;$i<$lar;$i++){
                 if(array_key_exists('canciones'.$i, $array)){
                     $cancion = new Cancion();
                     $cancion->titulo = $array['canciones'.$i];
@@ -303,7 +418,7 @@ class BandaController extends Controller
                     $rutaDiscos = '/tabermus/public/profile/banda/'.$id.'/discos';
                     $rutaFechas = '/tabermus/public/profile/banda/'.$id.'/fechas';      
                     $editable = 1; 
-                    $status = 'Discos de Banda Editados correctamente';
+                    $status = 'Disco de Banda creado correctamente';
                     return view("editardiscos")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('discos',$discos)->with('listacanciones',$listacanciones)->with('canciones',$canciones)->with('largo',$largo)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas)->with('status',$status);
                 }
             }
