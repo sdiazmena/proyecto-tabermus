@@ -180,7 +180,7 @@
     });
         num1=0;
         function crear(obj) {
-          num++;
+          
           fi = document.getElementById('fiel'); // 1
           contenedor = document.createElement('div'); // 2
           contenedor.id = 'div'+num1; // 3
@@ -198,6 +198,7 @@
           ele.name = 'div'+num1; // 8
           ele.onclick = function () {borrar1(this.name)} // 9
           contenedor.appendChild(ele); // 7
+          num1++;
         }
         function borrar1(obj) {
           fi = document.getElementById('fiel'); // 1 

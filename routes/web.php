@@ -37,6 +37,7 @@ Route::get('/profile/banda/{id}/fechas','BandaController@editFechas');
 Route::post('/profile/banda/{id}/fechas/update','BandaController@updateFechas');
 Route::get('/profile/ciudades/{id}', 'RegionController@getCiudades');
 Route::get('/profile/banda/disco/{id}', 'BandaController@getDisco');
+Route::get('/profile/banda/disco/canciones/{id}', 'BandaController@getCanciones');
 Route::get('/redirect/{provider}','SocialController@redirect');
 Route::get('/callback/{provider}','SocialController@callback');
 

@@ -172,7 +172,7 @@
                             <div class="form-group">
                                 {{ Form::label('canciones', 'CANCIONES')}}
                                 
-                                <fieldset id="fiel" class="letraPortada" >
+                                <fieldset id="fiel2" class="letraPortada" >
                                     <input type="button" value="agregar" name="canciones[]" onclick="crear(this)" />
                                 </fieldset>
                             </div>
@@ -218,22 +218,62 @@
                 url: BASEURL+'/profile/banda/disco/'+x.value,
                 type : 'GET',
                 success: function(result){
-                    console.log(result);/*
+                    console.log(result);
                     $('#selectDisco2-modal #nombre').val(result[0].nombre);
                     $('#selectDisco2-modal #año').val(result[0].año);
                     $('#selectDisco2-modal #sello').val(result[0].sello);
                     $('#selectDisco2-modal #tipo').val(result[0].tipo);
-                    $('#selectDisco2-modal').modal('show');*/
+                    
+                    $.ajax({
+                        url: BASEURL+'/profile/banda/disco/canciones/'+result[0].id,
+                        type : 'GET', 
+                        success: function(data){
+
+                            var num = 0;
+                            data.forEach(function(canciones){
+                                console.log(canciones);
+                                fi = document.getElementById('fiel2'); // 1
+                                contenedor = document.createElement('div'); // 2
+                                contenedor.id = 'div'+num; // 3
+                                fi.appendChild(contenedor); // 4
+                                 
+                                ele = document.createElement('input'); // 5
+                                ele.type = 'text'; // 6
+                                ele.name = 'canciones'+num;
+                                ele.class = 'form-control';
+                                ele.value = canciones.titulo;
+                                ele.placeholder = canciones.titulo;; // 6
+                                contenedor.appendChild(ele); // 7
+                                          
+                                ele = document.createElement('input'); // 5
+                                ele.type = 'button'; // 6
+                                ele.value = 'Borrar'; // 8
+                                ele.name = 'div'+num; // 8
+                                ele.onclick = function () {borrar(this.name)} // 9
+                                contenedor.appendChild(ele); 
+                                function borrar(obj) {
+                                    fi = document.getElementById('fiel2'); // 1 
+                                    fi.removeChild(document.getElementById(obj)); // 10
+                                }
+                                num++;
+                            });
+
+                            $('#selectDisco2-modal').modal('show');
+                        },
+                        error: function(data){
+                            console.log('Error:',data);
+                        }                       
+                    });
                 },
                 error: function(result){
-                    console.log('Error:',data);
+                    console.log('Error:',result);
                 }
             });
         }
-num=0;
+        num=0;
         function crear(obj) {
-          num++;
-          fi = document.getElementById('fiel'); // 1
+          
+          fi = document.getElementById('fiel2'); // 1
           contenedor = document.createElement('div'); // 2
           contenedor.id = 'div'+num; // 3
           fi.appendChild(contenedor); // 4
@@ -250,9 +290,10 @@ num=0;
           ele.name = 'div'+num; // 8
           ele.onclick = function () {borrar(this.name)} // 9
           contenedor.appendChild(ele); // 7
+          num++;
         }
         function borrar(obj) {
-          fi = document.getElementById('fiel'); // 1 
+          fi = document.getElementById('fiel2'); // 1 
           fi.removeChild(document.getElementById(obj)); // 10
         }
     </script>

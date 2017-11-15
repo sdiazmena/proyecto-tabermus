@@ -189,10 +189,24 @@ class BandaController extends Controller
         {
             $disco = array();
             $disco = Disco::where('id',$id)->get();
-            $lista = ListaCanciones::where('id_disco', $disco[0]->id)->get();
+
+            
+            return response()->json($disco);
+            //realizar una peticion ajax dentro de otra para obtener discos
+
+        }
+    }
+    public function getCanciones(Request $request, $id)
+    {
+        if($request->ajax())
+        {
+            $lista = ListaCanciones::where('id_disco', $id)->get();
             $canciones = DB::table('cancion')->where('id_lista', $lista[0]->id)->get();
-            $data= array_merge($disco,$canciones);
-            return response()->json($data);
+            if($canciones){
+                return response()->json($canciones);
+            }
+            //realizar una peticion ajax dentro de otra para obtener discos
+
         }
     }
     public function editarDiscos(Request $request, $id)
