@@ -54,7 +54,7 @@
                                     <div class="col-xs-9 "> 
                                                                            
                                         {!! Form::select('ciudad', ['placeholder' => 'Seleccione una ciudad..'], null,['id'=>'ciudad','class' => 'form-control','required']) !!}
-                                               
+
                                          
                                     </div>
                                 </div>
