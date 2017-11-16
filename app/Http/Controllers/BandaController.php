@@ -163,7 +163,8 @@ class BandaController extends Controller
         $ciudad = DB::table('ciudad')->where('id', $banda->id_ciudad)->first();
         $actualizacion = new Actualizacion();
         $now = new \DateTime();
-        $actualizacion->fecha = $now->format('d-m-y');
+        $myTme = Carbon::now();
+        $actualizacion->fecha = $myTme->toDateString();
         $actualizacion->id_banda = $banda->id;
         $actualizacion->id_ciudad = $banda->id_ciudad;
         $actualizacion->detalles = "Esta banda ha actualizado su Historia";
@@ -216,7 +217,8 @@ class BandaController extends Controller
                 $ciudad = DB::table('ciudad')->where('id',$banda->id_ciudad)->first();
                 $actualizacion = new Actualizacion();
                 $now = new \DateTime();
-                $actualizacion->fecha = $now->format('d-m-y');
+                $myTme = Carbon::now();
+                $actualizacion->fecha = $myTme->toDateString();
                 $actualizacion->id_banda = $banda->id;
                 $actualizacion->id_ciudad = $banda->id_ciudad;
                 $actualizacion->detalles = "Esta banda ha editado un Disco";
@@ -232,7 +234,8 @@ class BandaController extends Controller
                 $ciudad = DB::table('ciudad')->where('id',$banda->id_ciudad)->first();
                 $actualizacion = new Actualizacion();
                 $now = new \DateTime();
-                $actualizacion->fecha = $now->format('d-m-y');
+                $myTme = Carbon::now();
+                $actualizacion->fecha = $myTme->toDateString();
                 $actualizacion->id_banda = $banda->id;
                 $actualizacion->id_ciudad = $banda->id_ciudad;
                 $actualizacion->detalles = "Esta banda ha editado un Disco";
@@ -373,7 +376,8 @@ class BandaController extends Controller
             $ciudad = DB::table('ciudad')->where('id',$banda->id_ciudad)->first();
             $actualizacion = new Actualizacion();
             $now = new \DateTime();
-            $actualizacion->fecha = $now->format('d-m-y');
+            $myTme = Carbon::now();
+            $actualizacion->fecha = $myTme->toDateString();
             $actualizacion->id_banda = $banda->id;
             $actualizacion->id_ciudad = $banda->id_ciudad;
             $actualizacion->detalles = "Esta banda ha agregado un nuevo Disco";
@@ -457,7 +461,8 @@ class BandaController extends Controller
             $ciudad = DB::table('ciudad')->where('id',$banda->id_ciudad)->first();
             $actualizacion = new Actualizacion();
             $now = new \DateTime();
-            $actualizacion->fecha = $now->format('d-m-y');
+            $myTme = Carbon::now();
+            $actualizacion->fecha = $myTme->toDateString();
             $actualizacion->id_banda = $banda->id;
             $actualizacion->id_ciudad = $banda->id_ciudad;
             $actualizacion->detalles = "Esta banda ha actualizado su Perfil";
@@ -556,7 +561,8 @@ class BandaController extends Controller
             $ciudad = DB::table('ciudad')->where('id',$banda->id_ciudad)->first();
             $actualizacion = new Actualizacion();
             $now = new \DateTime();
-            $actualizacion->fecha = $now->format('d-m-y');
+            $myTme = Carbon::now();
+            $actualizacion->fecha = $myTme->toDateString();
             $actualizacion->id_banda = $banda->id;
             $actualizacion->id_ciudad = $banda->id_ciudad;
             $actualizacion->detalles = "Esta Banda ha actualizado su Perfil";

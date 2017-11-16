@@ -45,6 +45,7 @@ class FiltradoController extends Controller
         $generostraductor = DB::table('genero')->get();
         $liricastraductor = DB::table('lirica')->get();
         $ciudadestraductor = DB::table('ciudad')->get();
+        $regionactual = 'todo';
 
         if($request->seleccion == 'region'){
             $bandas = banda::where('nombre','like','%'.$request->nombre.'%')->orderBy('id_ciudad','asc')->get();
@@ -57,7 +58,7 @@ class FiltradoController extends Controller
         }
 
 
-        return \View::make('filtrado', compact('bandas'))->with('regionestraductor',$regionestraductor)->with('liricastraductor',$liricastraductor)->with('generostraductor',$generostraductor)->with('ciudadestraductor',$ciudadestraductor)->with('ciudades',$ciudades)->with('regiones',$regiones)->with('generos',$generos)->with('liricas',$liricas);
+        return \View::make('filtrado', compact('bandas'))->with('regionactual',$regionactual)->with('regionestraductor',$regionestraductor)->with('liricastraductor',$liricastraductor)->with('generostraductor',$generostraductor)->with('ciudadestraductor',$ciudadestraductor)->with('ciudades',$ciudades)->with('regiones',$regiones)->with('generos',$generos)->with('liricas',$liricas);
     }
 
     public function filtradoRegional(Request $request){
@@ -70,6 +71,7 @@ class FiltradoController extends Controller
         $generostraductor = DB::table('genero')->get();
         $liricastraductor = DB::table('lirica')->get();
         $ciudadestraductor = DB::table('ciudad')->get();
+        $regionactual = $_COOKIE['idRegion'];
 
         if($request->seleccion == 'Ciudad'){
             $bandas = DB::table('banda')
@@ -89,8 +91,9 @@ class FiltradoController extends Controller
                 ->orderBy('id_genero','asc')
                 ->get();
         }
+        //dd($_COOKIE['idRegion']);
 
-        return \View::make('filtrado', compact('bandas'))->with('regionestraductor',$regionestraductor)->with('liricastraductor',$liricastraductor)->with('generostraductor',$generostraductor)->with('ciudadestraductor',$ciudadestraductor)->with('ciudades',$ciudad)->with('regiones',$regiones)->with('generos',$generos)->with('liricas',$liricas);
+        return \View::make('filtrado', compact('bandas'))->with('regionactual',$regionactual)->with('regionestraductor',$regionestraductor)->with('liricastraductor',$liricastraductor)->with('generostraductor',$generostraductor)->with('ciudadestraductor',$ciudadestraductor)->with('ciudades',$ciudad)->with('regiones',$regiones)->with('generos',$generos)->with('liricas',$liricas);
     }
 
     public function filtrado(Request $request){
@@ -102,6 +105,7 @@ class FiltradoController extends Controller
         $generostraductor = DB::table('genero')->get();
         $liricastraductor = DB::table('lirica')->get();
         $ciudadestraductor = DB::table('ciudad')->get();
+        $regionactual = $request->region;
 
         //dd($request);
 
@@ -175,7 +179,7 @@ class FiltradoController extends Controller
         //dd($bandas);
 
 
-        return \View::make('filtrado', compact('bandas'))->with('regionestraductor',$regionestraductor)->with('liricastraductor',$liricastraductor)->with('generostraductor',$generostraductor)->with('ciudadestraductor',$ciudadestraductor)->with('ciudades',$ciudad)->with('regiones',$regiones)->with('generos',$generos)->with('liricas',$liricas);
+        return \View::make('filtrado', compact('bandas'))->with('regionactual',$regionactual)->with('regionestraductor',$regionestraductor)->with('liricastraductor',$liricastraductor)->with('generostraductor',$generostraductor)->with('ciudadestraductor',$ciudadestraductor)->with('ciudades',$ciudad)->with('regiones',$regiones)->with('generos',$generos)->with('liricas',$liricas);
     }
 }
 

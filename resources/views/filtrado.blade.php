@@ -56,32 +56,70 @@
                     <tbody class="letraTexto">
                     @foreach($bandas as $banda)
                         <tr>
-                            <td>{{ $banda->nombre }}</td>
-                            @foreach($ciudadestraductor as $ciudad)
-                                @if($ciudad->id == $banda->id_ciudad)
-                                    <td>{{ $ciudad->nombre }}</td>
-                                    @foreach($regionestraductor as $region)
-                                        @if($region->id == $ciudad->id_region)
-                                            <td>{{ $region->nombre }}</td>
+                                @foreach($ciudadestraductor as $ciudad)
+                                    @if($ciudad->id == $banda->id_ciudad)
+                                    @if($ciudad->id_region == $regionactual)
+                                        <td>{{ $banda->nombre }}</td>
+                                        @foreach($ciudadestraductor as $ciudad)
+                                            @if($ciudad->id == $banda->id_ciudad)
+                                                <td>{{ $ciudad->nombre }}</td>
+                                                @foreach($regionestraductor as $region)
+                                                    @if($region->id == $ciudad->id_region)
+                                                        <td>{{ $region->nombre }}</td>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        @endforeach
+                                        @foreach($liricastraductor as $lirica)
+                                            @if($lirica->id == $banda->id_lirica)
+                                                <td>{{ $lirica->nombre }}</td>
+                                            @endif
+                                        @endforeach
+                                        @foreach($generostraductor as $genero)
+                                            @if($genero->id == $banda->id_genero)
+                                                <td>{{ $genero->nombre }}</td>
+                                            @endif
+                                            <?php $conteo = 1?>
+                                        @endforeach
+                                        <td>
+                                            <a class="btn btn-danger btn-xs" href="{{ route('banda/ver',['id' => $banda->id] )}}" >Ver</a>
+                                        </td>
+                                    @endif
+                                        @if('todo' == $regionactual)
+                                            <td>{{ $banda->nombre }}</td>
+                                            @foreach($ciudadestraductor as $ciudad)
+                                                @if($ciudad->id == $banda->id_ciudad)
+                                                    <td>{{ $ciudad->nombre }}</td>
+                                                    @foreach($regionestraductor as $region)
+                                                        @if($region->id == $ciudad->id_region)
+                                                            <td>{{ $region->nombre }}</td>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            @endforeach
+                                            @foreach($liricastraductor as $lirica)
+                                                @if($lirica->id == $banda->id_lirica)
+                                                    <td>{{ $lirica->nombre }}</td>
+                                                @endif
+                                            @endforeach
+                                            @foreach($generostraductor as $genero)
+                                                @if($genero->id == $banda->id_genero)
+                                                    <td>{{ $genero->nombre }}</td>
+                                                @endif
+                                                <?php $conteo = 1?>
+                                            @endforeach
+                                            <td>
+                                                <a class="btn btn-danger btn-xs" href="{{ route('banda/ver',['id' => $banda->id] )}}" >Ver</a>
+                                            </td>
                                         @endif
-                                    @endforeach
-                                @endif
-                            @endforeach
-                            @foreach($liricastraductor as $lirica)
-                                @if($lirica->id == $banda->id_lirica)
-                                    <td>{{ $lirica->nombre }}</td>
-                                @endif
-                            @endforeach
-                        @foreach($generostraductor as $genero)
-                                @if($genero->id == $banda->id_genero)
-                                    <td>{{ $genero->nombre }}</td>
-                                @endif
-                            <?php $conteo = 1?>
-                            @endforeach
-                            <td>
-                                <a class="btn btn-danger btn-xs" href="{{ route('banda/ver',['id' => $banda->id] )}}" >Ver</a>
-                            </td>
+                                    @endif
+                                @endforeach
+
+
+
+
                         </tr>
+
                     @endforeach
                     </tbody>
                     @if($conteo == 0)

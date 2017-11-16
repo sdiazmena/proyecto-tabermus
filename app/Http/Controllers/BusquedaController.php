@@ -181,7 +181,7 @@ class BusquedaController extends Controller
         $regiones = Region::orderBy('id', 'ASC')->pluck('nombre','id')->all();
         $rutaPerfil = '/tabermus/public/banda/'.$id;
         $rutaHistoria = '/tabermus/public//banda/'.$id.'/historia';
-        $rutaDiscos = '/tabermus/public/banda/'.$id.'/discos';
+        $rutaDiscos = '/tabermus/public/banda/'.$id.'/discografia';
         $rutaFechas = '/tabermus/public/banda/'.$id.'/fechas';
         $editable = 0;
         $shows = DB::table('shows')->where('id_banda', '=', $id)->get();
