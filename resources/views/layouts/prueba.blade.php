@@ -60,10 +60,7 @@
     {{ Html::script('js/scriptsBandaAgregarEliminarElementos.js') }}
     {{ Html::script('js/scriptRegionesBarraMenu.js') }}
     {{ Html::script('js/scriptIndex.js') }}
-
-    <?php $regionActualId = '1'; ?>
-    <?php $regionActualNombre = 'Tarapacá'; ?>
-
+    {{ Html::script('js/modalShow.js') }}
 
 </head>
 <body>

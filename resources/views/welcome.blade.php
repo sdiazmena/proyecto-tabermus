@@ -89,7 +89,7 @@
                                         <p class="letraTexto">{{substr($actualizacion->fecha, 0,10)}}</p>
                                         <h3 class="letraTitulo">{{$banda->nombre}}</h3>
                                         <p class="letraTexto">{{$actualizacion->detalles}}</p>
-                                    <!--<a class="btn btn-danger btn-xs" href="{{ route('buscar/banda',['id' => $banda->id] )}}" >Ver</a>-->
+                                    <<a class="btn btn-danger btn-xs" href="#" onclick="verShow('$actualizacion->id_show')" >Ver</a>
                                         <?php $existeNoticiaShow = 1?>
                                     </div>
                                 @endif
@@ -102,7 +102,27 @@
                 </div>
             </div>
         </div>
+        <div id="selectDisco-modal" class="modal fade letraTitulo" tabindex="-1" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content fondoContenido">
+                    <div class="modal-header">
+                        <h4>Seleccionar Disco</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h1 class="featurette-heading">Discos: </h1>
 
+                        <div class="form-group">
+
+                            <select class = "form-control" name="elejir_comida" onchange="mostrarValor(this);">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dafault letraPortada" data-dismiss="modal">CANCELAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
     
