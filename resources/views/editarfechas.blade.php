@@ -54,20 +54,20 @@
                     <div class="modal-body">
                         <div class="form-group">
                             {{ Form::label('title', 'NOMBRE EVENTO')}}
-                            {{ Form::text('title', old('title'),['class' => 'form-control']) }}
+                            {{ Form::text('title', NULL,['class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
                             <input type="hidden" name="id_banda" value= "{{$banda->id}}">
                             {{ Form::label('date_start', 'FECHA INICIO')}}
-                            {{ Form::text('date_start', old('date_start'),['class' => 'form-control', 'readonly' => 'true']) }}
+                            {{ Form::text('date_start', NULL,['class' => 'form-control', 'readonly' => 'true']) }}
                         </div>
                         <div class="form-group">
                             {{ Form::label('time_start', 'HORA INICIO')}}
-                            {{ Form::text('time_start', old('time_start'),['id'=>'time_start','class' => 'form-control']) }}
+                            {{ Form::text('time_start', NULL,['id'=>'time_start','class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
                             {{ Form::label('date_end', 'FECHA HORA FIN')}}
-                            {{ Form::text('date_end', old('date_end'),['id'=>'date_end','class' => 'form-control']) }}
+                            {{ Form::text('date_end', NULL,['id'=>'date_end','class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
                             {!! Form::label('region', 'REGION') !!}
@@ -88,7 +88,7 @@
                         </div>-->
                         <div class="form-group">
                             {{ Form::label('informacion', 'INFORMACIÓN')}}
-                            {{ Form::text('informacion', old('informacion'),['class' => 'form-control']) }}
+                            {{ Form::text('informacion', NULL,['class' => 'form-control']) }}
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -103,6 +103,7 @@
         <div id="calendar" class="fondoContenido letraTexto"></div>
         @if($editable==1)
         <div id="upload-modal" class="modal fade" tabindex="-1" data-backdrop="static">
+        {{ Form::open(['url' => '/calendario/'.$banda->id , 'method' => 'put', 'role' => 'form'])}}
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -114,9 +115,9 @@
                             {{ Form::text('title', old('title'),['class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
-                            <input type="hidden" name="id_banda" value= "{{$banda->id}}">
+                            <input type="hidden" id = "id_show" name="id_show" value= "">
                             {{ Form::label('date_start', 'FECHA INICIO')}}
-                            {{ Form::text('date_start', old('date_start'),['class' => 'form-control', 'readonly' => 'true']) }}
+                            {{ Form::text('date_start', old('date_start'),['class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
                             {{ Form::label('time_start', 'HORA INICIO')}}
@@ -128,11 +129,13 @@
                         </div>
                         <div class="form-group">
                             {!! Form::label('region', 'REGION') !!}
+                            {{ Form::text('id_region', old('id_region'),['id' => 'id_region', 'class' => 'form-control', 'readonly' => 'true']) }}
                              {!! Form::select('region', $regiones, null,['id'=>'region','class' => 'form-control', 'placeholder' => 'Seleccione una región..']) !!}
                         </div>
                         <div>
                             {!! Form::label('ciudad_id', 'CIUDAD') !!} 
-                            {!! Form::select('ciudad_id', ['placeholder' => 'Seleccione una ciudad..'], null,['id'=>'ciudad','class' => 'form-control','value' => '{{$banda->id_ciudad}}']) !!}
+                            {{ Form::text('id_ciudad', old('id_ciudad'),['id' => 'id_ciudad', 'class' => 'form-control', 'readonly' => 'true']) }}
+                            {!! Form::select('ciudad', ['placeholder' => 'Seleccione una ciudad..'], null,['id'=>'ciudad','class' => 'form-control']) !!}
                         </div><!--
                         <div class="form-group">
                             {{ Form::label('color', 'COLOR')}}
@@ -149,12 +152,13 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a id="delete" data-href="{{ url('calendario') }}" data-id="" class="btn btn-danger">ELIMINAR</a>
+                        <a id="delete" data-href="{{ url('/calendario') }}" data-id="" class="btn btn-danger">ELIMINAR</a>
                         <button type="button" class="btn btn-dafault" data-dismiss="modal">CANCELAR</button>
                         {!! Form::submit('ACTUALIZAR', ['class' => 'btn btn-success']) !!}
                     </div>
                 </div>
             </div>
+        {{ Form::close() }}
         </div>
         @endif
     </div>
@@ -197,19 +201,44 @@
                 $('#responsive-modal').modal('show');
             },
             events: BASEURL+'/calendarios/banda/'+mivarJS,
-/*
+
             eventClick: function(event, jsEvent, view){
                 var date_start = $.fullCalendar.moment(event.start).format('YYYY-MM-DD');
                 var time_start = $.fullCalendar.moment(event.start).format('hh:mm:ss');
                 var date_end = $.fullCalendar.moment(event.end).format('YYYY-MM-DD hh:mm:ss');
                 $('#upload-modal #delete').attr('data-id', event.id);
+                $('#upload-modal #id_show').val(event.id);
                 $('#upload-modal #title').val(event.title);
                 $('#upload-modal #date_start').val(date_start);
                 $('#upload-modal #time_start').val(time_start);
                 $('#upload-modal #date_end').val(date_end);
                 $('#upload-modal #color').val(event.color);
+                $('#upload-modal #informacion').val(event.informacion);
+                $.ajax({
+                    url: BASEURL+'/region/'+event.id_region,
+                    type: 'GET',
+                    success: function(data){
+                        
+                        $('#upload-modal #id_region').val(data[0].nombre);
+                        console.log(event.id_ciudad);
+                        $.ajax({
+                            url: BASEURL+'/ciudad/'+event.id_ciudad,
+                            type: 'GET',
+                            success: function(result){
+                                console.log(result[0].nombre);
+                                $('#upload-modal #id_ciudad').val(result[0].nombre);
+                            },
+                            error: function(result){
+                                console.log('Error:',result);
+                            }
+                        });
+                    },
+                    error: function(data){
+                            console.log('Error:',data);
+                    } 
+                });
                 $('#upload-modal').modal('show');
-            }*/
+            }
         });
         
     
@@ -228,13 +257,14 @@
     $('#delete').on('click', function(){
         var x= $(this);
         var delete_url = x.attr('data-href')+'/'+x.attr('data-id');
-
+        
         $.ajax({
           
             url: delete_url,
             type: 'DELETE',
-            succes: function(result){
-                alert('success');
+            success: function(result){
+                
+                window.location.href = BASEURL+'/calendarios/delete/'+result;
             },
             error: function(result){
                 alert('error');

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Show;
+use App\Genero;
+use App\Lirica;
+use App\Region;
 USE DB;
 use App\Actualizacion;
 class ShowController extends Controller
@@ -63,9 +66,23 @@ class ShowController extends Controller
     public function getDataBanda($id)
     {
         
-        $data = DB::table('shows')->where('id_banda',$id)->get(['title','start','color','end','id','id_banda']);
+        $data = DB::table('shows')->where('id_banda',$id)->get(['title','start','color','end','id','id_banda','informacion','id_region','id_ciudad']);
      
        return Response()->json($data);
+    }
+    public function showDelete($id){
+
+        $banda = DB::table('banda')->where('id', $id)->first();
+        $liricas = Lirica::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+        $generos = Genero::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+        $regiones = Region::orderBy('id', 'ASC')->pluck('nombre','id')->all();
+        $rutaPerfil = '/tabermus/public/profile/banda/'.$id.'/edit';
+        $rutaHistoria = '/tabermus/public/profile/banda/'.$id.'/historia';
+        $rutaDiscos = '/tabermus/public/profile/banda/'.$id.'/discos';
+        $rutaFechas = '/tabermus/public/profile/banda/'.$id.'/fechas';  
+        $editable = 1; 
+        $status = "Show eliminado correctamente";
+        return view("editarfechas")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas)->with('status',$status);
     }
 
     /**
@@ -86,6 +103,17 @@ class ShowController extends Controller
      */
     public function store(Request $request)
     {
+        $banda = DB::table('banda')->where('id', $request->id_banda)->first();
+        $liricas = Lirica::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+        $generos = Genero::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+        $regiones = Region::orderBy('id', 'ASC')->pluck('nombre','id')->all();
+        $rutaPerfil = '/tabermus/public/profile/banda/'.$request->id_banda.'/edit';
+        $rutaHistoria = '/tabermus/public/profile/banda/'.$request->id_banda.'/historia';
+        $rutaDiscos = '/tabermus/public/profile/banda/'.$request->id_banda.'/discos';
+        $rutaFechas = '/tabermus/public/profile/banda/'.$request->id_banda.'/fechas';  
+        $editable = 1; 
+        $status = 'Show creado correctamente';
+
         $show = new Show();
         $show->title = $request->title;
         $show->informacion = $request->informacion;
@@ -106,7 +134,10 @@ class ShowController extends Controller
         $actualizacion->detalles = "Se ha añadido un nuevo show";
         $actualizacion->id_region = $request->region;
         $actualizacion->save();
-        return redirect('/profile')->with('status', 'Evento creado correctamente');
+        
+
+
+        return view("editarfechas")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas)->with('status',$status);
     }
 
     /**
@@ -140,7 +171,45 @@ class ShowController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        if($request->ciudad_id == "placeholder"){
+            DB::table('shows')->where('id',$request->id_show)->update(['title' => $request->title,'informacion'=>$request->informacion,'start'=>$request->date_start,'end'=>$request->date_end]);
+            $id_region = DB::table('region')->where('nombre',$request->id_region)->first();
+            $id_ciudad = DB::table('ciudad')->where('nombre',$request->id_ciudad)->first();
+            $actualizacion = new Actualizacion();
+            $now = new \DateTime();
+            $actualizacion->fecha = $now->format('d-m-y');
+            $actualizacion->id_banda = $id;
+            $actualizacion->id_ciudad = $id_ciudad->id;
+            $actualizacion->id_show = $request->id_show;
+            $actualizacion->detalles = "Ha editado la información de un show";
+            $actualizacion->id_region = $id_region->id;
+            $actualizacion->save();
+        }else{
+            DB::table('shows')->where('id',$request->id_show)->update(['title'=>$request->title,'informacion'=>$request->informacion,'start'=>$request->date_start,'end'=>$request->date_end,'id_ciudad'=>$request->ciudad_id,'id_region'=>$request->region]);
+            $actualizacion = new Actualizacion();
+            $now = new \DateTime();
+            $actualizacion->fecha = $now->format('d-m-y');
+            $actualizacion->id_banda = $id;
+            $actualizacion->id_ciudad = $request->ciudad_id;
+            $actualizacion->id_show = $request->id_show;
+            $actualizacion->detalles = "Ha editado la información de un show";
+            $actualizacion->id_region = $request->region;
+            $actualizacion->save();
+        }
+        $banda = DB::table('banda')->where('id', $id)->first();
+        $liricas = Lirica::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+        $generos = Genero::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+        $regiones = Region::orderBy('id', 'ASC')->pluck('nombre','id')->all();
+        $rutaPerfil = '/tabermus/public/profile/banda/'.$id.'/edit';
+        $rutaHistoria = '/tabermus/public/profile/banda/'.$id.'/historia';
+        $rutaDiscos = '/tabermus/public/profile/banda/'.$id.'/discos';
+        $rutaFechas = '/tabermus/public/profile/banda/'.$id.'/fechas';  
+        $editable = 1; 
+        $status = "Se ha editado el Show correctamente";
+        return view("editarfechas")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas)->with('status',$status);
+
+        
     }
 
     /**
@@ -151,8 +220,7 @@ class ShowController extends Controller
      */
     public function destroy($id)
     {
-        //
-        /*
+        
         $show = Show::find($id);
 
         if($show == null){
@@ -160,10 +228,9 @@ class ShowController extends Controller
                 'message' => 'error delete.'
             ]);
         }
+        $id = $show->id_banda;
         $show->delete();
 
-        return Response()->json([
-            'message' => 'success delete.'
-        ]);*/
+        return Response()->json($id);
     }
 }

@@ -25,6 +25,7 @@ Route::post('/profile/user/updateProfile', 'UserController@updateProfile');
 Route::resource('/calendario','ShowController');
 Route::get('/calendarios/banda/{id}', 'ShowController@getDataBanda');
 Route::get('/calendarios', 'ShowController@getData');
+Route::get('/calendarios/delete/{id}', 'ShowController@showDelete');
 
 Route::resource('/profile/banda', 'BandaController');
 Route::get('/profile/banda/{id}/historia','BandaController@editHistory');
@@ -33,9 +34,12 @@ Route::get('/profile/banda/{id}/discos','BandaController@editDiscos');
 Route::post('/profile/banda/{id}/discos/update','BandaController@updateDiscos');
 Route::post('/profile/banda/{id}/discos/editar','BandaController@editarDiscos');
 
+
 Route::get('/profile/banda/{id}/fechas','BandaController@editFechas');
 Route::post('/profile/banda/{id}/fechas/update','BandaController@updateFechas');
 Route::get('/profile/ciudades/{id}', 'RegionController@getCiudades');
+Route::get('/region/{id}', 'RegionController@getRegion');
+Route::get('/ciudad/{id}', 'RegionController@getCiudad');
 Route::get('/profile/banda/disco/{id}', 'BandaController@getDisco');
 Route::get('/profile/banda/disco/canciones/{id}', 'BandaController@getCanciones');
 Route::get('/redirect/{provider}','SocialController@redirect');

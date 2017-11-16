@@ -181,6 +181,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
+                            <a id="delete" data-href="{{ url('/profile/banda') }}" data-id="" class="btn btn-danger">ELIMINAR</a>
                             <button type="button" class="btn btn-dafault letraPortada" data-dismiss="modal">CANCELAR</button>
                             {!! Form::submit('Editar', ['class' => 'btn btn-success']) !!}
                         </div>
@@ -202,16 +203,22 @@
         $('#editar').on('click', function(){
             $('#selectDisco-modal').modal('show');
         });
- 
-        $("#select").on('click', function(){
-
-                var nombres_paises = {};
-
-                $('.discos').each(function() {
-                    nombres_paises[$(this).attr('id')] = $(this).val();
-                });
-                alert(nombres_paises);
-            
+        $('#delete').on('click', function(){
+        var x= $(this);
+        var delete_url = x.attr('data-href')+'/'+x.attr('data-id');
+        console.log(delete_url);
+            $.ajax({
+              
+                url: delete_url,
+                type: 'DELETE',
+                success: function(result){
+                    console.log(result);
+                    
+                },
+                error: function(result){
+                    alert('error');
+                }
+            });
         });
     });
         var BASEURL = '{{ url('/') }}';
@@ -324,5 +331,6 @@
           fi = document.getElementById('fiel2'); // 1 
           fi.removeChild(document.getElementById(obj)); // 10
         }
+
     </script>
 @endsection

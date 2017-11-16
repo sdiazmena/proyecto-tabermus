@@ -656,6 +656,20 @@ class BandaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $disco = Disco::find($id);
+
+        if($disco == null){
+            return Response()->json([
+                'message' => 'error delete.'
+            ]);
+        }
+        $id = DB::table('lista_canciones')->where('id_disco',$disco->id)->get(['id']);
+        DB::table('cancion')->where('id_lista',$id[0]->id)->delete();
+        DB::table('lista_canciones')->where('$id_disco',$disco->id)->delete();
+
+        $id = $disco->id_banda;
+        $disco->delete();
+
+        return Response()->json($id);
     }
 }

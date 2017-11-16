@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ciudad; 
-
+use DB;
 class RegionController extends Controller
 {
     //
@@ -17,6 +17,22 @@ class RegionController extends Controller
 			return response()->json($ciudades);
 		}
 	}
+    public function getCiudad(Request $request,$id)
+    {
+        if($request->ajax())
+        {
+            $ciudad = DB::table('ciudad')->where('id',$id)->get();
+            return response()->json($ciudad);
+        }
+    }
+    public function getRegion(Request $request,$id)
+    {
+        if($request->ajax())
+        {
+            $region = DB::table('region')->where('id',$id)->get();
+            return response()->json($region);
+        }
+    }
     public function index()
     {
         //
