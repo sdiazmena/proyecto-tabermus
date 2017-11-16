@@ -56,8 +56,8 @@
                     <tbody class="letraTexto">
                     @foreach($bandas as $banda)
                         <tr>
-                                @foreach($ciudadestraductor as $ciudad)
-                                    @if($ciudad->id == $banda->id_ciudad)
+                            @foreach($ciudadestraductor as $ciudad)
+                                @if($ciudad->id == $banda->id_ciudad)
                                     @if($ciudad->id_region == $regionactual)
                                         <td>{{ $banda->nombre }}</td>
                                         @foreach($ciudadestraductor as $ciudad)
@@ -85,7 +85,7 @@
                                             <a class="btn btn-danger btn-xs" href="{{ route('banda/ver',['id' => $banda->id] )}}" >Ver</a>
                                         </td>
                                     @endif
-                                        @if('todo' == $regionactual)
+                                    @if('todo' == $regionactual)
                                             <td>{{ $banda->nombre }}</td>
                                             @foreach($ciudadestraductor as $ciudad)
                                                 @if($ciudad->id == $banda->id_ciudad)
@@ -112,14 +112,9 @@
                                                 <a class="btn btn-danger btn-xs" href="{{ route('banda/ver',['id' => $banda->id] )}}" >Ver</a>
                                             </td>
                                         @endif
-                                    @endif
-                                @endforeach
-
-
-
-
+                                @endif
+                            @endforeach
                         </tr>
-
                     @endforeach
                     </tbody>
                     @if($conteo == 0)

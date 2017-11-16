@@ -57,6 +57,8 @@ class FiltradoController extends Controller
             $bandas = banda::where('nombre','like','%'.$request->nombre.'%')->orderBy('id_genero','asc')->get();
         }
 
+        //dd($bandas);
+
 
         return \View::make('filtrado', compact('bandas'))->with('regionactual',$regionactual)->with('regionestraductor',$regionestraductor)->with('liricastraductor',$liricastraductor)->with('generostraductor',$generostraductor)->with('ciudadestraductor',$ciudadestraductor)->with('ciudades',$ciudades)->with('regiones',$regiones)->with('generos',$generos)->with('liricas',$liricas);
     }
@@ -66,32 +68,42 @@ class FiltradoController extends Controller
         $liricas = Lirica::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
         $generos = Genero::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
         $regiones = Region::orderBy('id', 'ASC')->pluck('nombre','id')->all();
-        $ciudad = Ciudad::ciudades($_COOKIE['idRegion']);
+        $ciudad = Ciudad::ciudades($_COOKIE["idRegion"]);
+        //$ciudad = DB::table('ciudad')->where('id_region', '=', $_COOKIE["idRegion"])->get();
         $regionestraductor = DB::table('region')->get();
         $generostraductor = DB::table('genero')->get();
         $liricastraductor = DB::table('lirica')->get();
         $ciudadestraductor = DB::table('ciudad')->get();
         $regionactual = $_COOKIE['idRegion'];
 
+        //dd($ciudad);
+
         if($request->seleccion == 'Ciudad'){
             $bandas = DB::table('banda')
-                ->whereIn('banda.id_ciudad', $ciudad )
+                ->join('ciudad', 'banda.id_ciudad', '=', 'ciudad.id')
+                ->where('ciudad.id_region', $_COOKIE['idRegion'])
+                ->select('banda.*', 'ciudad.id_region')
                 ->orderBy('id_ciudad','asc')
                 ->get();
 
         }else if ($request->seleccion == 'Letra'){
             $bandas = DB::table('banda')
-                ->whereIn('banda.id_ciudad', $ciudad )
+                ->join('ciudad', 'banda.id_ciudad', '=', 'ciudad.id')
+                ->where('ciudad.id_region', $_COOKIE['idRegion'])
+                ->select('banda.*', 'ciudad.id_region')
                 ->orderBy('nombre','asc')
                 ->get();
 
         }else{
             $bandas = DB::table('banda')
-                ->whereIn('banda.id_ciudad', $ciudad )
+                ->join('ciudad', 'banda.id_ciudad', '=', 'ciudad.id')
+                ->where('ciudad.id_region', $_COOKIE['idRegion'])
+                ->select('banda.*', 'ciudad.id_region')
                 ->orderBy('id_genero','asc')
                 ->get();
         }
-        //dd($_COOKIE['idRegion']);
+
+        //dd($bandas);
 
         return \View::make('filtrado', compact('bandas'))->with('regionactual',$regionactual)->with('regionestraductor',$regionestraductor)->with('liricastraductor',$liricastraductor)->with('generostraductor',$generostraductor)->with('ciudadestraductor',$ciudadestraductor)->with('ciudades',$ciudad)->with('regiones',$regiones)->with('generos',$generos)->with('liricas',$liricas);
     }
@@ -116,61 +128,78 @@ class FiltradoController extends Controller
         if($request->region){
             $ciudad = Ciudad::ciudades($request->region);
         }
+        //dd($ciudad);
 
         if($request->genero){
             if($request->orden == 'Alfabeticamente'){
-                $bandas = Banda::where('nombre','like','%'.$request->letra.'%')
+                $bandas = Banda::where('banda.nombre','like','%'.$request->letra.'%')
                     ->where('banda.id_genero', '=', $request->genero)
-                    ->whereIn('banda.id_ciudad', $ciudad )
-                    ->orderBy('nombre','asc')
+                    ->join('ciudad', 'banda.id_ciudad', '=', 'ciudad.id')
+                    ->where('ciudad.id_region', $request->region)
+                    ->select('banda.*', 'ciudad.id_region')
+                    ->orderBy('banda.nombre','asc')
                     ->get();
 
 
             }elseif ($request->orden == 'Ciudad'){
-                $bandas = Banda::where('nombre','like','%'.$request->letra.'%')
+                $bandas = Banda::where('banda.nombre','like','%'.$request->letra.'%')
                     ->where('banda.id_genero', '=', $request->genero)
-                    ->whereIn('banda.id_ciudad', $ciudad )
+                    ->join('ciudad', 'banda.id_ciudad', '=', 'ciudad.id')
+                    ->where('ciudad.id_region', $request->region)
+                    ->select('banda.*', 'ciudad.id_region')
                     ->orderBy('id_ciudad','asc')
                     ->get();
 
             }elseif ($request->orden == 'Genero'){
-                $bandas = Banda::where('nombre','like','%'.$request->letra.'%')
+                $bandas = Banda::where('banda.nombre','like','%'.$request->letra.'%')
                     ->where('banda.id_genero', '=', $request->genero)
-                    ->whereIn('banda.id_ciudad', $ciudad )
+                    ->join('ciudad', 'banda.id_ciudad', '=', 'ciudad.id')
+                    ->where('ciudad.id_region', $request->region)
+                    ->select('banda.*', 'ciudad.id_region')
                     ->orderBy('id_genero','asc')
                     ->get();
 
             }else{
-                $bandas = Banda::where('nombre','like','%'.$request->letra.'%')
+                $bandas = Banda::where('banda.nombre','like','%'.$request->letra.'%')
                     ->where('banda.id_genero', '=', $request->genero)
-                    ->whereIn('banda.id_ciudad', $ciudad )
+                    ->join('ciudad', 'banda.id_ciudad', '=', 'ciudad.id')
+                    ->where('ciudad.id_region', $request->region)
+                    ->select('banda.*', 'ciudad.id_region')
                     ->orderBy('id_lirica','asc')
                     ->get();
 
             }
         }else{
             if($request->orden == 'Alfabeticamente'){
-                $bandas = Banda::where('nombre','like','%'.$request->letra.'%')
-                    ->whereIn('banda.id_ciudad', $ciudad )
-                    ->orderBy('nombre','asc')
+                $bandas = Banda::where('banda.nombre','like','%'.$request->letra.'%')
+                    ->join('ciudad', 'banda.id_ciudad', '=', 'ciudad.id')
+                    ->where('ciudad.id_region', $request->region)
+                    ->select('banda.*', 'ciudad.id_region')
+                    ->orderBy('banda.nombre','asc')
                     ->get();
 
             }elseif ($request->orden == 'Ciudad'){
-                $bandas = Banda::where('nombre','like','%'.$request->letra.'%')
-                    ->whereIn('banda.id_ciudad', $ciudad )
-                    ->orderBy('id_ciudad','asc')
+                $bandas = Banda::where('banda.nombre','like','%'.$request->letra.'%')
+                    ->join('ciudad', 'banda.id_ciudad', '=', 'ciudad.id')
+                    ->where('ciudad.id_region', $request->region)
+                    ->select('banda.*', 'ciudad.id_region')
+                    ->orderBy('banda.id_ciudad','asc')
                     ->get();
 
             }elseif ($request->orden == 'Genero'){
-                $bandas = Banda::where('nombre','like','%'.$request->letra.'%')
-                    ->whereIn('banda.id_ciudad', $ciudad )
-                    ->orderBy('id_genero','asc')
+                $bandas = Banda::where('banda.nombre','like','%'.$request->letra.'%')
+                    ->join('ciudad', 'banda.id_ciudad', '=', 'ciudad.id')
+                    ->where('ciudad.id_region', $request->region)
+                    ->select('banda.*', 'ciudad.id_region')
+                    ->orderBy('banda.id_genero','asc')
                     ->get();
 
             }else{
-                $bandas = Banda::where('nombre','like','%'.$request->letra.'%')
-                    ->whereIn('banda.id_ciudad', $ciudad )
-                    ->orderBy('id_lirica','asc')
+                $bandas = Banda::where('banda.nombre','like','%'.$request->letra.'%')
+                    ->join('ciudad', 'banda.id_ciudad', '=', 'ciudad.id')
+                    ->where('ciudad.id_region', $request->region)
+                    ->select('banda.*', 'ciudad.id_region')
+                    ->orderBy('banda.id_lirica','asc')
                     ->get();
 
             }
