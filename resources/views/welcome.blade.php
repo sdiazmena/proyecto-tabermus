@@ -89,7 +89,7 @@
                                         <p class="letraTexto">{{substr($actualizacion->fecha, 0,10)}}</p>
                                         <h3 class="letraTitulo">{{$banda->nombre}}</h3>
                                         <p class="letraTexto">{{$actualizacion->detalles}}</p>
-                                    <<a class="btn btn-danger btn-xs" href="#" onclick="verShow('$actualizacion->id_show')" >Ver</a>
+                                    <a class="btn btn-danger btn-xs" href="#" onclick="verShow({{$actualizacion->id_show}})" >Ver</a>
                                         <?php $existeNoticiaShow = 1?>
                                     </div>
                                 @endif
@@ -102,23 +102,35 @@
                 </div>
             </div>
         </div>
-        <div id="selectDisco-modal" class="modal fade letraTitulo" tabindex="-1" data-backdrop="static">
+        <div id="responsive-modal" class="modal fade" tabindex="-1" data-backdrop="static">
             <div class="modal-dialog">
-                <div class="modal-content fondoContenido">
+                <div class="modal-content fondoContenido letraTitulo">
                     <div class="modal-header">
-                        <h4>Seleccionar Disco</h4>
+                        <h4 color="black" class="titulo">Informacion Show</h4>
                     </div>
                     <div class="modal-body">
-                        <h1 class="featurette-heading">Discos: </h1>
-
-                        <div class="form-group">
-
-                            <select class = "form-control" name="elejir_comida" onchange="mostrarValor(this);">
-                            </select>
+                        <div class="row">
+                            <strong>Nombre:</strong>
+                        </div>
+                        <div class="row">
+                            <strong>Ciudad:</strong>
+                            <div></div>
+                        </div>
+                        <div class="row">
+                            <strong>Fecha:</strong>
+                            <div></div>
+                        </div>
+                        <div class="row">
+                            <strong>Informacion:</strong>
+                            <div></div>
+                        </div>
+                        <div class="row">
+                            <strong>Link Show:</strong>
+                            <div></div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-dafault letraPortada" data-dismiss="modal">CANCELAR</button>
+                        <button type="button" class="btn btn-dafault letraPortada" data-dismiss="modal">Salir</button>
                     </div>
                 </div>
             </div>
@@ -128,4 +140,27 @@
     
 
 
+@endsection
+@section('scripts')
+    <script>
+        function verShow(valor) {
+            $('#responsive-modal').modal('show');
+            $.ajax({
+                url: BASEURL+'/profile/banda/fechas/'+valor,
+                type : 'GET',
+                success: function(result){
+                    console.log(result);
+                    alert(result);
+                    //$('#selectDisco2-modal #nombre').val(result[0].nombre);
+                    //$('#selectDisco2-modal #año').val(result[0].año);
+                    //$('#selectDisco2-modal #sello').val(result[0].sello);
+                    //$('#selectDisco2-modal #tipo').val(result[0].tipo);
+                    //$('#selectDisco2-modal #id').val(result[0].id);
+                },
+                error: function(result){
+                    console.log('Error:',result);
+                }
+            });
+        }
+    </script>
 @endsection
