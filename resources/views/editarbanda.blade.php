@@ -20,26 +20,53 @@
             <hr class="featurette-divider">
 
             <div class="row featurette">
-                <div class="col-md-7">
-                    <h1 class="featurette-heading">{{$banda->nombre}} </h1>
-                    <p class="lead">Region: {{ $region->nombre }}</p>
-                    <p class="lead">Ciudad: {{ $ciudad->nombre }}</p>
-                    <p class="lead">Genero: {{ $genero->nombre }}</p>
-                    <p class="lead">Genero: {{ $lirica->nombre }}</p>
-                    <p class="lead">¿Quienes Somos?</p>
-                    <p>{{ $banda->descripcion}}</p>
-                
+                <div class="col-md-6">
+                    <h1 class="titulo letraTitulo">{{$banda->nombre}} </h1>
+                    <h4 class="letraTexto"><strong>Region:</strong> {{ $region->nombre }}</h4>
+                    <h4 class="letraTexto"><strong>Ciudad:</strong> {{ $ciudad->nombre }}</h4>
+                    <h4 class="letraTexto"><strong>Genero:</strong> {{ $genero->nombre }}</h4>
+                    <h4 class="letraTexto"><strong>Lirica:</strong> {{ $lirica->nombre }}</h4>
+                    <h4 class="letraTexto"><strong>¿Quienes Somos?:</strong> {{ $banda->descripcion}}</h4>
 
-                    <br>
-                    <p class="lead"><img class="media-object" src="https://www.facebook.com/images/fb_icon_325x325.png" alt="..." height= "30px"><a href="{{$banda->facebook}}">{{$banda->facebook}}</p>
-                    <p class="lead"><img class="media-object" src="https://www.gstatic.com/images/icons/material/product/2x/youtube_64dp.png" alt="..." height= "30px"><a href="{{$banda->youtube}}">{{$banda->youtube}}</p>
-                    <p class="lead"><img class="media-object" src="https://instagram-brand.com/wp-content/themes/ig-branding/assets/images/ig-logo-email.png" alt="..." height= "30px"><a href="{{$banda->instagram}}">{{$banda->instagram}}</p>
-                    <p class="lead"><img class="media-object" src="https://lh3.googleusercontent.com/UrY7BAZ-XfXGpfkeWg0zCCeo-7ras4DCoRalC_WXXWTK9q5b0Iw7B0YQMsVxZaNB7DM=w300" alt="..." height= "30px"><a href="{{$banda->spotify}}">{{$banda->spotify}}</p>
-                    <p class="lead"><img class="media-object" src="http://www.espiritudeportivo.es/images/twitter-contacto.png" alt="..." height= "30px"><a href="{{$banda->twitter}}">{{$banda->twitter}}</p>
-                    <p class="lead"><img class="media-object" src="http://industriamusical.es/wp-content/uploads/2014/05/soundcloud-icon.png" alt="..." height= "30px"><a href="{{$banda->soundcloud}}">{{$banda->soundcloud}}</p>
+                    <?php $redesSociales = 0?>
+
+                    @if($banda->facebook)
+                        <p class="lead"><a href="http://{{$banda->facebook}}"><img class="media-object" src="https://www.facebook.com/images/fb_icon_325x325.png" alt="..." height= "30px"></a></p>
+                        <?php $redesSociales = $redesSociales +1?>
+                    @endif
+
+                    @if($banda->youtube)
+                        <p class="lead"><a href="http://{{$banda->youtube}}"><img class="media-object" src="https://www.gstatic.com/images/icons/material/product/2x/youtube_64dp.png" alt="..." height= "30px"></a></p>
+                        <?php $redesSociales = $redesSociales +1?>
+                    @endif
+
+                    @if($banda->instagram)
+                        <p class="lead"><a href="http://{{$banda->instagram}}"><img class="media-object" src="https://instagram-brand.com/wp-content/themes/ig-branding/assets/images/ig-logo-email.png" alt="..." height= "30px"></a></p>
+                        <?php $redesSociales = $redesSociales +1?>
+                    @endif
+
+                    @if($banda->spotify)
+                        <p class="lead"><a href="http://{{$banda->spotify}}"><img class="media-object" src="https://lh3.googleusercontent.com/UrY7BAZ-XfXGpfkeWg0zCCeo-7ras4DCoRalC_WXXWTK9q5b0Iw7B0YQMsVxZaNB7DM=w300" alt="..." height= "30px"></a></p>
+                        <?php $redesSociales = $redesSociales +1?>
+                    @endif
+
+                    @if($banda->twitter)
+                        <p class="lead"><a href="http://{{$banda->twitter}}"><img class="media-object" src="http://www.espiritudeportivo.es/images/twitter-contacto.png" alt="..." height= "30px"></a></p>
+                        <?php $redesSociales = $redesSociales +1?>
+                    @endif
+
+                    @if($banda->soundcloud)
+                        <p class="lead"><a href="http://{{$banda->soundcloud}}"><img class="media-object" src="http://industriamusical.es/wp-content/uploads/2014/05/soundcloud-icon.png" alt="..." height= "30px"></a></p>
+                        <?php $redesSociales = $redesSociales +1?>
+                    @endif
+
+                    @if($redesSociales == 0)
+                        <h4 class="letraTexto"><strong>Redes Sociales:</strong> Actualmente no registrados en esta banda</h4>
+                    @endif
                 </div>
-                <div class="col-md-5">
-                    <img src="http://localhost/tabermus/public/{{$banda->imagen}}" class="img-responsive" style="width:100%" alt="Image">
+                <div class="col-md-6">
+                    <br>
+                    <img src="http://localhost/tabermus/public/{{$banda->imagen}}" class="img-responsive fondoContenido" style="width:100%" alt="Image">
                 </div>
             </div>
             @if($editable == 1)

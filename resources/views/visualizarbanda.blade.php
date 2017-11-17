@@ -23,33 +23,33 @@
                     <?php $redesSociales = 0?>
 
                     @if($banda->facebook)
-                        <p class="lead"><img class="media-object" src="https://www.facebook.com/images/fb_icon_325x325.png" alt="..." height= "30px"><a href="{{$banda->facebook}}">{{$banda->facebook}}</a></p>
-                        {{$redesSociales = $redesSociales +1}}
+                        <p class="lead"><a href="http://{{$banda->facebook}}"><img class="media-object" src="https://www.facebook.com/images/fb_icon_325x325.png" alt="..." height= "30px"></a></p>
+                        <?php $redesSociales = $redesSociales +1?>
                     @endif
 
                     @if($banda->youtube)
-                        <p class="lead"><img class="media-object" src="https://www.gstatic.com/images/icons/material/product/2x/youtube_64dp.png" alt="..." height= "30px"><a href="{{$banda->youtube}}">{{$banda->youtube}}</a></p>
-                        {{$redesSociales = $redesSociales +1}}
+                        <p class="lead"><a href="http://{{$banda->youtube}}"><img class="media-object" src="https://www.gstatic.com/images/icons/material/product/2x/youtube_64dp.png" alt="..." height= "30px"></a></p>
+                        <?php $redesSociales = $redesSociales +1?>
                     @endif
 
                     @if($banda->instagram)
-                        <p class="lead"><img class="media-object" src="https://instagram-brand.com/wp-content/themes/ig-branding/assets/images/ig-logo-email.png" alt="..." height= "30px"><a href="{{$banda->instagram}}">{{$banda->instagram}}</a></p>
-                        {{$redesSociales = $redesSociales +1}}
+                        <p class="lead"><a href="http://{{$banda->instagram}}"><img class="media-object" src="https://instagram-brand.com/wp-content/themes/ig-branding/assets/images/ig-logo-email.png" alt="..." height= "30px"></a></p>
+                        <?php $redesSociales = $redesSociales +1?>
                     @endif
 
                     @if($banda->spotify)
-                        <p class="lead"><img class="media-object" src="https://lh3.googleusercontent.com/UrY7BAZ-XfXGpfkeWg0zCCeo-7ras4DCoRalC_WXXWTK9q5b0Iw7B0YQMsVxZaNB7DM=w300" alt="..." height= "30px"><a href="{{$banda->spotify}}">{{$banda->spotify}}</a></p>
-                        {{$redesSociales = $redesSociales +1}}
+                        <p class="lead"><a href="http://{{$banda->spotify}}"><img class="media-object" src="https://lh3.googleusercontent.com/UrY7BAZ-XfXGpfkeWg0zCCeo-7ras4DCoRalC_WXXWTK9q5b0Iw7B0YQMsVxZaNB7DM=w300" alt="..." height= "30px"></a></p>
+                        <?php $redesSociales = $redesSociales +1?>
                     @endif
 
                     @if($banda->twitter)
-                        <p class="lead"><img class="media-object" src="http://www.espiritudeportivo.es/images/twitter-contacto.png" alt="..." height= "30px"><a href="{{$banda->twitter}}">{{$banda->twitter}}</a></p>
-                        {{$redesSociales = $redesSociales +1}}
+                        <p class="lead"><a href="http://{{$banda->twitter}}"><img class="media-object" src="http://www.espiritudeportivo.es/images/twitter-contacto.png" alt="..." height= "30px"></a></p>
+                        <?php $redesSociales = $redesSociales +1?>
                     @endif
 
                     @if($banda->soundcloud)
-                        <p class="lead"><img class="media-object" src="http://industriamusical.es/wp-content/uploads/2014/05/soundcloud-icon.png" alt="..." height= "30px"><a href="{{$banda->soundcloud}}">{{$banda->soundcloud}}</a></p>
-                        {{$redesSociales = $redesSociales +1}}
+                        <p class="lead"><a href="http://{{$banda->soundcloud}}"><img class="media-object" src="http://industriamusical.es/wp-content/uploads/2014/05/soundcloud-icon.png" alt="..." height= "30px"></a></p>
+                        <?php $redesSociales = $redesSociales +1?>
                     @endif
 
                     @if($redesSociales == 0)
