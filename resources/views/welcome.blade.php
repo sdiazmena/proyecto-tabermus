@@ -145,20 +145,16 @@
     <script>
         function verShow(valor) {
             $('#responsive-modal').modal('show');
+            var BASEURL = '{{ url('/') }}';
             $.ajax({
-                url: BASEURL+'/profile/banda/fechas/'+valor,
+                url: BASEURL+'/home/show',
+                data: valor,
                 type : 'GET',
                 success: function(result){
                     console.log(result);
-                    alert(result);
-                    //$('#selectDisco2-modal #nombre').val(result[0].nombre);
-                    //$('#selectDisco2-modal #año').val(result[0].año);
-                    //$('#selectDisco2-modal #sello').val(result[0].sello);
-                    //$('#selectDisco2-modal #tipo').val(result[0].tipo);
-                    //$('#selectDisco2-modal #id').val(result[0].id);
                 },
-                error: function(result){
-                    console.log('Error:',result);
+                error: function(){
+                    console.log('Error:');
                 }
             });
         }

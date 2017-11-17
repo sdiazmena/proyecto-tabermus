@@ -52,4 +52,21 @@ class HomeController extends Controller
         //dd($data);
         return view('welcome')->with('actualizaciones',$data)->with('bandas',$bandas)->with('foto',$valorImprimir);
     }
+
+    public function store($request)
+    {
+        $show = DB::table(show)->where('id', '=', $request)->get();
+
+        $response = array(
+            'nombre' => 'success',
+            'fechaInicio' => 'fecha',
+            'fechaFin' => 'fecha',
+            'horaInicio' => 'ini',
+            'horaFin' => 'fin',
+            'id_ciudad' => 'ciudad',
+            'informacion' => 'informacion',
+            'valor' => 'dinero',
+        );
+        return \Response::json($response);
+    }
 }
