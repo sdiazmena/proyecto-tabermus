@@ -59,14 +59,13 @@ class HomeController extends Controller
 
     public function store(Request $request)
     {
-        if($request->ajax()) {
-            $show = DB::table(show)->where('id', '=', $request)->get();
+        $show = DB::table(show)->where('id', '=', $request)->get();
 
-            $response = array(
-                'status' => 'success',
-                'msg' => 'Setting created successfully',
-            );
-            return \Response::json($response);
-        }
+        $response = array(
+            'status' => 'success',
+            'msg' => 'Setting created successfully',
+        );
+        return \Response::json($response);
+
     }
 }
