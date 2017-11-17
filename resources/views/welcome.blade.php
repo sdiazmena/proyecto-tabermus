@@ -147,7 +147,7 @@
             $('#responsive-modal').modal('show');
             var BASEURL = '{{ url('/') }}';
             $.ajax({
-                url: 'home/show/'+valor ,
+                url: BASEURL+'/show/'+valor ,
                 type : 'GET',
                 success: function(result){
                     console.log(result);

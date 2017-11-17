@@ -65,7 +65,7 @@ class HomeController extends Controller
             'status' => 'success',
             'msg' => 'Setting created successfully',
         );
-        return \Response::json($response);
+        return Response()->json($response);
 
     }
 }
