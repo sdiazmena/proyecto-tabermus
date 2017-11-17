@@ -20,6 +20,7 @@
             @if($editable == 1)
             <div class='text-danger'>{{$errors->first('image')}}</div>
             @endif
+            <?php $conteoDiscos =0?>
             @foreach ($discos as $disco)
                 <hr class="featurette-divider">
 
@@ -67,6 +68,7 @@
                                         @endforeach
                                     @endif
                                 @endforeach
+                                <?php $conteoDiscos = $conteoDiscos +1?>
                             </div>
                         </div>
                     </div>
@@ -74,7 +76,9 @@
                 
 
             @endforeach
+            @if ($conteoDiscos >0)
             <a id="editar"  class="btn btn-danger">Editar Discos</a>
+            @endif
             <a id="agregar"  class="btn btn-danger">Agregar Nuevo Disco</a>
              {{ Form::open(['url' => '/profile/banda/'.$banda->id.'/discos/update', 'method' => 'POST', 'role' => 'form','files'=>'true'])}}
             <div id="responsive-modal" class="modal fade letraTitulo" tabindex="-1" data-backdrop="static">
