@@ -145,10 +145,9 @@
     <script>
         function verShow(valor) {
             $('#responsive-modal').modal('show');
-            var baseurl = '{{ url('/') }}';
+            var BASEURL = '{{ url('/') }}';
             $.ajax({
-                url: baseurl+'/home/show',
-                data:  {'id' : valor},
+                url: 'home/show/'+valor ,
                 type : 'GET',
                 success: function(result){
                     console.log(result);

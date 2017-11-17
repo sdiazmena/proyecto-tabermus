@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Actualizacion;
 use DB;
+use Validator;
+use Auth;
+use Storage;
+use Input;
 class HomeController extends Controller
 {
     public function index()
@@ -53,20 +57,16 @@ class HomeController extends Controller
         return view('welcome')->with('actualizaciones',$data)->with('bandas',$bandas)->with('foto',$valorImprimir);
     }
 
-    public function store($request)
+    public function store(Request $request)
     {
-        $show = DB::table(show)->where('id', '=', $request)->get();
+        if($request->ajax()) {
+            $show = DB::table(show)->where('id', '=', $request)->get();
 
-        $response = array(
-            'nombre' => 'success',
-            'fechaInicio' => 'fecha',
-            'fechaFin' => 'fecha',
-            'horaInicio' => 'ini',
-            'horaFin' => 'fin',
-            'id_ciudad' => 'ciudad',
-            'informacion' => 'informacion',
-            'valor' => 'dinero',
-        );
-        return \Response::json($response);
+            $response = array(
+                'status' => 'success',
+                'msg' => 'Setting created successfully',
+            );
+            return \Response::json($response);
+        }
     }
 }

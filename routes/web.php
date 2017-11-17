@@ -71,4 +71,4 @@ Route::get('banda/{id}', ['as' => 'banda/ver', 'uses'=>'BusquedaController@verBa
 Route::get('banda/{id}/historia', ['as' => 'banda/ver/historia', 'uses'=>'BusquedaController@verHistoria']);
 Route::get('banda/{id}/discografia', ['as' => 'banda/ver/discografia', 'uses'=>'BusquedaController@verDiscos']);
 Route::get('banda/{id}/fechas', ['as' => 'banda/ver/fechas', 'uses'=>'BusquedaController@verFechas']);
-Route::get('/home/show', 'HomeController@store');
+Route::get('/home/show/{id}', 'HomeController@store');

@@ -105,7 +105,7 @@
         <div id="upload-modal" class="modal fade" tabindex="-1" data-backdrop="static">
         {{ Form::open(['url' => '/calendario/'.$banda->id , 'method' => 'put', 'role' => 'form'])}}
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content fondoContenido letraTitulo">
                     <div class="modal-header">
                         <h4>ACTUALIZAR EVENTO</h4>
                     </div>
@@ -153,7 +153,7 @@
                     </div>
                     <div class="modal-footer">
                         <a id="delete" data-href="{{ url('/calendario') }}" data-id="" class="btn btn-danger">ELIMINAR</a>
-                        <button type="button" class="btn btn-dafault" data-dismiss="modal">CANCELAR</button>
+                        <button type="button" class="btn btn-dafault letraPortada" data-dismiss="modal">CANCELAR</button>
                         {!! Form::submit('ACTUALIZAR', ['class' => 'btn btn-success']) !!}
                     </div>
                 </div>
