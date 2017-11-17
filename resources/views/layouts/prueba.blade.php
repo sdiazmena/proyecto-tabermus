@@ -106,7 +106,6 @@
                             <ul class="dropdown-menu">
                                 <li><a href="/tabermus/public/somos">¿Quienes somos?</a></li>
                                 <li><a href="/tabermus/public/contacto">Contacto</a></li>
-                                <!--<li><a href="sugerencia">Sugerencias</a></li>-->
                             </ul>
                         </li>
 

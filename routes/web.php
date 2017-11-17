@@ -11,6 +11,11 @@
 |
 */
 
+Route::get('/index', 'IndexController@index');
+Route::post('cambiarVista', function (){
+    return redirect('/home');
+});
+
 Route::get('/', 'IndexController@index');
 
 Auth::routes();
@@ -47,12 +52,6 @@ Route::get('/callback/{provider}','SocialController@callback');
 
 Route::get('/somos', 'SomosController@index');
 Route::get('/contacto', 'ContactoController@index');
-Route::get('/sugerencia', 'SugerenciaController@index');
-
-Route::get('/index', 'IndexController@index');
-Route::post('cambiarVista', function (){
-    return redirect('/home');
-});
 
 Route::resource('filtrado','FiltradoController');
 Route::post('filtradoRegional', ['as'=>'filtrado/regional', 'uses'=>'FiltradoController@filtradoRegional']);
