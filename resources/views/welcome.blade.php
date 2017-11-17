@@ -89,7 +89,7 @@
                                         <p class="letraTexto">{{substr($actualizacion->fecha, 0,10)}}</p>
                                         <h3 class="letraTitulo">{{$banda->nombre}}</h3>
                                         <p class="letraTexto">{{$actualizacion->detalles}}</p>
-                                    <a class="btn btn-danger btn-xs" href="#" onclick="verShow({{$actualizacion->id_show}})" >Ver</a>
+                                    <button class="btn btn-danger btn-xs"  onclick="verShow({{$actualizacion->id_show}})" >Ver</button>
                                         <?php $existeNoticiaShow = 1?>
                                     </div>
                                 @endif
@@ -145,10 +145,10 @@
     <script>
         function verShow(valor) {
             $('#responsive-modal').modal('show');
-            var BASEURL = '{{ url('/') }}';
+            var baseurl = '{{ url('/') }}';
             $.ajax({
-                url: BASEURL+'/home/show',
-                data: valor,
+                url: baseurl+'/home/show',
+                data:  {'id' : valor},
                 type : 'GET',
                 success: function(result){
                     console.log(result);
