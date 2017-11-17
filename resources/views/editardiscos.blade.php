@@ -118,7 +118,7 @@
                             
                                 <div class="form-group">                                
                                     
-                                   <select class = "form-control" name="elejir_comida" onchange="mostrarValor(this);"> 
+                                   <select id="selectDisco" class = "form-control" name="elejir_comida" >
                                     @foreach ($discos as $disco)
                                         <option value="{{$disco->id}}">{{$disco->nombre}}</option>
                                     @endforeach
@@ -126,6 +126,7 @@
                                 </div>
                         </div>
                         <div class="modal-footer">
+                            <button type="button" class="btn btn-success letraPortada" onclick="mostrarValor()">ACEPTAR</button>
                             <button type="button" class="btn btn-dafault letraPortada" data-dismiss="modal">CANCELAR</button>
                         </div>
                     </div>
@@ -140,7 +141,6 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                
                                 {{ Form::label('nombre', 'NOMBRE DISCO')}}
                                 {{ Form::text('nombre', old('nombre'),[' class' => 'form-control']) }}
                                 <input type="hidden" name="id" id="id">
@@ -222,8 +222,9 @@
         });
     });
         var BASEURL = '{{ url('/') }}';
-        var mostrarValor = function(x){
-                 //alert("El valor: "+x.value+" y el texto: "+x.options[x.selectedIndex].text);
+        var mostrarValor = function(){
+            x = document.getElementById("selectDisco");
+            //alert("El valor: "+x.value+" y el texto: "+x.options[x.selectedIndex].text);
             $.ajax({
                 url: BASEURL+'/profile/banda/disco/'+x.value,
                 type : 'GET',

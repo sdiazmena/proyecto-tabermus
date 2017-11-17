@@ -60,7 +60,7 @@
     {{ Html::script('js/scriptsBandaAgregarEliminarElementos.js') }}
     {{ Html::script('js/scriptRegionesBarraMenu.js') }}
     {{ Html::script('js/scriptIndex.js') }}
-    
+
 
 </head>
 <body>
