@@ -241,6 +241,7 @@
                         success: function(data){
 
                             var num = 0;
+                            $("#fiel2").empty();
                             data.forEach(function(canciones){
                                 console.log(canciones);
                                 fi = document.getElementById('fiel2'); // 1
