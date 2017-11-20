@@ -111,22 +111,19 @@
                     <div class="modal-body">
                         <div class="row">
                             <strong>Nombre:</strong>
+                            <span id="nombreShow"></span>
                         </div>
                         <div class="row">
                             <strong>Ciudad:</strong>
-                            <div></div>
+                            <span id="ciudadShow"></span>
                         </div>
                         <div class="row">
-                            <strong>Fecha:</strong>
-                            <div></div>
+                            <strong>Fecha/Hora Inicio:</strong>
+                            <span id="fechaShow"></span>
                         </div>
                         <div class="row">
                             <strong>Informacion:</strong>
-                            <div></div>
-                        </div>
-                        <div class="row">
-                            <strong>Link Show:</strong>
-                            <div></div>
+                            <span id="infShow"></span>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -151,6 +148,10 @@
                 type : 'GET',
                 success: function(result){
                     console.log(result);
+                    $('#nombreShow').text(result[0].title);
+                    $('#ciudadShow').text(result[0].id_ciudad);
+                    $('#fechaShow').text(result[0].start);
+                    $('#infShow').text(result[0].informacion);
                 },
                 error: function(){
                     console.log('Error:');

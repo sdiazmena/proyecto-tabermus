@@ -57,15 +57,12 @@ class HomeController extends Controller
         return view('welcome')->with('actualizaciones',$data)->with('bandas',$bandas)->with('foto',$valorImprimir);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        $show = DB::table(show)->where('id', '=', $request)->get();
-
-        $response = array(
-            'status' => 'success',
-            'msg' => 'Setting created successfully',
-        );
-        return Response()->json($response);
+        if($request->ajax()){
+            $show = DB::table('shows')->where('id', $id)->get();
+            return Response()->json($show);
+        }
 
     }
 }
