@@ -49,9 +49,3 @@ function actualizarBarraRegion(valor) {
         $("#barraRegionesTop").append("<li><a href=\"home\" onclick=\"setRegion('15','Arica')\">Arica</a></li>");
     }
 }
-
-function cargarPortada() {
-    valor = leerCookie("id");
-    valorImprimir = "img/region/portada"+valor+".jpg";
-    $("#hola").append("<img id='portada1' class='img-responsive ' src="+valorImprimir +" class='img-thumbnail' style='width:820px; height: 350px'>");
-}
