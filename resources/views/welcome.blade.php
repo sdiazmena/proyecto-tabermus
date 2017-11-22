@@ -125,6 +125,14 @@
                             <strong>Informacion:</strong>
                             <span id="infShow"></span>
                         </div>
+                        <div class="row">
+                            <strong>Valor:</strong>
+                            <span id="valor"></span>
+                        </div>
+                        <div class="row">
+                            <strong>Mas Informacion visitar:</strong>
+                            <span id="facebook"></span>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-dafault letraPortada" data-dismiss="modal">Salir</button>
@@ -152,6 +160,8 @@
                     $('#ciudadShow').text(result[0].id_ciudad);
                     $('#fechaShow').text(result[0].start);
                     $('#infShow').text(result[0].informacion);
+                    $('#valor').text(result[0].precio);
+                    $('#facebook').text(result[0].link);
                 },
                 error: function(){
                     console.log('Error:');
