@@ -39,7 +39,6 @@
                                     <strong class="letraTitulo">Listado: </strong>
                                     <div><strong class="letraTexto col-md-offset-2">Track: </strong>
                                         <strong class="letraTexto col-md-offset-1">Titulo: </strong>
-                                        <strong class="letraTexto col-md-offset-2">Duracion: </strong>
                                     </div>
                                     @foreach ($listacanciones as $listacancion)
                                         <?php $indice=1 ?>

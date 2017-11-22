@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Show;
 use App\Genero;
@@ -129,7 +130,8 @@ class ShowController extends Controller
         $id = DB::table('shows')->where('title',$request->title)->get(['id']);
         $actualizacion = new Actualizacion();
         $now = new \DateTime();
-        $actualizacion->fecha = $now->format('d-m-y');
+        $now = Carbon::now();
+        $actualizacion->fecha = $now->toDateTimeString();
         $actualizacion->id_banda = $request->id_banda;
         $actualizacion->id_ciudad = $request->ciudad_id;
         $actualizacion->id_show = $id[0]->id;
@@ -179,8 +181,8 @@ class ShowController extends Controller
             $id_region = DB::table('region')->where('nombre',$request->id_region)->first();
             $id_ciudad = DB::table('ciudad')->where('nombre',$request->id_ciudad)->first();
             $actualizacion = new Actualizacion();
-            $now = new \DateTime();
-            $actualizacion->fecha = $now->format('d-m-y');
+            $now = Carbon::now();
+            $actualizacion->fecha = $now->toDateTimeString();
             $actualizacion->id_banda = $id;
             $actualizacion->id_ciudad = $id_ciudad->id;
             $actualizacion->id_show = $request->id_show;
@@ -190,8 +192,8 @@ class ShowController extends Controller
         }else{
             DB::table('shows')->where('id',$request->id_show)->update(['title'=>$request->title,'informacion'=>$request->informacion,'start'=>$request->date_start,'end'=>$request->date_end,'id_ciudad'=>$request->ciudad_id,'id_region'=>$request->region,'precio'=>$request->precio,'link'=>$request->link]);
             $actualizacion = new Actualizacion();
-            $now = new \DateTime();
-            $actualizacion->fecha = $now->format('d-m-y');
+            $now = Carbon::now();
+            $actualizacion->fecha = $now->toDateTimeString();
             $actualizacion->id_banda = $id;
             $actualizacion->id_ciudad = $request->ciudad_id;
             $actualizacion->id_show = $request->id_show;
