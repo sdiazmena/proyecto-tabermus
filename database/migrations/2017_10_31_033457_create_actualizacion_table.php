@@ -18,6 +18,7 @@ class CreateActualizacionTable extends Migration
             $table->string('id_banda');
             $table->string('id_ciudad');
             $table->integer('id_show')->nulleable();
+            $table->string('id_disco')->nullable();
             $table->string('detalles');
             $table->datetime('fecha');
             $table->string('id_region');

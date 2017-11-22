@@ -38,7 +38,7 @@ Route::post('/profile/banda/{id}/historia/update','BandaController@updateHistory
 Route::get('/profile/banda/{id}/discos','BandaController@editDiscos');
 Route::post('/profile/banda/{id}/discos/update','BandaController@updateDiscos');
 Route::post('/profile/banda/{id}/discos/editar','BandaController@editarDiscos');
-
+Route::get('/profile/banda/{id}/show','BandaController@showDiscoEliminado');
 
 Route::get('/profile/banda/{id}/fechas','BandaController@editFechas');
 Route::post('/profile/banda/{id}/fechas/update','BandaController@updateFechas');

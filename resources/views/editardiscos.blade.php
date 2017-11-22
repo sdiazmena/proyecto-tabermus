@@ -160,6 +160,7 @@
                 </div>
             </div>
              {{ Form::open(['url' => '/profile/banda/'.$banda->id.'/discos/editar', 'method' => 'POST', 'role' => 'form','files'=>'true'])}}
+             {{ csrf_field() }}
             <div id="selectDisco2-modal" class="modal fade letraTitulo" tabindex="-1" data-backdrop="static">
                 <div class="modal-dialog">
                     <div class="modal-content fondoContenido">
@@ -200,9 +201,12 @@
                             </div>
                             <div class="form-group">
                                 {{ Form::label('canciones', 'CANCIONES')}}
-                                
+                                    
                                 <fieldset id="fiel2" class="letraPortada" >
-                                    <input type="button" value="agregar" name="cancionesEditadas[]" onclick="crear2(this)" />
+                                    
+                                </fieldset>
+                                <fieldset id="fiel3" class="letraPortada" >
+                                    <input type="button" value="agregar" name="canciones[]" onclick="crear2(this)"/>
                                 </fieldset>
 
                             </div>
@@ -223,7 +227,7 @@
 @section('scripts')
     <script>
     $(document).ready(function() {
-
+        var _token = $('input[name="_token"]').val();
         $('#agregar').on('click', function(){
             $('#responsive-modal').modal('show');
         });
@@ -232,14 +236,17 @@
         });
         $('#delete').on('click', function(){
         var x= $(this);
-        var delete_url = x.attr('data-href')+'/'+x.attr('data-id');
-        console.log(delete_url);
+        var table=document.getElementById('id');
+
+        var delete_url = x.attr('data-href')+'/'+table.value;
+       
             $.ajax({
               
                 url: delete_url,
                 type: 'DELETE',
+                data: { _token : _token },
                 success: function(result){
-                    console.log(result);
+                    window.location.href = BASEURL+'/profile/banda/'+result+'/show';
                     
                 },
                 error: function(result){
@@ -249,14 +256,14 @@
         });
     });
         var BASEURL = '{{ url('/') }}';
-        var mostrarValor = function(){
+        function mostrarValor(){
             x = document.getElementById("selectDisco");
             //alert("El valor: "+x.value+" y el texto: "+x.options[x.selectedIndex].text);
             $.ajax({
                 url: BASEURL+'/profile/banda/disco/'+x.value,
                 type : 'GET',
                 success: function(result){
-                    console.log(result);
+                    
                     $('#selectDisco2-modal #nombre').val(result[0].nombre);
                     $('#selectDisco2-modal #año').val(result[0].año);
                     $('#selectDisco2-modal #sello').val(result[0].sello);
@@ -269,8 +276,9 @@
 
                             var num = 0;
                             $("#fiel2").empty();
+                            $("#selectDisco-modal").empty();
                             data.forEach(function(canciones){
-                                console.log(canciones);
+                                
                                 fi = document.getElementById('fiel2'); // 1
                                 contenedor = document.createElement('div'); // 2
                                 contenedor.id = 'div'+num; // 3
@@ -335,9 +343,10 @@
           fi = document.getElementById('fiel'); // 1 
           fi.removeChild(document.getElementById(obj)); // 10
         }
+        num=0;
         function crear2(obj) {
           
-          fi = document.getElementById('fiel2'); // 1
+          fi = document.getElementById('fiel3'); // 1
           contenedor = document.createElement('div'); // 2
           contenedor.id = 'div'+num; // 3
           fi.appendChild(contenedor); // 4
@@ -357,7 +366,7 @@
           num++;
         }
         function borrar2(obj) {
-          fi = document.getElementById('fiel2'); // 1 
+          fi = document.getElementById('fiel3'); // 1 
           fi.removeChild(document.getElementById(obj)); // 10
         }
 

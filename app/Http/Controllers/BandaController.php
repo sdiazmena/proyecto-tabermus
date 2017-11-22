@@ -223,6 +223,7 @@ class BandaController extends Controller
                 $actualizacion->id_ciudad = $banda->id_ciudad;
                 $actualizacion->detalles = "Esta banda ha editado un Disco";
                 $actualizacion->id_region = $ciudad->id_region;
+                $actualizacion->id_disco = $request->id;
                 $actualizacion->id_show = 0;
                 $actualizacion->save();
                 $name = str_random(30) . '-' . $request->file('image')->getClientOriginalName();
@@ -240,6 +241,7 @@ class BandaController extends Controller
                 $actualizacion->id_ciudad = $banda->id_ciudad;
                 $actualizacion->detalles = "Esta banda ha editado un Disco";
                 $actualizacion->id_region = $ciudad->id_region;
+                $actualizacion->id_disco = $request->id;
                 $actualizacion->id_show = 0;
                 $actualizacion->save();
 
@@ -382,12 +384,14 @@ class BandaController extends Controller
             $actualizacion->id_ciudad = $banda->id_ciudad;
             $actualizacion->detalles = "Esta banda ha agregado un nuevo Disco";
             $actualizacion->id_region = $ciudad->id_region;
-            $actualizacion->id_show = 0;
-            $actualizacion->save();
+
             $name = str_random(30) . '-' . $request->file('image')->getClientOriginalName();
             
             $request->file('image')->move('uploads/discos', $name);
             $id_disco = DB::table('disco')->insertGetId(['id_banda' => $id  , 'nombre' => $request->nombre  ,'año' => $request->año ,'sello' =>  $request->sello ,'tipo' => $request->tipo  ,'caratula' => 'uploads/discos/'.$name]);
+            $actualizacion->id_disco = $id_disco;
+            $actualizacion->id_show = 0;
+            $actualizacion->save();
             $id_lista = DB::table('lista_canciones')->insertGetId(['id_disco' =>  $id_disco,'id_cancion' => 'prueba']);
             $lar = count($request->all());
             $array = $request->all();
@@ -653,7 +657,34 @@ class BandaController extends Controller
             return view("editarbanda")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('ciudad',$ciudad)->with('region',$region)->with('lirica',$lirica)->with('genero',$genero)->with('integrantes',$integrantes)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas)->with('status',$status);
         }
     }
-
+    public function showDiscoEliminado($id)
+    {
+                    $banda = DB::table('banda')->where('id', $id)->first();
+                    $liricas = Lirica::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+                    $generos = Genero::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
+                    $regiones = Region::orderBy('id', 'ASC')->pluck('nombre','id')->all();
+                    $discos =  DB::table('disco')->where('id_banda', $id)->get();
+                    $listacanciones = array();
+                    foreach($discos as $disco){
+                        $lista = DB::table('lista_canciones')->where('id_disco', $disco->id)->first();
+                        array_push($listacanciones, $lista);
+                    }
+                    $largo = count($listacanciones);
+                    //var_dump($largo);
+                    $canciones = array();
+                    for($i=0;$i<$largo;$i++){
+                        $cancion = DB::table('cancion')->where('id_lista', $listacanciones[$i]->id)->get();
+                        array_push($canciones, $cancion);
+                    }
+                    //var_dump($canciones[0][0]->id);
+                    $rutaPerfil = '/tabermus/public/profile/banda/'.$id.'/edit';
+                    $rutaHistoria = '/tabermus/public/profile/banda/'.$id.'/historia';
+                    $rutaDiscos = '/tabermus/public/profile/banda/'.$id.'/discos';
+                    $rutaFechas = '/tabermus/public/profile/banda/'.$id.'/fechas';      
+                    $editable = 1; 
+                    $status = 'Disco de Banda eliminado correctamente';
+                    return view("editardiscos")->with('regiones',$regiones)->with('liricas',$liricas)->with('generos',$generos)->with('banda',$banda)->with('discos',$discos)->with('listacanciones',$listacanciones)->with('canciones',$canciones)->with('largo',$largo)->with('editable',$editable)->with('rutaPerfil',$rutaPerfil)->with('rutaHistoria',$rutaHistoria)->with('rutaDiscos',$rutaDiscos)->with('rutaFechas',$rutaFechas)->with('status',$status);
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -663,7 +694,6 @@ class BandaController extends Controller
     public function destroy($id)
     {
         $disco = Disco::find($id);
-
         if($disco == null){
             return Response()->json([
                 'message' => 'error delete.'
@@ -671,11 +701,11 @@ class BandaController extends Controller
         }
         $id = DB::table('lista_canciones')->where('id_disco',$disco->id)->get(['id']);
         DB::table('cancion')->where('id_lista',$id[0]->id)->delete();
-        DB::table('lista_canciones')->where('$id_disco',$disco->id)->delete();
-
-        $id = $disco->id_banda;
+        DB::table('lista_canciones')->where('id_disco',$disco->id)->delete();
+        DB::table('actualizacion')->where('id_disco',$disco->id)->delete();
+        $id_borrado = $disco->id_banda;
         $disco->delete();
 
-        return Response()->json($id);
+        return Response()->json($id_borrado);
     }
 }

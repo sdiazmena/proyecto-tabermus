@@ -22,7 +22,7 @@ class CreateBandaTable extends Migration
             $table->string('id_lirica')->nullable();
             $table->string('id_genero')->nullable();
             $table->string('nombre');
-            $table->string('descripcion');
+            $table->longText('descripcion');
             $table->string('imagen')->nullable();
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();

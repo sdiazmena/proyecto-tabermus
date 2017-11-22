@@ -59,14 +59,14 @@ class ShowController extends Controller
         }
         $id = DB::table('region')->where('nombre',$nombreRegion)->get(['id']);
 
-        $data = DB::table('shows')->where('id_region',$id[0]->id)->get(['title','start','color','end','id']);
+        $data = DB::table('shows')->where('id_region',$id[0]->id)->get(['title','start','color','end','id','link','precio']);
      
         return Response()->json($data);
     }
     public function getDataBanda($id)
     {
         
-        $data = DB::table('shows')->where('id_banda',$id)->get(['title','start','color','end','id','id_banda','informacion','id_region','id_ciudad']);
+        $data = DB::table('shows')->where('id_banda',$id)->get(['title','start','color','end','id','id_banda','informacion','id_region','id_ciudad','link','precio']);
      
        return Response()->json($data);
     }
@@ -122,6 +122,8 @@ class ShowController extends Controller
         $show->id_region = $request->region;
         $show->start = $request->date_start;
         $show->end = $request->date_end;
+        $show->link = $request->link;
+        $show->precio = $request->precio;
         $show->color = "#0000FF";
         $show->save();
         $id = DB::table('shows')->where('title',$request->title)->get(['id']);
@@ -172,8 +174,8 @@ class ShowController extends Controller
     public function update(Request $request, $id)
     {
         
-        if($request->ciudad_id == "placeholder"){
-            DB::table('shows')->where('id',$request->id_show)->update(['title' => $request->title,'informacion'=>$request->informacion,'start'=>$request->date_start,'end'=>$request->date_end]);
+        if($request->ciudad == "placeholder"){
+            DB::table('shows')->where('id',$request->id_show)->update(['title' => $request->title,'informacion'=>$request->informacion,'start'=>$request->date_start,'end'=>$request->date_end,'precio'=>$request->precio,'link'=>$request->link]);
             $id_region = DB::table('region')->where('nombre',$request->id_region)->first();
             $id_ciudad = DB::table('ciudad')->where('nombre',$request->id_ciudad)->first();
             $actualizacion = new Actualizacion();
@@ -186,7 +188,7 @@ class ShowController extends Controller
             $actualizacion->id_region = $id_region->id;
             $actualizacion->save();
         }else{
-            DB::table('shows')->where('id',$request->id_show)->update(['title'=>$request->title,'informacion'=>$request->informacion,'start'=>$request->date_start,'end'=>$request->date_end,'id_ciudad'=>$request->ciudad_id,'id_region'=>$request->region]);
+            DB::table('shows')->where('id',$request->id_show)->update(['title'=>$request->title,'informacion'=>$request->informacion,'start'=>$request->date_start,'end'=>$request->date_end,'id_ciudad'=>$request->ciudad_id,'id_region'=>$request->region,'precio'=>$request->precio,'link'=>$request->link]);
             $actualizacion = new Actualizacion();
             $now = new \DateTime();
             $actualizacion->fecha = $now->format('d-m-y');
@@ -229,6 +231,7 @@ class ShowController extends Controller
             ]);
         }
         $id = $show->id_banda;
+        DB::table('actualizacion')->where('id_show',$show->id)->delete();
         $show->delete();
 
         return Response()->json($id);

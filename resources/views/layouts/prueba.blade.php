@@ -82,21 +82,21 @@
                         <li><a href="/tabermus/public/buscar">Buscar</a></li>
                         <li id="topRegion" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $_COOKIE["nameRegion"];?><span class="caret"></span></a>
                             <ul id="barraRegionesTop" class="dropdown-menu">
-                                <li><a href="#" onclick="setRegion('1','Tarapacá')">Tarapacá</a></li>
-                                <li><a href="#" onclick="setRegion('2','Antofagasta')">Antofagasta</a></li>
-                                <li><a href="#" onclick="setRegion('3','Atacama')">Atacama</a></li>
-                                <li><a href="#" onclick="setRegion('4','Coquimbo')">Coquimbo</a></li>
-                                <li><a href="#" onclick="setRegion('5','Valparaiso')">Valparaiso</a></li>
-                                <li><a href="#" onclick="setRegion('6','O\'Higgins')">O'Higgins</a></li>
-                                <li><a href="#" onclick="setRegion('7','Maule')">Maule</a></li>
-                                <li><a href="#" onclick="setRegion('8','Biobío')">Biobío</a></li>
-                                <li><a href="#" onclick="setRegion('9','Araucania')">Araucania</a></li>
-                                <li><a href="#" onclick="setRegion('10','Los Lagos')">Los Lagos</a></li>
-                                <li><a href="#" onclick="setRegion('11','Aisén')">Aisén</a></li>
-                                <li><a href="#" onclick="setRegion('12','Magallanes')">Magallanes</a></li>
-                                <li><a href="#" onclick="setRegion('13','Santiago')">Santiago</a></li>
-                                <li><a href="#" onclick="setRegion('14','Los Rios')">Los Rios</a></li>
-                                <li><a href="#" onclick="setRegion('15','Arica')">Arica</a></li>
+                                <li><a href="/tabermus/public/home" onclick="setRegion('1','Tarapacá')">Tarapacá</a></li>
+                                <li><a href="/tabermus/public/home" onclick="setRegion('2','Antofagasta')">Antofagasta</a></li>
+                                <li><a href="/tabermus/public/home" onclick="setRegion('3','Atacama')">Atacama</a></li>
+                                <li><a href="/tabermus/public/home" onclick="setRegion('4','Coquimbo')">Coquimbo</a></li>
+                                <li><a href="/tabermus/public/home" onclick="setRegion('5','Valparaiso')">Valparaiso</a></li>
+                                <li><a href="/tabermus/public/home" onclick="setRegion('6','O\'Higgins')">O'Higgins</a></li>
+                                <li><a href="/tabermus/public/home" onclick="setRegion('7','Maule')">Maule</a></li>
+                                <li><a href="/tabermus/public/home" onclick="setRegion('8','Biobío')">Biobío</a></li>
+                                <li><a href="/tabermus/public/home" onclick="setRegion('9','Araucania')">Araucania</a></li>
+                                <li><a href="/tabermus/public/home" onclick="setRegion('10','Los Lagos')">Los Lagos</a></li>
+                                <li><a href="/tabermus/public/home" onclick="setRegion('11','Aisén')">Aisén</a></li>
+                                <li><a href="/tabermus/public/home" onclick="setRegion('12','Magallanes')">Magallanes</a></li>
+                                <li><a href="/tabermus/public/home" onclick="setRegion('13','Santiago')">Santiago</a></li>
+                                <li><a href="/tabermus/public/home" onclick="setRegion('14','Los Rios')">Los Rios</a></li>
+                                <li><a href="/tabermus/public/home" onclick="setRegion('15','Arica')">Arica</a></li>
                             </ul>
                         </li>
                         <script type="text/javascript">

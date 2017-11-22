@@ -26,7 +26,8 @@ class UserController extends Controller
 
     }
     public function profileUser(){
-        return view('editarperfil', array('user' => Auth::user()));
+        $status = NULL;
+        return view('editarperfil', array('user' => Auth::user()))->with('status',$status);
     }
     public function updateAvatar(Request $request){
         $rules = ['image' => 'required|image|max:1024*1024*1',];
@@ -41,19 +42,25 @@ class UserController extends Controller
             return redirect('/profile/user')->withErrors($validator);
         }
         else{
+            $usuario = DB::table('users')->where('email',Auth::user()->email)->first();
             $name = str_random(30) . '-' . $request->file('image')->getClientOriginalName();
-            
+            if(\File::exists(public_path('uploads/avatars/'.$usuario->avatar))){
+              \File::delete(public_path('uploads/avatars/'.$usuario->avatar));
+            }
             $request->file('image')->move('uploads/avatars', $name);
             $user = new User;
             $user->where('email', '=', Auth::user()->email)
                  ->update(['avatar' => $name]);
-            return redirect('/profile')->with('status', 'Su imagen de perfil ha sido cambiada con éxito');
+            $status = 'Su imagen de perfil ha sido cambiada con éxito';
+            return view('editarperfil', array('user' => Auth::user()))->with('status',$status);
         }        
     }
     public function updateProfile(Request $request){
         $user = new User;
         $user->where('email','=', Auth::user()->email)
              ->update(['name' => $request->nombre]);
-        return redirect('/profile')->with('status', 'Su perfil ha sido modificado con éxito');       
+            $status = 'Su perfil ha sido modificado con éxito';
+            return view('editarperfil', array('user' => Auth::user()))->with('status',$status);
+            
     }
 }

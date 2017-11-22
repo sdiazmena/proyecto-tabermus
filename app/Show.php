@@ -10,6 +10,6 @@ class Show extends Model
     protected $table = 'shows';
 
     protected $filliable = [
-    	'nombre', 'informacion', 'start', 'end', 'color', 'id_ciudad'
+    	'nombre', 'informacion', 'start', 'end', 'color', 'id_ciudad','link','precio'
     ];
 }

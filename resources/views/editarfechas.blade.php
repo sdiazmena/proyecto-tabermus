@@ -54,28 +54,28 @@
                     <div class="modal-body">
                         <div class="form-group">
                             {{ Form::label('title', 'NOMBRE EVENTO')}}
-                            {{ Form::text('title', NULL,['class' => 'form-control']) }}
+                            {{ Form::text('title', NULL,['class' => 'form-control','required']) }}
                         </div>
                         <div class="form-group">
                             <input type="hidden" name="id_banda" value= "{{$banda->id}}">
                             {{ Form::label('date_start', 'FECHA INICIO')}}
-                            {{ Form::text('date_start', NULL,['class' => 'form-control', 'readonly' => 'true']) }}
+                            {{ Form::text('date_start', NULL,['class' => 'form-control', 'readonly' => 'true','required']) }}
                         </div>
                         <div class="form-group">
                             {{ Form::label('time_start', 'HORA INICIO')}}
-                            {{ Form::text('time_start', NULL,['id'=>'time_start','class' => 'form-control']) }}
+                            {{ Form::text('time_start', NULL,['id'=>'time_start','class' => 'form-control','required']) }}
                         </div>
                         <div class="form-group">
                             {{ Form::label('date_end', 'FECHA HORA FIN')}}
-                            {{ Form::text('date_end', NULL,['id'=>'date_end','class' => 'form-control']) }}
+                            {{ Form::text('date_end', NULL,['id'=>'date_end','class' => 'form-control','required']) }}
                         </div>
                         <div class="form-group">
                             {!! Form::label('region', 'REGION') !!}
-                             {!! Form::select('region', $regiones, null,['id'=>'region','class' => 'form-control', 'placeholder' => 'Seleccione una región..']) !!}
+                             {!! Form::select('region', $regiones, null,['id'=>'region','class' => 'form-control', 'placeholder' => 'Seleccione una región..','required']) !!}
                         </div>
                         <div>
                             {!! Form::label('ciudad_id', 'CIUDAD') !!} 
-                            {!! Form::select('ciudad_id', ['placeholder' => 'Seleccione una ciudad..'], null,['id'=>'ciudad','class' => 'form-control','value' => '{{$banda->id_ciudad}}']) !!}
+                            {!! Form::select('ciudad_id', ['placeholder' => 'Seleccione una ciudad..'], null,['id'=>'ciudad','class' => 'form-control','value' => '{{$banda->id_ciudad}}','required']) !!}
                         </div><!--
                         <div class="form-group">
                             {{ Form::label('color', 'COLOR')}}
@@ -87,8 +87,16 @@
                             </div>
                         </div>-->
                         <div class="form-group">
+                            {{ Form::label('link', 'LINK')}}
+                            {{ Form::text('link', NULL,['class' => 'form-control']) }}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label('precio', 'PRECIO')}}
+                            {{ Form::text('precio', NULL,['class' => 'form-control']) }}
+                        </div>                        
+                        <div class="form-group">
                             {{ Form::label('informacion', 'INFORMACIÓN')}}
-                            {{ Form::text('informacion', NULL,['class' => 'form-control']) }}
+                            {{ Form::textarea('informacion', NULL,['class' => 'form-control']) }}
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -133,7 +141,7 @@
                              {!! Form::select('region', $regiones, null,['id'=>'region','class' => 'form-control', 'placeholder' => 'Seleccione una región..']) !!}
                         </div>
                         <div>
-                            {!! Form::label('ciudad_id', 'CIUDAD') !!} 
+                            {!! Form::label('ciudad', 'CIUDAD') !!} 
                             {{ Form::text('id_ciudad', old('id_ciudad'),['id' => 'id_ciudad', 'class' => 'form-control', 'readonly' => 'true']) }}
                             {!! Form::select('ciudad', ['placeholder' => 'Seleccione una ciudad..'], null,['id'=>'ciudad','class' => 'form-control']) !!}
                         </div><!--
@@ -147,8 +155,16 @@
                             </div>
                         </div>-->
                         <div class="form-group">
+                            {{ Form::label('link', 'LINK')}}
+                            {{ Form::text('link', old('link'),['class' => 'form-control']) }}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label('precio', 'PRECIO')}}
+                            {{ Form::text('precio', old('precio'),['class' => 'form-control']) }}
+                        </div>  
+                        <div class="form-group">
                             {{ Form::label('informacion', 'INFORMACIÓN')}}
-                            {{ Form::text('informacion', old('informacion'),['class' => 'form-control']) }}
+                            {{ Form::textarea('informacion', old('informacion'),['class' => 'form-control']) }}
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -213,6 +229,8 @@
                 $('#upload-modal #time_start').val(time_start);
                 $('#upload-modal #date_end').val(date_end);
                 $('#upload-modal #color').val(event.color);
+                $('#upload-modal #link').val(event.link);
+                $('#upload-modal #precio').val(event.precio);
                 $('#upload-modal #informacion').val(event.informacion);
                 $.ajax({
                     url: BASEURL+'/region/'+event.id_region,
