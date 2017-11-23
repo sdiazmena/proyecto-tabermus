@@ -104,6 +104,7 @@ class ShowController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         $banda = DB::table('banda')->where('id', $request->id_banda)->first();
         $liricas = Lirica::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
         $generos = Genero::orderBy('nombre', 'ASC')->pluck('nombre','id')->all();
@@ -121,7 +122,7 @@ class ShowController extends Controller
         $show->id_ciudad = $request->ciudad_id;
         $show->id_banda = $request->id_banda;
         $show->id_region = $request->region;
-        $show->start = $request->date_start;
+        $show->start = $request->date_start.' '.$request->time_start;
         $show->end = $request->date_end;
         $show->link = $request->link;
         $show->precio = $request->precio;
