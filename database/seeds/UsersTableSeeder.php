@@ -12,7 +12,15 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i=0; $i<=80; $i++){
+        $arreglo = array('RonBailable', 'Peor es Na', 'Mala Semilla', 'Llo-llo', 'Nilo',
+            'Red Table', 'Tv Maldita', 'Overdosis', 'Dosis', 'Death Gate',
+            'Aunefast', 'Tormento', 'Violencia Pacifica', 'Tejidos Bordados', 'Sencillo',
+            'X.K.R', 'Portugal', 'Anquilador', 'Pirotecnia', 'Sauce',
+            'Costillar Bailable', 'Servicio Hogareño', 'Turba Explosiva', 'Bosque Maldito', 'Tortuga Veloz',
+            'Inoloro', 'Silencio Bordado', 'Estigma Voraz', 'Dinamita', 'K.O.P');
+
+
+        for($i=0; $i<30; $i++){
             DB::table('users')->insert([
                 'name' => str_random(5),
                 'email' => str_random(8).'@gmail.com',
@@ -25,8 +33,8 @@ class UsersTableSeeder extends Seeder
                 //'id_region' => $this->obtenerRegion('id_ciudad'),
                 'id_lirica' => random_int(1,26),
                 'id_genero' => random_int(1,74),
-                'nombre' => str_random(5),
-                'descripcion' => 'somos una banda',
+                'nombre' =>  $arreglo[$i],
+                'descripcion' => 'somos una banda que participa en esta prueba',
                 'imagen' => 'uploads/bandas/default.jpg',
             ]);
         }
