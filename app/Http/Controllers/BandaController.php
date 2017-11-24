@@ -54,6 +54,8 @@ class BandaController extends Controller
      */
     public function store(Request $request)
     {
+        
+        
         $rules = ['image' => 'required|image|max:1024*1024*1',];
         $messages = [
             'image.required' => 'La imagen es requerida',
@@ -64,7 +66,7 @@ class BandaController extends Controller
         if ($validator->fails()){
             return redirect('/profile/banda')->withErrors($validator);
         }else{
-            $int = $request->Integrantes;
+            
             $iduser = \Auth::user()->id;
             //obtenemos el campo file definido en el formulario
             $name = str_random(30) . '-' . $request->file('image')->getClientOriginalName();
@@ -90,9 +92,21 @@ class BandaController extends Controller
             if($request->spotify){
                 DB::table('banda')->where('id', $id)->update(['spotify' => $request->spotify]);
             }
-            for($i=0;$i < count($int);$i++){
-                DB::table('integrante')->insert(['nombre' => $int[$i],'id_banda' => $id]);
+            $lar = count($request->all());
+            $array = $request->all();
+            $prueba = Array();
+            $x = 0;
+            for($i=0;$i<$lar;$i++){
+                if(array_key_exists('Integrantes'.$i, $array)){
+                        $integrante = new Integrante();
+                        $integrante->nombre = $array['Integrantes'.$i];
+                        $integrante->id_banda = $id;
+                        $integrante->save();
+                        $x++;
+                    }
             }
+               
+        
             $actualizacion = new Actualizacion();
             $now = new \DateTime();
             $myTme = Carbon::now();
