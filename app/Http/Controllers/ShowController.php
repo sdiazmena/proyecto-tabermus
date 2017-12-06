@@ -176,9 +176,10 @@ class ShowController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         if($request->ciudad == "placeholder"){
-            DB::table('shows')->where('id',$request->id_show)->update(['title' => $request->title,'informacion'=>$request->informacion,'start'=>$request->date_start,'end'=>$request->date_end,'precio'=>$request->precio,'link'=>$request->link]);
+                    $time = $request->date_start.' '.$request->time_start;
+            DB::table('shows')->where('id',$request->id_show)->update(['title' => $request->title,'informacion'=>$request->informacion,'start'=>$time,'end'=>$request->date_end,'precio'=>$request->precio,'link'=>$request->link]);
             $id_region = DB::table('region')->where('nombre',$request->id_region)->first();
             $id_ciudad = DB::table('ciudad')->where('nombre',$request->id_ciudad)->first();
             $actualizacion = new Actualizacion();
@@ -191,12 +192,13 @@ class ShowController extends Controller
             $actualizacion->id_region = $id_region->id;
             $actualizacion->save();
         }else{
-            DB::table('shows')->where('id',$request->id_show)->update(['title'=>$request->title,'informacion'=>$request->informacion,'start'=>$request->date_start,'end'=>$request->date_end,'id_ciudad'=>$request->ciudad_id,'id_region'=>$request->region,'precio'=>$request->precio,'link'=>$request->link]);
+            $time = $request->date_start.' '.$request->time_start;
+            DB::table('shows')->where('id',$request->id_show)->update(['title'=>$request->title,'informacion'=>$request->informacion,'start'=>$time,'end'=>$request->date_end,'id_ciudad'=>$request->ciudad,'id_region'=>$request->region,'precio'=>$request->precio,'link'=>$request->link]);
             $actualizacion = new Actualizacion();
             $now = Carbon::now();
             $actualizacion->fecha = $now->toDateTimeString();
             $actualizacion->id_banda = $id;
-            $actualizacion->id_ciudad = $request->ciudad_id;
+            $actualizacion->id_ciudad = $request->ciudad;
             $actualizacion->id_show = $request->id_show;
             $actualizacion->detalles = "Ha editado la información de un show";
             $actualizacion->id_region = $request->region;

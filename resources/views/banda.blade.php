@@ -52,27 +52,27 @@
                         </div>
                         <div class="form-group">
                             <img class="media-object" src="https://www.facebook.com/images/fb_icon_325x325.png" alt="..." height= "30px">
-                            {!! Form::text('facebook', null, ['class' => 'form-control', 'placeholder' => 'Facebook']) !!}
+                            {!! Form::text('facebook', null, ['class' => 'form-control', 'placeholder' => 'www.facebook.com/ejemplo']) !!}
                         </div>
                         <div class="form-group">
                             <img class="media-object" src="https://www.gstatic.com/images/icons/material/product/2x/youtube_64dp.png" alt="..." height= "30px">
-                            {!! Form::text('youtube', null, ['class' => 'form-control', 'placeholder' => 'Youtube']) !!}
+                            {!! Form::text('youtube', null, ['class' => 'form-control', 'placeholder' => 'www.youtube.com/ejemplo']) !!}
                         </div>
                         <div class="form-group">
                             <img class="media-object" src="https://instagram-brand.com/wp-content/themes/ig-branding/assets/images/ig-logo-email.png" alt="..." height= "30px">
-                            {!! Form::text('instagram', null, ['class' => 'form-control', 'placeholder' => 'Instagram']) !!}
+                            {!! Form::text('instagram', null, ['class' => 'form-control', 'placeholder' => 'www.instagram.com/ejemplo']) !!}
                         </div>
                         <div class="form-group">
                             <img class="media-object" src="https://lh3.googleusercontent.com/UrY7BAZ-XfXGpfkeWg0zCCeo-7ras4DCoRalC_WXXWTK9q5b0Iw7B0YQMsVxZaNB7DM=w300" alt="..." height= "30px">
-                            {!! Form::text('spotify', null, ['class' => 'form-control', 'placeholder' => 'Spotify']) !!}
+                            {!! Form::text('spotify', null, ['class' => 'form-control', 'placeholder' => 'www.spotify.com/ejemplo']) !!}
                         </div>
                         <div class="form-group">
                             <img class="media-object" src="http://www.espiritudeportivo.es/images/twitter-contacto.png" alt="..." height= "30px">
-                            {!! Form::text('twitter', null, ['class' => 'form-control', 'placeholder' => 'Twitter']) !!}
+                            {!! Form::text('twitter', null, ['class' => 'form-control', 'placeholder' => 'www.twitter.com/ejemplo']) !!}
                         </div>
                         <div class="form-group">
                             <img class="media-object" src="http://industriamusical.es/wp-content/uploads/2014/05/soundcloud-icon.png" alt="..." height= "30px">
-                            {!! Form::text('soundcloud', null, ['class' => 'form-control', 'placeholder' => 'SoundCloud']) !!}
+                            {!! Form::text('soundcloud', null, ['class' => 'form-control', 'placeholder' => 'www.soundcloud.com/ejemplo']) !!}
                         </div>
                     
                 </div>

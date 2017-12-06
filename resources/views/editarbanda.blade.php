@@ -162,27 +162,27 @@
                             </div>
                             <div class="form-group">
                                 <img class="media-object" src="https://www.facebook.com/images/fb_icon_325x325.png" alt="..." height= "30px">
-                                {!! Form::text('facebook', $banda->facebook, ['class' => 'form-control', 'placeholder' => 'Facebook','value' => '{{$banda->facebook}}']) !!}
+                                {!! Form::text('facebook', $banda->facebook, ['class' => 'form-control', 'placeholder' => 'www.facebook.com/ejemplo','value' => '{{$banda->facebook}}']) !!}
                             </div>
                             <div class="form-group">
                                 <img class="media-object" src="https://www.gstatic.com/images/icons/material/product/2x/youtube_64dp.png" alt="..." height= "30px">
-                                {!! Form::text('youtube', $banda->youtube, ['class' => 'form-control', 'placeholder' => 'Youtube','value' => '{{$banda->youtube}}']) !!}
+                                {!! Form::text('youtube', $banda->youtube, ['class' => 'form-control', 'placeholder' => 'www.youtube.com/ejemplo','value' => '{{$banda->youtube}}']) !!}
                             </div>
                             <div class="form-group">
                                 <img class="media-object" src="https://instagram-brand.com/wp-content/themes/ig-branding/assets/images/ig-logo-email.png" alt="..." height= "30px">
-                                {!! Form::text('instagram', $banda->instagram, ['class' => 'form-control', 'placeholder' => 'Instagram','value'=>'{{$banda->instagram}}']) !!}
+                                {!! Form::text('instagram', $banda->instagram, ['class' => 'form-control', 'placeholder' => 'www.instagram.com/ejemplo','value'=>'{{$banda->instagram}}']) !!}
                             </div>
                             <div class="form-group">
                                 <img class="media-object" src="https://lh3.googleusercontent.com/UrY7BAZ-XfXGpfkeWg0zCCeo-7ras4DCoRalC_WXXWTK9q5b0Iw7B0YQMsVxZaNB7DM=w300" alt="..." height= "30px">
-                                {!! Form::text('spotify', $banda->spotify, ['class' => 'form-control', 'placeholder' => 'Spotify','value'=>'$banda->spotify']) !!}
+                                {!! Form::text('spotify', $banda->spotify, ['class' => 'form-control', 'placeholder' => 'www.spotify.com/ejemplo','value'=>'$banda->spotify']) !!}
                             </div>
                             <div class="form-group">
                                 <img class="media-object" src="http://www.espiritudeportivo.es/images/twitter-contacto.png" alt="..." height= "30px">
-                                {!! Form::text('twitter', $banda->twitter, ['class' => 'form-control', 'placeholder' => 'Twitter','value' => '{{$banda->twitter}}']) !!}
+                                {!! Form::text('twitter', $banda->twitter, ['class' => 'form-control', 'placeholder' => 'www.twitter.com/ejemplo','value' => '{{$banda->twitter}}']) !!}
                             </div>
                             <div class="form-group">
                                 <img class="media-object" src="http://industriamusical.es/wp-content/uploads/2014/05/soundcloud-icon.png" alt="..." height= "30px">
-                                {!! Form::text('soundcloud', $banda->twitter, ['class' => 'form-control', 'placeholder' => 'SoundCloud','value' => '$banda->twitter']) !!}
+                                {!! Form::text('soundcloud', $banda->twitter, ['class' => 'form-control', 'placeholder' => 'www.soundcloud.com/ejemplo','value' => '$banda->twitter']) !!}
                             </div>
                         </div>
                         <div class="modal-footer">

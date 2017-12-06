@@ -109,7 +109,17 @@ $(document).ready(function() {
                     success: function(result){
                         console.log(result);
                         $('#nombreShow').text(result[0].title);
-                        $('#ciudadShow').text(result[0].id_ciudad);
+                                          $.ajax({
+                        url: BASEURL+'/ciudad/'+result[0].id_ciudad,
+                        type: 'GET',
+                        success: function(data){
+                            $('#ciudadShow').text(data[0].nombre);
+                        },
+                        error: function(){
+                            console.log('Error');
+                        }
+                    });
+                        
                         $('#fechaShow').text(result[0].start);
                         $('#infShow').text(result[0].informacion);
                         $('#valor').text(result[0].precio);

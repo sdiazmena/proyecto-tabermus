@@ -125,25 +125,25 @@
                         <div class="form-group">
                             <input type="hidden" id = "id_show" name="id_show" value= "">
                             {{ Form::label('date_start', 'FECHA INICIO')}}
-                            {{ Form::text('date_start', old('date_start'),['class' => 'form-control']) }}
+                            {{ Form::text('date_start', old('date_start'),['id'=>'start','class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
                             {{ Form::label('time_start', 'HORA INICIO')}}
-                            {{ Form::text('time_start', old('time_start'),['id'=>'time_start','class' => 'form-control']) }}
+                            {{ Form::text('time_start', old('time_start'),['id'=>'time_start1','class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
                             {{ Form::label('date_end', 'FECHA HORA FIN')}}
-                            {{ Form::text('date_end', old('date_end'),['id'=>'date_end','class' => 'form-control']) }}
+                            {{ Form::text('date_end', old('date_end'),['id'=>'date_end1','class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
                             {!! Form::label('region', 'REGION') !!}
                             {{ Form::text('id_region', old('id_region'),['id' => 'id_region', 'class' => 'form-control', 'readonly' => 'true']) }}
-                             {!! Form::select('region', $regiones, null,['id'=>'region','class' => 'form-control', 'placeholder' => 'Seleccione una región..']) !!}
+                             {!! Form::select('region', $regiones, null,['id'=>'region1','class' => 'form-control', 'placeholder' => 'Seleccione una región..']) !!}
                         </div>
-                        <div>
+                        <div class="form-group">
                             {!! Form::label('ciudad', 'CIUDAD') !!} 
                             {{ Form::text('id_ciudad', old('id_ciudad'),['id' => 'id_ciudad', 'class' => 'form-control', 'readonly' => 'true']) }}
-                            {!! Form::select('ciudad', ['placeholder' => 'Seleccione una ciudad..'], null,['id'=>'ciudad','class' => 'form-control']) !!}
+                            {!! Form::select('ciudad', ['placeholder' => 'Seleccione una ciudad..'], null,['id'=>'ciudad1','class' => 'form-control']) !!}
                         </div><!--
                         <div class="form-group">
                             {{ Form::label('color', 'COLOR')}}
@@ -198,7 +198,16 @@
         var BASEURL = '{{ url('/') }}';
         var mivarJS=<?php echo $banda->id ?>;
         $(document).ready(function() {
-        
+$("#region1").change(function(event){
+    $.get(BASEURL+"/profile/ciudades/"+event.target.value+"",function(response,region){
+        console.log(response[1].nombre);
+        $("#ciudad").empty();
+        for(i=0;i<response.length;i++){
+            console.log(response[i].nombre);
+            $("#ciudad1").append("<option value='"+response[i].id+"'> "+response[i].nombre+" </option>");
+        }
+    });
+});    
         $('#calendar').fullCalendar({
             header: {
                 left: 'prev,next today',
@@ -261,6 +270,21 @@
         
     
     $('#color').colorpicker();
+    $('#start').bootstrapMaterialDatePicker({
+        date: true,
+        shortTime: false,
+        format: 'YYYY-MM-DD'
+    });
+    $('#time_start1').bootstrapMaterialDatePicker({
+        date: false,
+        shortTime: false,
+        format: 'HH:mm:ss'
+    });
+    $('#date_end1').bootstrapMaterialDatePicker({
+        date: true,
+        shortTime: false,
+        format: 'YYYY-MM-DD HH:mm:ss'
+    });
     $('#time_start').bootstrapMaterialDatePicker({
         date: false,
         shortTime: false,
